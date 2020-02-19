@@ -19,7 +19,7 @@ public class User {
      * empty constructor
      */
     public User() {
-        
+
     }
 
     public int getId() {
