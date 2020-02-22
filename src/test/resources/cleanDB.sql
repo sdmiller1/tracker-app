@@ -1,6 +1,9 @@
+-- Drop tables in the correct order
+drop table if exists ratings;
+drop table if exists users;
+
 
 -- create the users table
-drop table if exists users;
 
 create table users (
     id int not null auto_increment,
@@ -11,15 +14,14 @@ create table users (
 
 
 -- create the ratings table
-drop table if exists ratings;
 
 create table ratings (
     id int not null auto_increment,
     user_id int,
     movie varchar(255),
     rating int,
-    primary key id,
-    foreign key user_id references users.id
+    primary key (id),
+    foreign key (user_id) references users(id)
 );
 
 -- insert sample data

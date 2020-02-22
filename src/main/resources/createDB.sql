@@ -19,5 +19,5 @@ create table ratings (
     movie varchar(255),
     rating int,
     primary key id,
-    foreign key user_id references users.id
+    foreign key (user_id) references users(id)
 );
