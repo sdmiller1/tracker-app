@@ -77,11 +77,12 @@ public class UserDao {
 
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<User> query = builder.createQuery( User.class );
-        List<User> books = session.createQuery( query ).getResultList();
+        Root<User> root = query.from( User.class ); //TODO what does this line do?
+        List<User> users = session.createQuery( query ).getResultList();
 
         session.close();
 
-        return books;
+        return users;
     }
 
 

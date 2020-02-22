@@ -50,5 +50,7 @@ public class UserDaoTest {
 
     @Test
     void getAll() {
+        List<User> users = dao.getAll();
+        assertEquals(4, users.size());
     }
 }
