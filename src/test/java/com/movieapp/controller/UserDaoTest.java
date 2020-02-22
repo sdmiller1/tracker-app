@@ -27,14 +27,25 @@ public class UserDaoTest {
 
     @Test
     void saveOrUpdate() {
+        User userToUpdate = dao.getById(1);
+        userToUpdate.setUsername("Matt Damon");
+        dao.saveOrUpdate(userToUpdate);
+        assertEquals("Matt Damon", dao.getById(1).getUsername());
     }
 
     @Test
     void insert() {
+        User user = new User();
+        user.setUsername("Matt Damon");
+        int id = dao.insert(user);
+        assertEquals("Matt Damon", dao.getById(id).getUsername());
     }
 
     @Test
     void delete() {
+        User user = dao.getById(1);
+        dao.delete(user);
+        assertNull(dao.getById(1));
     }
 
     @Test
