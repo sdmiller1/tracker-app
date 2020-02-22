@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity(name = "movie_app")
+@Entity(name = "Users")
 @Table(name = "users")
 public class User {
 

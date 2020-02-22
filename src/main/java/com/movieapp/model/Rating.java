@@ -3,7 +3,7 @@ package com.movieapp.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-@Entity(name = "movie_app")
+@Entity(name = "Ratings")
 @Table(name = "ratings")
 public class Rating {
 
