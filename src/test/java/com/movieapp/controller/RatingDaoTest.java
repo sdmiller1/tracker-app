@@ -5,6 +5,8 @@ import com.movieapp.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class RatingDaoTest {
@@ -35,13 +37,24 @@ class RatingDaoTest {
 
     @Test
     void insert() {
+        User user = new UserDao().getById(1);
+        Rating rating = new Rating("Interstellar", 5, user);
+
+        int id = dao.insert(rating);
+        assertEquals("Interstellar", dao.getById(id).getMovie());
+        assertEquals("bob", dao.getById(id).getUser().getUsername());
     }
 
     @Test
     void delete() {
+        Rating rating = dao.getById(5);
+        dao.delete(rating);
+        assertNull(dao.getById(5));
     }
 
     @Test
     void getAll() {
+        List<Rating> ratings = dao.getAll();
+        assertEquals(5, ratings.size());
     }
 }
