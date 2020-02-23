@@ -1,5 +1,6 @@
 package com.movieapp.controller;
 
+import com.movieapp.model.Rating;
 import com.movieapp.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,6 +40,20 @@ public class UserDaoTest {
         user.setUsername("Matt Damon");
         int id = dao.insert(user);
         assertEquals("Matt Damon", dao.getById(id).getUsername());
+    }
+
+    @Test
+    void insertWithRating() {
+        User user = new User();
+        user.setUsername("Matt Damon");
+
+        Rating rating = new Rating("Ad Astra", 4, user);
+
+        user.addRating(rating);
+
+        int id = dao.insert(user);
+        assertEquals("Matt Damon", dao.getById(id).getUsername());
+        assertEquals(1, dao.getById(id).getRatings().size());
     }
 
     @Test
