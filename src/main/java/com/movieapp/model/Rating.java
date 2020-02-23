@@ -15,6 +15,9 @@ public class Rating {
     @Column(name = "rating")
     private int rating;
 
+    @Column(name = "movie")
+    private String movie;
+
     @ManyToOne
     private User user;
 
@@ -23,9 +26,10 @@ public class Rating {
     public Rating() {
     }
 
-    public Rating(int rating, User user) {
+    public Rating(String movie, int rating, User user) {
         this.rating = rating;
         this.user = user;
+        this.movie = movie;
     }
 
     public int getId() {
@@ -42,6 +46,14 @@ public class Rating {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    public String getMovie() {
+        return movie;
+    }
+
+    public void setMovie(String movie) {
+        this.movie = movie;
     }
 
     public User getUser() {
