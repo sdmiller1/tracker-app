@@ -28,6 +28,21 @@ public class User {
 
     }
 
+    public User(String username, Set<Rating> ratings) {
+        this.username = username;
+        this.ratings = ratings;
+    }
+
+    public void addRating(Rating rating) {
+        ratings.add(rating);
+        rating.setUser(this);
+    }
+
+    public void removeRating(Rating rating) {
+        ratings.remove(rating);
+        rating.setUser(null);
+    }
+
     public int getId() {
         return id;
     }
