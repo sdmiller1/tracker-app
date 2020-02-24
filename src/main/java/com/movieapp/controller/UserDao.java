@@ -77,7 +77,7 @@ public class UserDao {
 
         CriteriaBuilder builder = session.getCriteriaBuilder();
         CriteriaQuery<User> query = builder.createQuery( User.class );
-        Root<User> root = query.from( User.class ); //TODO what does this line do?
+        Root<User> root = query.from( User.class );
         List<User> users = session.createQuery( query ).getResultList();
 
         session.close();
