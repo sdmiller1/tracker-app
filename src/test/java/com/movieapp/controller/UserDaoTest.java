@@ -41,31 +41,31 @@ public class UserDaoTest {
         int id = dao.insert(user);
         assertEquals("Matt Damon", dao.getById(id).getUsername());
     }
-
-    @Test
-    void insertWithRating() {
-        User user = new User();
-        user.setUsername("Matt Damon");
-
-        Rating rating = new Rating("Ad Astra", 4, user);
-
-        user.addRating(rating);
-
-        int id = dao.insert(user);
-        assertEquals("Matt Damon", dao.getById(id).getUsername());
-        assertEquals(1, dao.getById(id).getRatings().size());
-    }
-
-    @Test
-    void delete() {
-        User user = dao.getById(1);
-        dao.delete(user);
-        assertNull(dao.getById(1));
-    }
-
-    @Test
-    void getAll() {
-        List<User> users = dao.getAll();
-        assertEquals(4, users.size());
-    }
+//
+//    @Test
+//    void insertWithRating() {
+//        User user = new User();
+//        user.setUsername("Matt Damon");
+//
+//        Rating rating = new Rating("Ad Astra", 4, user);
+//
+//        user.addRating(rating);
+//
+//        int id = dao.insert(user);
+//        assertEquals("Matt Damon", dao.getById(id).getUsername());
+//        assertEquals(1, dao.getById(id).getRatings().size());
+//    }
+//
+//    @Test
+//    void delete() {
+//        User user = dao.getById(1);
+//        dao.delete(user);
+//        assertNull(dao.getById(1));
+//    }
+//
+//    @Test
+//    void getAll() {
+//        List<User> users = dao.getAll();
+//        assertEquals(4, users.size());
+//    }
 }
