@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Entity(name = "Collections")
 @Table(name = "Collections")
-public class Collections {
+public class Collection {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO, generator="native")
@@ -27,11 +27,11 @@ public class Collections {
     )
     Set<User> users = new HashSet<>();
 
-    public Collections() {
+    public Collection() {
 
     }
 
-    public Collections(String collectionType, Set<User> users) {
+    public Collection(String collectionType, Set<User> users) {
         this.collectionType = collectionType;
         this.users = users;
     }
@@ -64,7 +64,7 @@ public class Collections {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Collections that = (Collections) o;
+        Collection that = (Collection) o;
         return id == that.id &&
                 Objects.equals(collectionType, that.collectionType);
     }
@@ -76,7 +76,7 @@ public class Collections {
 
     @Override
     public String toString() {
-        return "Collections{" +
+        return "Collection{" +
                 "id=" + id +
                 ", collectionType='" + collectionType + '\'' +
                 '}';
