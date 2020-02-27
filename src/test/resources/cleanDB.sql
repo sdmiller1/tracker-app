@@ -111,3 +111,15 @@ insert into Ratings values (default, 2, 1, current_date(), 5);
 insert into Ratings values (default, 3, 1, current_date(), 5);
 insert into Ratings values (default, 4, 2, current_date(), 5);
 insert into Ratings values (default, 1, 1, current_date(), 4);
+
+insert into Collections values (default, 'personal');
+insert into Collections values (default, 'personal');
+insert into Collections values (default, 'personal');
+insert into Collections values (default, 'personal');
+
+insert into UsersCollections values (1, 1);
+insert into UsersCollections values (2, 2);
+insert into UsersCollections values (3, 3);
+insert into UsersCollections values (4, 4);
+insert into UsersCollections values (4, 1);
+
