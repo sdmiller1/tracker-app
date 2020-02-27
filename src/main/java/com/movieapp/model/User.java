@@ -58,6 +58,14 @@ public class User {
         this.ratings = ratings;
     }
 
+    public void addRating(Rating rating) {
+        ratings.add(rating);
+    }
+
+    public void removeRating(Rating rating) {
+        ratings.remove(rating);
+    }
+
     public int getId() {
         return id;
     }
