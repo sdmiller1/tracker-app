@@ -36,35 +36,49 @@ public class UserDaoTest {
 
     @Test
     void insert() {
-        User user = new User("Brad", "Pitt", "movieGuy12", "password", true, true, true, null);
+        User user = new User("Brad", "Pitt", "movieGuy12", "password", true, true, true, new HashSet<Rating>());
         int id = dao.insert(user);
         assertEquals(user, dao.getById(id));
     }
 
-//    @Test
-//    void insertWithRating() {
-//        User user = new User();
-//        user.setUsername("Matt Damon");
-//
-//        Rating rating = new Rating("Ad Astra", 4, user);
-//
-//        user.addRating(rating);
-//
-//        int id = dao.insert(user);
-//        assertEquals("Matt Damon", dao.getById(id).getUsername());
-//        assertEquals(1, dao.getById(id).getRatings().size());
-//    }
-//
-//    @Test
-//    void delete() {
-//        User user = dao.getById(1);
-//        dao.delete(user);
-//        assertNull(dao.getById(1));
-//    }
-//
-//    @Test
-//    void getAll() {
-//        List<User> users = dao.getAll();
-//        assertEquals(4, users.size());
-//    }
+    @Test
+    void insertWithRating() {
+        User user = new User("Brad", "Pitt", "movieGuy12", "password", true, true, true, new HashSet<Rating>());
+
+        Rating rating = new Rating(user, 3, "2020-02-25", 4);
+
+        user.addRating(rating);
+
+        int id = dao.insert(user);
+        assertEquals(user, dao.getById(id));
+    }
+
+    @Test
+    void delete() {
+        User user = dao.getById(1);
+        dao.delete(user);
+        assertNull(dao.getById(1));
+    }
+
+    @Test
+    void getAll() {
+        List<User> users = dao.getAll();
+        assertEquals(4, users.size());
+    }
+
+    @Test
+    void getRatingsByPropertyEquals() {
+        List<User> users = dao.findByPropertyEqual("password", "password");
+        assertEquals(4, users.size());
+    }
+
+    @Test
+    void getRatingsByPropertyEqualsMap() {
+        Map<String, Object> propertiesMap = new HashMap<String, Object>();
+        propertiesMap.put("password", "password");
+        propertiesMap.put("hasDvd", true);
+
+        List<User> users = dao.findByPropertyEqual(propertiesMap);
+        assertEquals(4, users.size());
+    }
 }
