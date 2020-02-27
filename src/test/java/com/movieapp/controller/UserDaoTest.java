@@ -9,15 +9,14 @@ import java.util.*;
 
 public class UserDaoTest {
 
-    UserDao dao;
+    GenericDao<User> dao;
 
     @BeforeEach
     void setUp() {
-
         Database database = Database.getInstance();
         database.runSQL("cleanDB.sql");
 
-        dao = new UserDao();
+        dao = new GenericDao<User>(User.class);
     }
 
     @Test
@@ -28,20 +27,20 @@ public class UserDaoTest {
 
     @Test
     void saveOrUpdate() {
-        User userToUpdate = dao.getById(1);
-        userToUpdate.setUsername("Matt Damon");
-        dao.saveOrUpdate(userToUpdate);
-        assertEquals("Matt Damon", dao.getById(1).getUsername());
+        User user = dao.getById(1);
+        user.setFirstName("Matt");
+        user.setLastName("Damon");
+        dao.saveOrUpdate(user);
+        assertEquals(user, dao.getById(1));
     }
 
     @Test
     void insert() {
-        User user = new User();
-        user.setUsername("Matt Damon");
+        User user = new User("Brad", "Pitt", "movieGuy12", "password", null);
         int id = dao.insert(user);
-        assertEquals("Matt Damon", dao.getById(id).getUsername());
+        assertEquals(user, dao.getById(id));
     }
-//
+
 //    @Test
 //    void insertWithRating() {
 //        User user = new User();
