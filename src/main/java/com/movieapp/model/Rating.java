@@ -3,6 +3,8 @@ package com.movieapp.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Objects;
+
 @Entity(name = "Ratings")
 @Table(name = "Ratings")
 public class Rating {
@@ -80,6 +82,23 @@ public class Rating {
 
     public void setRating(int rating) {
         this.rating = rating;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Rating rating1 = (Rating) o;
+        return id == rating1.id &&
+                movieId == rating1.movieId &&
+                rating == rating1.rating &&
+                Objects.equals(user, rating1.user) &&
+                Objects.equals(date, rating1.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, user, movieId, date, rating);
     }
 
     @Override
