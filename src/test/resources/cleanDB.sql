@@ -8,7 +8,7 @@ drop table if exists Users;
 
 
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2020-02-27 17:44:19.119
+-- Last modification date: 2020-02-27 22:18:29.2
 
 -- tables
 -- Table: Collections
@@ -29,6 +29,9 @@ CREATE TABLE Movies (
 CREATE TABLE MoviesCollections (
                                    collection_id int NOT NULL,
                                    movie_id int NOT NULL,
+                                   hasDvd bool NOT NULL,
+                                   hasBluRay bool NOT NULL,
+                                   has4k bool NOT NULL,
                                    CONSTRAINT MoviesCollections_pk PRIMARY KEY (collection_id,movie_id)
 );
 
@@ -49,6 +52,9 @@ CREATE TABLE Users (
                        lastName varchar(255) NOT NULL,
                        username varchar(255) NOT NULL,
                        password varchar(255) NOT NULL,
+                       hasDvd bool NOT NULL,
+                       hasBluRay bool NOT NULL,
+                       has4k bool NOT NULL,
                        CONSTRAINT Users_pk PRIMARY KEY (id)
 );
 
@@ -90,12 +96,14 @@ ALTER TABLE UsersCollections ADD CONSTRAINT UsersCollections_Users FOREIGN KEY U
 
 
 
+
+
 -- insert sample data
 
-insert into Users values (default, 'Bob', 'Behnken', 'astrobob', 'password');
-insert into Users values (default, 'Doug', 'Hurley', 'astrodoug', 'password');
-insert into Users values (default, 'Chris', 'Hadfield', 'astrochris', 'password');
-insert into Users values (default, 'Scott', 'Kelly', 'astroscott', 'password');
+insert into Users values (default, 'Bob', 'Behnken', 'astrobob', 'password', true, true, false);
+insert into Users values (default, 'Doug', 'Hurley', 'astrodoug', 'password', true, true, false);
+insert into Users values (default, 'Chris', 'Hadfield', 'astrochris', 'password', true, true, false);
+insert into Users values (default, 'Scott', 'Kelly', 'astroscott', 'password', true, true, false);
 
 insert into Movies values (default, 'The Martian');
 insert into Movies values (default, 'Harry Potter');
