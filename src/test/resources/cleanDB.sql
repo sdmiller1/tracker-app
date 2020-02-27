@@ -104,5 +104,5 @@ insert into Movies values (default, 'Ad Astra');
 insert into Ratings values (default, 1, 1, current_date(), 5);
 insert into Ratings values (default, 2, 1, current_date(), 5);
 insert into Ratings values (default, 3, 1, current_date(), 5);
-insert into Ratings values (default, 4, 1, current_date(), 5);
+insert into Ratings values (default, 4, 2, current_date(), 5);
 insert into Ratings values (default, 1, 1, current_date(), 4);
