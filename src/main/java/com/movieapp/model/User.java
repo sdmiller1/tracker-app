@@ -40,8 +40,8 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<Rating> ratings = new HashSet<Rating>();
 
-    @ManyToMany(mappedBy = "Collections")
-    private Set<Collection> collections = new HashSet<>();
+    @ManyToMany(mappedBy = "users")
+    private Set<Collection> collections = new HashSet<Collection>();
 
     /**
      * empty constructor
@@ -139,6 +139,14 @@ public class User {
 
     public void setRatings(Set<Rating> ratings) {
         this.ratings = ratings;
+    }
+
+    public Set<Collection> getCollections() {
+        return collections;
+    }
+
+    public void setCollections(Set<Collection> collections) {
+        this.collections = collections;
     }
 
     @Override
