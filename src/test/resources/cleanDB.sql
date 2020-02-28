@@ -8,7 +8,7 @@ drop table if exists Users;
 
 
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2020-02-27 23:57:58.356
+-- Last modification date: 2020-02-28 17:54:48.223
 
 -- tables
 -- Table: Collections
@@ -21,6 +21,7 @@ CREATE TABLE Collections (
 -- Table: Movies
 CREATE TABLE Movies (
                         id int NOT NULL AUTO_INCREMENT,
+                        api_id int NOT NULL,
                         title varchar(255) NOT NULL,
                         CONSTRAINT Movies_pk PRIMARY KEY (id)
 );
@@ -97,6 +98,8 @@ ALTER TABLE UsersCollections ADD CONSTRAINT UsersCollections_Users FOREIGN KEY U
 
 
 
+
+
 -- insert sample data
 
 insert into Users values (default, 'Bob', 'Behnken', 'astrobob', 'password', true, true, false);
@@ -104,9 +107,9 @@ insert into Users values (default, 'Doug', 'Hurley', 'astrodoug', 'password', tr
 insert into Users values (default, 'Chris', 'Hadfield', 'astrochris', 'password', true, true, false);
 insert into Users values (default, 'Scott', 'Kelly', 'astroscott', 'password', true, true, false);
 
-insert into Movies values (default, 'The Martian');
-insert into Movies values (default, 'Harry Potter');
-insert into Movies values (default, 'Ad Astra');
+insert into Movies values (default, 1, 'The Martian');
+insert into Movies values (default, 2, 'Harry Potter');
+insert into Movies values (default, 3, 'Ad Astra');
 
 insert into Ratings values (default, 1, 1, current_date(), 5);
 insert into Ratings values (default, 2, 1, current_date(), 5);
@@ -124,4 +127,9 @@ insert into UsersCollections values (2, 2);
 insert into UsersCollections values (3, 3);
 insert into UsersCollections values (4, 4);
 insert into UsersCollections values (4, 1);
+
+insert into MoviesCollections values (1, 1, true, true, false);
+insert into MoviesCollections values (1, 2, true, false, false);
+insert into MoviesCollections values (1, 3, true, true, true);
+insert into MoviesCollections values (2, 1, true, true, true);
 
