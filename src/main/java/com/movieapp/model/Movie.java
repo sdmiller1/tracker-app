@@ -35,8 +35,9 @@ public class Movie {
 
     }
 
-    public Movie(int apiId, Set<Collection> collections) {
+    public Movie(int apiId, String title, Set<Collection> collections) {
         this.apiId = apiId;
+        this.title = title;
         this.collections = collections;
     }
 

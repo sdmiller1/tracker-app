@@ -8,7 +8,7 @@ drop table if exists Users;
 
 
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2020-02-28 17:54:48.223
+-- Last modification date: 2020-02-28 18:53:41.473
 
 -- tables
 -- Table: Collections
@@ -30,9 +30,9 @@ CREATE TABLE Movies (
 CREATE TABLE MoviesCollections (
                                    collection_id int NOT NULL,
                                    movie_id int NOT NULL,
-                                   hasDvd bool NOT NULL,
-                                   hasBluRay bool NOT NULL,
-                                   has4k bool NOT NULL,
+                                   hasDvd bool NOT NULL DEFAULT true,
+                                   hasBluRay bool NOT NULL DEFAULT false,
+                                   has4k bool NOT NULL DEFAULT false,
                                    CONSTRAINT MoviesCollections_pk PRIMARY KEY (collection_id,movie_id)
 );
 
@@ -69,11 +69,13 @@ CREATE TABLE UsersCollections (
 -- foreign keys
 -- Reference: MoviesCollections_Collections (table: MoviesCollections)
 ALTER TABLE MoviesCollections ADD CONSTRAINT MoviesCollections_Collections FOREIGN KEY MoviesCollections_Collections (collection_id)
-    REFERENCES Collections (id);
+    REFERENCES Collections (id)
+    ON DELETE CASCADE;
 
 -- Reference: MoviesCollections_Movies (table: MoviesCollections)
 ALTER TABLE MoviesCollections ADD CONSTRAINT MoviesCollections_Movies FOREIGN KEY MoviesCollections_Movies (movie_id)
-    REFERENCES Movies (id);
+    REFERENCES Movies (id)
+    ON DELETE CASCADE;
 
 -- Reference: Ratings_Movies (table: Ratings)
 ALTER TABLE Ratings ADD CONSTRAINT Ratings_Movies FOREIGN KEY Ratings_Movies (movie_id)
@@ -94,7 +96,6 @@ ALTER TABLE UsersCollections ADD CONSTRAINT UsersCollections_Users FOREIGN KEY U
     ON DELETE CASCADE;
 
 -- End of file.
-
 
 
 
