@@ -27,13 +27,18 @@ public class Collection {
     )
     Set<User> users = new HashSet<>();
 
+    @ManyToMany(mappedBy = "collections")
+    private Set<Movie> movies = new HashSet<Movie>();
+
+
     public Collection() {
 
     }
 
-    public Collection(String collectionType, Set<User> users) {
+    public Collection(String collectionType, Set<User> users, Set<Movie> movies) {
         this.collectionType = collectionType;
         this.users = users;
+        this.movies = movies;
     }
 
     public int getId() {
@@ -60,18 +65,27 @@ public class Collection {
         this.users = users;
     }
 
+    public Set<Movie> getMovies() {
+        return movies;
+    }
+
+    public void setMovies(Set<Movie> movies) {
+        this.movies = movies;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Collection that = (Collection) o;
         return id == that.id &&
-                Objects.equals(collectionType, that.collectionType);
+                Objects.equals(collectionType, that.collectionType) &&
+                Objects.equals(movies, that.movies);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, collectionType);
+        return Objects.hash(id, collectionType, movies);
     }
 
     @Override
@@ -79,6 +93,7 @@ public class Collection {
         return "Collection{" +
                 "id=" + id +
                 ", collectionType='" + collectionType + '\'' +
+                ", movies=" + movies +
                 '}';
     }
 }

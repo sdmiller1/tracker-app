@@ -13,6 +13,7 @@
         <mapping class="com.movieapp.model.User"/>
         <mapping class="com.movieapp.model.Rating"/>
         <mapping class="com.movieapp.model.Collection"/>
+        <mapping class="com.movieapp.model.Movie"/>
 
     </session-factory>
 </hibernate-configuration>
