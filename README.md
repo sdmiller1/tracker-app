@@ -1,4 +1,4 @@
-#Sam Miller Individual Project
+# Sam Miller Individual Project
 
 Sam Miller's individual project for Enterprise Java
 
