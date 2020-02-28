@@ -8,7 +8,7 @@ drop table if exists Users;
 
 
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2020-02-27 22:53:56.141
+-- Last modification date: 2020-02-27 23:57:58.356
 
 -- tables
 -- Table: Collections
@@ -84,11 +84,13 @@ ALTER TABLE Ratings ADD CONSTRAINT Ratings_Users FOREIGN KEY Ratings_Users (user
 
 -- Reference: UsersCollections_Collections (table: UsersCollections)
 ALTER TABLE UsersCollections ADD CONSTRAINT UsersCollections_Collections FOREIGN KEY UsersCollections_Collections (collection_id)
-    REFERENCES Collections (id);
+    REFERENCES Collections (id)
+    ON DELETE CASCADE;
 
 -- Reference: UsersCollections_Users (table: UsersCollections)
 ALTER TABLE UsersCollections ADD CONSTRAINT UsersCollections_Users FOREIGN KEY UsersCollections_Users (user_id)
-    REFERENCES Users (id);
+    REFERENCES Users (id)
+    ON DELETE CASCADE;
 
 -- End of file.
 
