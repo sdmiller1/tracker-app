@@ -1,8 +1,11 @@
 package com.movieapp.controller;
 
 import com.movieapp.model.Collection;
+import com.movieapp.model.Movie;
 import com.movieapp.model.Rating;
 import com.movieapp.model.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CollectionDaoTest {
 
     GenericDao<Collection> dao;
+    private final Logger logger = LogManager.getLogger(this.getClass());
 
     @BeforeEach
     void setUp() {
@@ -41,8 +45,9 @@ class CollectionDaoTest {
     @Test
     void insert() {
         Set<User> users = new HashSet<>();
+        Set<Movie> movies = new HashSet<>();
         users.add(new GenericDao<User>(User.class).getById(1));
-        Collection collection = new Collection("Netflix", users);
+        Collection collection = new Collection("Netflix", users, movies);
 
         int id = dao.insert(collection);
         assertEquals(collection, dao.getById(id));

@@ -27,7 +27,7 @@ public class Collection {
     )
     Set<User> users = new HashSet<>();
 
-    @ManyToMany(mappedBy = "collections")
+    @ManyToMany(mappedBy = "collections", fetch=FetchType.EAGER)
     private Set<Movie> movies = new HashSet<Movie>();
 
 
