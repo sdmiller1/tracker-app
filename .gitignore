@@ -51,3 +51,7 @@ fabric.properties
 
 # Log files
 logs/
+
+# Database properties containing usernames and passwords
+hibernate.cfg.xml
+database.properties
