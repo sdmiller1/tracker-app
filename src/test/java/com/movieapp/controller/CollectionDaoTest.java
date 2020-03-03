@@ -1,9 +1,7 @@
 package com.movieapp.controller;
 
+import com.movieapp.model.*;
 import com.movieapp.model.Collection;
-import com.movieapp.model.Movie;
-import com.movieapp.model.Rating;
-import com.movieapp.model.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,18 +34,20 @@ class CollectionDaoTest {
     @Test
     void saveOrUpdate() {
         Collection collection = (Collection)dao.getById(1);
+        logger.error(collection);
         collection.setCollectionType("Netflix");
         dao.saveOrUpdate(collection);
         Collection updatedCollection = (Collection)dao.getById(1);
+        logger.error(updatedCollection);
         assertEquals(collection, updatedCollection);
     }
 
     @Test
     void insert() {
         Set<User> users = new HashSet<>();
-        Set<Movie> movies = new HashSet<>();
+        Set<MovieCollection> moviesCollections = new HashSet<>();
         users.add(new GenericDao<User>(User.class).getById(1));
-        Collection collection = new Collection("Netflix", users, movies);
+        Collection collection = new Collection("Netflix", users);
 
         int id = dao.insert(collection);
         assertEquals(collection, dao.getById(id));
