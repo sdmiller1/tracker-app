@@ -54,6 +54,8 @@ class CollectionDaoTest {
     @Test
     void delete() {
         Collection collection = dao.getById(3);
+        // TODO fix this BS
+        //new GenericDao<MovieCollection>(MovieCollection.class).delete(collection.getMovieCollections());
         dao.delete(collection);
         assertNull(dao.getById(3));
     }
