@@ -30,10 +30,6 @@ public class Collection {
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<MovieCollection> movieCollections = new HashSet<MovieCollection>();
 
-//    @ManyToMany(mappedBy = "collections", fetch=FetchType.EAGER)
-//    private Set<Movie> movies = new HashSet<Movie>();
-
-
     public Collection() {
 
     }
