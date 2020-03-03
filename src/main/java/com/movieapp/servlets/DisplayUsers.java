@@ -1,5 +1,6 @@
-package com.movieapp.controller;
+package com.movieapp.servlets;
 
+import com.movieapp.controller.GenericDao;
 import com.movieapp.model.User;
 
 import javax.servlet.*;
