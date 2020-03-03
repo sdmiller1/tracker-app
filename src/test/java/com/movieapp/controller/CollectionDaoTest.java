@@ -34,11 +34,9 @@ class CollectionDaoTest {
     @Test
     void saveOrUpdate() {
         Collection collection = (Collection)dao.getById(1);
-        logger.error(collection);
         collection.setCollectionType("Netflix");
         dao.saveOrUpdate(collection);
         Collection updatedCollection = (Collection)dao.getById(1);
-        logger.error(updatedCollection);
         assertEquals(collection, updatedCollection);
     }
 
