@@ -27,7 +27,7 @@ public class Collection {
     )
     Set<User> users = new HashSet<>();
 
-    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "collection", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<MovieCollection> movieCollections = new HashSet<MovieCollection>();
 
     public Collection() {
@@ -79,13 +79,12 @@ public class Collection {
         if (o == null || getClass() != o.getClass()) return false;
         Collection that = (Collection) o;
         return id == that.id &&
-                Objects.equals(collectionType, that.collectionType) &&
-                Objects.equals(movieCollections, that.movieCollections);
+                Objects.equals(collectionType, that.collectionType);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, collectionType, movieCollections);
+        return Objects.hash(id, collectionType);
     }
 
     @Override
@@ -93,7 +92,6 @@ public class Collection {
         return "Collection{" +
                 "id=" + id +
                 ", collectionType='" + collectionType + '\'' +
-                ", movieCollections=" + movieCollections +
                 '}';
     }
 }
