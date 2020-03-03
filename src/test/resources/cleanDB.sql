@@ -143,8 +143,8 @@ insert into UsersCollections values (3, 3);
 insert into UsersCollections values (4, 4);
 insert into UsersCollections values (4, 1);
 
-insert into MoviesCollections values (1, 1, true, true, false);
-insert into MoviesCollections values (1, 2, true, false, false);
-insert into MoviesCollections values (1, 3, true, true, true);
-insert into MoviesCollections values (2, 1, true, true, true);
+insert into MoviesCollections values (default, 1, 1, true, true, false);
+insert into MoviesCollections values (default, 1, 2, true, false, false);
+insert into MoviesCollections values (default, 1, 3, true, true, true);
+insert into MoviesCollections values (default, 2, 1, true, true, true);
 
