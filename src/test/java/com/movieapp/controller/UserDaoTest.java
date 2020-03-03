@@ -1,5 +1,6 @@
 package com.movieapp.controller;
 
+import com.movieapp.model.Movie;
 import com.movieapp.model.Rating;
 import com.movieapp.model.User;
 import org.junit.jupiter.api.BeforeEach;
@@ -44,8 +45,9 @@ public class UserDaoTest {
     @Test
     void insertWithRating() {
         User user = new User("Brad", "Pitt", "movieGuy12", "password", true, true, true, new HashSet<Rating>());
+        Movie movie = new GenericDao<Movie>(Movie.class).getById(2);
 
-        Rating rating = new Rating(user, 3, "2020-02-25", 4);
+        Rating rating = new Rating(user, movie, "2020-02-25", 4);
 
         user.addRating(rating);
 

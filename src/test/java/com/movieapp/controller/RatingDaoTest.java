@@ -1,5 +1,6 @@
 package com.movieapp.controller;
 
+import com.movieapp.model.Movie;
 import com.movieapp.model.Rating;
 import com.movieapp.model.User;
 import org.junit.jupiter.api.BeforeEach;
@@ -42,7 +43,8 @@ class RatingDaoTest {
     @Test
     void insert() {
         User user = new GenericDao<User>(User.class).getById(1);
-        Rating rating = new Rating(user, 3, "2020-02-25", 4);
+        Movie movie = new GenericDao<Movie>(Movie.class).getById(2);
+        Rating rating = new Rating(user, movie, "2020-02-25", 4);
 
         int id = dao.insert(rating);
         assertEquals(rating, dao.getById(id));
@@ -71,9 +73,8 @@ class RatingDaoTest {
     void getRatingsByPropertyEqualsMap() {
         Map<String, Object> propertiesMap = new HashMap<String, Object>();
         propertiesMap.put("rating", 5);
-        propertiesMap.put("movieId", 1);
 
         List<Rating> ratings = dao.findByPropertyEqual(propertiesMap);
-        assertEquals(3, ratings.size());
+        assertEquals(4, ratings.size());
     }
 }

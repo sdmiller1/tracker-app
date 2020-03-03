@@ -17,12 +17,8 @@ public class Rating {
     @ManyToOne
     private User user;
 
-//    @ManyToOne
-//    private Movie movie;
-
-    //TODO replace with above code
-    @Column(name = "movie_id")
-    private int movieId;
+    @ManyToOne
+    private Movie movie;
 
     //TODO change to a date object maybe?
     @Column(name = "dateWatched")
@@ -37,9 +33,9 @@ public class Rating {
 
     }
 
-    public Rating(User user, int movieId, String date, int rating) {
+    public Rating(User user, Movie movie, String date, int rating) {
         this.user = user;
-        this.movieId = movieId;
+        this.movie = movie;
         this.date = date;
         this.rating = rating;
     }
@@ -60,12 +56,12 @@ public class Rating {
         this.user = user;
     }
 
-    public int getMovieId() {
-        return movieId;
+    public Movie getMovie() {
+        return movie;
     }
 
-    public void setMovieId(int movieId) {
-        this.movieId = movieId;
+    public void setMovie(Movie movie) {
+        this.movie = movie;
     }
 
     public String getDate() {
@@ -90,15 +86,15 @@ public class Rating {
         if (o == null || getClass() != o.getClass()) return false;
         Rating rating1 = (Rating) o;
         return id == rating1.id &&
-                movieId == rating1.movieId &&
                 rating == rating1.rating &&
                 Objects.equals(user, rating1.user) &&
+                Objects.equals(movie, rating1.movie) &&
                 Objects.equals(date, rating1.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, user, movieId, date, rating);
+        return Objects.hash(id, user, movie, date, rating);
     }
 
     @Override
@@ -106,7 +102,7 @@ public class Rating {
         return "Rating{" +
                 "id=" + id +
                 ", user=" + user +
-                ", movieId=" + movieId +
+                ", movie=" + movie +
                 ", date='" + date + '\'' +
                 ", rating=" + rating +
                 '}';
