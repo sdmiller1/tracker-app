@@ -4,11 +4,12 @@ drop table if exists Ratings;
 drop table if exists Movies;
 drop table if exists UsersCollections;
 drop table if exists Collections;
+drop table if exists Roles;
 drop table if exists Users;
 
 
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2020-02-28 18:53:41.473
+-- Last modification date: 2020-03-03 16:37:36.853
 
 -- tables
 -- Table: Collections
@@ -28,12 +29,13 @@ CREATE TABLE Movies (
 
 -- Table: MoviesCollections
 CREATE TABLE MoviesCollections (
+                                   id int NOT NULL AUTO_INCREMENT,
                                    collection_id int NOT NULL,
                                    movie_id int NOT NULL,
                                    hasDvd bool NOT NULL DEFAULT true,
                                    hasBluRay bool NOT NULL DEFAULT false,
                                    has4k bool NOT NULL DEFAULT false,
-                                   CONSTRAINT MoviesCollections_pk PRIMARY KEY (collection_id,movie_id)
+                                   CONSTRAINT MoviesCollections_pk PRIMARY KEY (id)
 );
 
 -- Table: Ratings
@@ -44,6 +46,15 @@ CREATE TABLE Ratings (
                          dateWatched date NOT NULL,
                          rating int NOT NULL,
                          CONSTRAINT Ratings_pk PRIMARY KEY (id)
+);
+
+-- Table: Roles
+CREATE TABLE Roles (
+                       id int NOT NULL AUTO_INCREMENT,
+                       roleName varchar(25) NOT NULL,
+                       userName varchar(255) NOT NULL,
+                       user_id int NOT NULL,
+                       CONSTRAINT Roles_pk PRIMARY KEY (id)
 );
 
 -- Table: Users
@@ -85,6 +96,10 @@ ALTER TABLE Ratings ADD CONSTRAINT Ratings_Movies FOREIGN KEY Ratings_Movies (mo
 ALTER TABLE Ratings ADD CONSTRAINT Ratings_Users FOREIGN KEY Ratings_Users (user_id)
     REFERENCES Users (id);
 
+-- Reference: Roles_Users (table: Roles)
+ALTER TABLE Roles ADD CONSTRAINT Roles_Users FOREIGN KEY Roles_Users (user_id)
+    REFERENCES Users (id);
+
 -- Reference: UsersCollections_Collections (table: UsersCollections)
 ALTER TABLE UsersCollections ADD CONSTRAINT UsersCollections_Collections FOREIGN KEY UsersCollections_Collections (collection_id)
     REFERENCES Collections (id)
@@ -96,7 +111,6 @@ ALTER TABLE UsersCollections ADD CONSTRAINT UsersCollections_Users FOREIGN KEY U
     ON DELETE CASCADE;
 
 -- End of file.
-
 
 
 
