@@ -22,23 +22,19 @@ public class Movie {
     @Column(name = "title")
     private String title;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(
-            name = "MoviesCollections",
-            joinColumns = {@JoinColumn(name = "movie_id")},
-            inverseJoinColumns = {@JoinColumn(name = "collection_id")}
-    )
-    Set<Collection> collections = new HashSet<>();
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private Set<MovieCollection> movieCollections = new HashSet<MovieCollection>();
 
 
     public Movie() {
 
     }
 
-    public Movie(int apiId, String title, Set<Collection> collections) {
+    public Movie(int apiId, String title) {
         this.apiId = apiId;
         this.title = title;
-        this.collections = collections;
+        // TODO should this be in this constructor? probably not
+        //this.movieCollections = movieCollections;
     }
 
     public int getId() {
@@ -65,12 +61,12 @@ public class Movie {
         this.title = title;
     }
 
-    public Set<Collection> getCollections() {
-        return collections;
+    public Set<MovieCollection> getMovieCollections() {
+        return movieCollections;
     }
 
-    public void setCollections(Set<Collection> collections) {
-        this.collections = collections;
+    public void setMovieCollections(Set<MovieCollection> movieCollections) {
+        this.movieCollections = movieCollections;
     }
 
     @Override

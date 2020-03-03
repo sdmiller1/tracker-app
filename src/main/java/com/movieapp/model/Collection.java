@@ -27,18 +27,22 @@ public class Collection {
     )
     Set<User> users = new HashSet<>();
 
-    @ManyToMany(mappedBy = "collections", fetch=FetchType.EAGER)
-    private Set<Movie> movies = new HashSet<Movie>();
+    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private Set<MovieCollection> movieCollections = new HashSet<MovieCollection>();
+
+//    @ManyToMany(mappedBy = "collections", fetch=FetchType.EAGER)
+//    private Set<Movie> movies = new HashSet<Movie>();
 
 
     public Collection() {
 
     }
 
-    public Collection(String collectionType, Set<User> users, Set<Movie> movies) {
+    public Collection(String collectionType, Set<User> users) {
         this.collectionType = collectionType;
         this.users = users;
-        this.movies = movies;
+        // TODO should this be in this constructor? probably not
+        //this.movieCollections = movieCollections;
     }
 
     public int getId() {
@@ -65,12 +69,12 @@ public class Collection {
         this.users = users;
     }
 
-    public Set<Movie> getMovies() {
-        return movies;
+    public Set<MovieCollection> getMovieCollections() {
+        return movieCollections;
     }
 
-    public void setMovies(Set<Movie> movies) {
-        this.movies = movies;
+    public void setMovieCollections(Set<MovieCollection> movieCollections) {
+        this.movieCollections = movieCollections;
     }
 
     @Override
@@ -80,12 +84,12 @@ public class Collection {
         Collection that = (Collection) o;
         return id == that.id &&
                 Objects.equals(collectionType, that.collectionType) &&
-                Objects.equals(movies, that.movies);
+                Objects.equals(movieCollections, that.movieCollections);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, collectionType, movies);
+        return Objects.hash(id, collectionType, movieCollections);
     }
 
     @Override
@@ -93,7 +97,7 @@ public class Collection {
         return "Collection{" +
                 "id=" + id +
                 ", collectionType='" + collectionType + '\'' +
-                ", movies=" + movies +
+                ", movieCollections=" + movieCollections +
                 '}';
     }
 }
