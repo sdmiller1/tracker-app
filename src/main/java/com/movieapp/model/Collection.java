@@ -19,12 +19,8 @@ public class Collection {
     @Column(name = "collectionType")
     private String collectionType;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-            name = "UsersCollections",
-            joinColumns = { @JoinColumn(name = "collection_id") },
-            inverseJoinColumns = { @JoinColumn(name = "user_id") }
-    )
+
+    @ManyToMany(mappedBy = "collections")
     Set<User> users = new HashSet<>();
 
     @OneToMany(mappedBy = "collection", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
