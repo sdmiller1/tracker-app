@@ -18,6 +18,7 @@ public class Rating {
     private User user;
 
     @ManyToOne
+    @JoinColumn(name = "movie_id")
     private Movie movie;
 
     //TODO change to a date object maybe?

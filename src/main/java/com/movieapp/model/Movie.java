@@ -25,9 +25,6 @@ public class Movie {
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<MovieCollection> movieCollections = new HashSet<MovieCollection>();
 
-    @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private Set<Rating> ratings = new HashSet<Rating>();
-
     public Movie() {
 
     }
@@ -69,14 +66,6 @@ public class Movie {
 
     public void setMovieCollections(Set<MovieCollection> movieCollections) {
         this.movieCollections = movieCollections;
-    }
-
-    public Set<Rating> getRatings() {
-        return ratings;
-    }
-
-    public void setRatings(Set<Rating> ratings) {
-        this.ratings = ratings;
     }
 
     @Override
