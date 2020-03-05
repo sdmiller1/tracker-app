@@ -40,12 +40,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<Rating> ratings = new HashSet<Rating>();
 
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-            name = "UsersCollections",
-            joinColumns = { @JoinColumn(name = "user_id") },
-            inverseJoinColumns = { @JoinColumn(name = "collection_id") }
-    )
+    @ManyToMany(mappedBy = "users")
     private Set<Collection> collections = new HashSet<Collection>();
 
     /**
