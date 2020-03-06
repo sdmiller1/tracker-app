@@ -148,3 +148,4 @@ insert into MoviesCollections values (default, 1, 2, true, false, false);
 insert into MoviesCollections values (default, 1, 3, true, true, true);
 insert into MoviesCollections values (default, 2, 1, true, true, true);
 
+insert into Roles values (default, 'admin', 'astroscott', 4);
