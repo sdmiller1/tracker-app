@@ -11,7 +11,7 @@
     <title>Login</title>
 </head>
 <body>
-    <form action="j_security check" method="post">
+    <form action="j_security_check" method="post">
         <label>
             Username:
             <input type="text" name="j_username">
