@@ -26,8 +26,6 @@ public class DisplayUsers extends HttpServlet {
 
         List<User> users = dao.getAll();
 
-        logger.error(users);
-
         request.setAttribute("results", users);
 
         String url = "/displayUsers.jsp";
