@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -144,6 +141,27 @@ public class GenericDao<T> {
         return session.createQuery(query).getResultList();
     }
 
+    /**
+     * Get order by property (like)
+     *
+     * @param propertyName entity property to search by
+     * @param value value of the property to search for
+     * @return list of orders meeting the criteria search
+     */
+    public List<T> findByPropertyLike(String propertyName, Object value) {
+        Session session = getSession();
+
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> query = builder.createQuery(type);
+        Root<T> root = query.from(type);
+        Expression<String> propertyPath = root.get(propertyName);
+
+        query.where(builder.like(propertyPath, "%" + value + "%"));
+
+        List<T> objects = session.createQuery(query).getResultList();
+        session.close();
+        return objects;
+    }
 
     /**
      * Returns an open session from the SessionFactory

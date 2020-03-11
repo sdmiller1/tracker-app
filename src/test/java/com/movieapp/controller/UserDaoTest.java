@@ -83,4 +83,10 @@ public class UserDaoTest {
         List<User> users = dao.findByPropertyEqual(propertiesMap);
         assertEquals(4, users.size());
     }
+
+    @Test
+    void getMovieByPropertyLike() {
+        List<User> users = dao.findByPropertyLike("username", "astro");
+        assertEquals(4, users.size());
+    }
 }

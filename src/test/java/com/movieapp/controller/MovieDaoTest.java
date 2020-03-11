@@ -79,4 +79,10 @@ class MovieDaoTest {
         List<Movie> movies = dao.findByPropertyEqual(propertiesMap);
         assertEquals(1, movies.size());
     }
+
+    @Test
+    void getMovieByPropertyLike() {
+        List<Movie> movies = dao.findByPropertyLike("title", "e");
+        assertEquals(2, movies.size());
+    }
 }
