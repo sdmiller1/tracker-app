@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet (
-        name = "DisplayUsers",
+        name = "DisplayMovies",
         urlPatterns = {"/displayMovies"}
 )
 public class DisplayMovies extends HttpServlet {
