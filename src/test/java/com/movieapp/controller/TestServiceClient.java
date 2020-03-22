@@ -11,15 +11,8 @@ public class TestServiceClient {
 
     @Test
     public void testOMDBJSON() throws Exception {
-        Client client = ClientBuilder.newClient();
-        WebTarget target =
-                client.target("http://www.omdbapi.com/?apikey=a59d3c7e&t=The+Martian");
-        String response = target.request(MediaType.APPLICATION_JSON).get(String.class);
+        Movie movie = new OMDBDao().getMovieByTitle("The Martian");
 
-        ObjectMapper mapper = new ObjectMapper();
-        Movie movie = mapper.readValue(response, Movie.class);
-
-//        assertEquals("???", response);
         assertEquals("The Martian", movie.getTitle());
     }
 }
