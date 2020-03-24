@@ -1,5 +1,6 @@
 package com.movieapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.util.Set;
 
 @Entity(name = "Movies")
 @Table(name = "Movies")
+@JsonIgnoreProperties({"movieCollections"})
 public class Movie {
 
     @Id
