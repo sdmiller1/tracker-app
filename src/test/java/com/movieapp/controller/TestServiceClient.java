@@ -17,8 +17,6 @@ public class TestServiceClient {
     public void testOMDBJSON() throws Exception {
         Movie movie = new OMDBDao().getMovieByTitle("The Martian");
 
-        logger.error(movie);
-
         assertEquals("The Martian", movie.getTitle());
     }
 }
