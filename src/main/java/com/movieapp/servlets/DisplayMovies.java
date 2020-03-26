@@ -31,7 +31,7 @@ public class DisplayMovies extends HttpServlet {
 
         request.setAttribute("movies", movies);
 
-        String url = "/displayMovies.jsp";
+        String url = "/browse.jsp";
 
         RequestDispatcher dispatcher = request.getRequestDispatcher(url);
         dispatcher.forward(request, response);
