@@ -21,8 +21,31 @@ public class Movie {
     @Column(name = "api_id")
     private int apiId;
 
+    @Column(name = "imdb_id")
+    private String imdbId;
+
     @Column(name = "title")
     private String title;
+
+    @Column(name = "image")
+    private String image;
+
+    @Column(name = "runtime")
+    private int runtime;
+
+    @Column(name = "ratingMPAA")
+    private String ratingMPAA;
+
+//    TODO: convert this to a date object
+    @Column(name = "releaseDate")
+    private String releaseDate;
+
+    @Column(name = "plot")
+    private String plot;
+
+//    TODO: this probably shouldn't be a string
+    @Column(name = "genre")
+    private String genre;
 
     @OneToMany(mappedBy = "movie", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<MovieCollection> movieCollections = new HashSet<MovieCollection>();
@@ -31,11 +54,16 @@ public class Movie {
 
     }
 
-    public Movie(int apiId, String title) {
+    public Movie(int apiId, String imdbId, String title, String image, int runtime, String ratingMPAA, String releaseDate, String plot, String genre) {
         this.apiId = apiId;
+        this.imdbId = imdbId;
         this.title = title;
-        // TODO should this be in this constructor? probably not
-        //this.movieCollections = movieCollections;
+        this.image = image;
+        this.runtime = runtime;
+        this.ratingMPAA = ratingMPAA;
+        this.releaseDate = releaseDate;
+        this.plot = plot;
+        this.genre = genre;
     }
 
     public int getId() {
@@ -54,12 +82,68 @@ public class Movie {
         this.apiId = apiId;
     }
 
+    public String getImdbId() {
+        return imdbId;
+    }
+
+    public void setImdbId(String imdbId) {
+        this.imdbId = imdbId;
+    }
+
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public int getRuntime() {
+        return runtime;
+    }
+
+    public void setRuntime(int runtime) {
+        this.runtime = runtime;
+    }
+
+    public String getRatingMPAA() {
+        return ratingMPAA;
+    }
+
+    public void setRatingMPAA(String ratingMPAA) {
+        this.ratingMPAA = ratingMPAA;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public String getPlot() {
+        return plot;
+    }
+
+    public void setPlot(String plot) {
+        this.plot = plot;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     public Set<MovieCollection> getMovieCollections() {
@@ -74,23 +158,37 @@ public class Movie {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Movie movies = (Movie) o;
-        return id == movies.id &&
-                apiId == movies.apiId &&
-                Objects.equals(title, movies.title);
+        Movie movie = (Movie) o;
+        return id == movie.id &&
+                apiId == movie.apiId &&
+                runtime == movie.runtime &&
+                Objects.equals(imdbId, movie.imdbId) &&
+                Objects.equals(title, movie.title) &&
+                Objects.equals(image, movie.image) &&
+                Objects.equals(ratingMPAA, movie.ratingMPAA) &&
+                Objects.equals(releaseDate, movie.releaseDate) &&
+                Objects.equals(plot, movie.plot) &&
+                Objects.equals(genre, movie.genre);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, apiId, title);
+        return Objects.hash(id, apiId, imdbId, title, image, runtime, ratingMPAA, releaseDate, plot, genre);
     }
 
     @Override
     public String toString() {
-        return "Movies{" +
+        return "Movie{" +
                 "id=" + id +
                 ", apiId=" + apiId +
+                ", imdbId='" + imdbId + '\'' +
                 ", title='" + title + '\'' +
+                ", image='" + image + '\'' +
+                ", runtime=" + runtime +
+                ", ratingMPAA='" + ratingMPAA + '\'' +
+                ", releaseDate='" + releaseDate + '\'' +
+                ", plot='" + plot + '\'' +
+                ", genre='" + genre + '\'' +
                 '}';
     }
 }

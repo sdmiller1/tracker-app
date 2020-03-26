@@ -9,7 +9,7 @@ drop table if exists Users;
 
 
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2020-03-03 16:37:36.853
+-- Last modification date: 2020-03-26 18:12:01.991
 
 -- tables
 -- Table: Collections
@@ -23,7 +23,14 @@ CREATE TABLE Collections (
 CREATE TABLE Movies (
                         id int NOT NULL AUTO_INCREMENT,
                         api_id int NOT NULL,
+                        imdb_id varchar(100) NOT NULL,
                         title varchar(255) NOT NULL,
+                        image text NOT NULL,
+                        runtime int NOT NULL,
+                        ratingMPAA varchar(10) NOT NULL,
+                        releaseDate varchar(20) NOT NULL,
+                        plot text NOT NULL,
+                        genre text NOT NULL,
                         CONSTRAINT Movies_pk PRIMARY KEY (id)
 );
 
@@ -52,7 +59,7 @@ CREATE TABLE Ratings (
 CREATE TABLE Roles (
                        id int NOT NULL AUTO_INCREMENT,
                        roleName varchar(25) NOT NULL,
-                       userName varchar(255) NOT NULL,
+                       username varchar(255) NOT NULL,
                        user_id int NOT NULL,
                        CONSTRAINT Roles_pk PRIMARY KEY (id)
 );
@@ -90,11 +97,13 @@ ALTER TABLE MoviesCollections ADD CONSTRAINT MoviesCollections_Movies FOREIGN KE
 
 -- Reference: Ratings_Movies (table: Ratings)
 ALTER TABLE Ratings ADD CONSTRAINT Ratings_Movies FOREIGN KEY Ratings_Movies (movie_id)
-    REFERENCES Movies (id);
+    REFERENCES Movies (id)
+    ON DELETE CASCADE;
 
 -- Reference: Ratings_Users (table: Ratings)
 ALTER TABLE Ratings ADD CONSTRAINT Ratings_Users FOREIGN KEY Ratings_Users (user_id)
-    REFERENCES Users (id);
+    REFERENCES Users (id)
+    ON DELETE CASCADE;
 
 -- Reference: Roles_Users (table: Roles)
 ALTER TABLE Roles ADD CONSTRAINT Roles_Users FOREIGN KEY Roles_Users (user_id)
@@ -122,9 +131,27 @@ insert into Users values (default, 'Doug', 'Hurley', 'astrodoug', 'password', tr
 insert into Users values (default, 'Chris', 'Hadfield', 'astrochris', 'password', true, true, false);
 insert into Users values (default, 'Scott', 'Kelly', 'astroscott', 'password', true, true, false);
 
-insert into Movies values (default, 1, 'The Martian');
-insert into Movies values (default, 2, 'Harry Potter');
-insert into Movies values (default, 3, 'Ad Astra');
+insert into Movies values (default, 1
+        , 'tt3659388'
+        ,'The Martian'
+        , 'https://m.media-amazon.com/images/M/MV5BMTc2MTQ3MDA1Nl5BMl5BanBnXkFtZTgwODA3OTI4NjE@._V1_SX300.jpg'
+        , 144, 'PG-13', '02 Oct 2015'
+        , 'An astronaut becomes stranded on Mars after his team assume him dead, and must rely on his ingenuity to find a way to signal to Earth that he is alive.'
+        , 'Adventure, Drama, Sci-Fi');
+insert into Movies values (default, 2
+        , 'tt1201607'
+        , 'Harry Potter'
+        , 'https://m.media-amazon.com/images/M/MV5BMjIyZGU4YzUtNDkzYi00ZDRhLTljYzctYTMxMDQ4M2E0Y2YxXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_SX300.jpg'
+        , 130, 'PG-13', '15 Jul 2011'
+        , 'Harry, Ron, and Hermione search for Voldemort''s remaining Horcruxes in their effort to destroy the Dark Lord as the final battle rages on at Hogwarts.'
+        , 'Adventure, Drama, Fantasy, Mystery');
+insert into Movies values (default, 3
+        , 'tt2935510'
+        , 'Ad Astra'
+        , 'https://m.media-amazon.com/images/M/MV5BZTllZTdlOGEtZTBmMi00MGQ5LWFjN2MtOGEyZTliNGY1MzFiXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_SX300.jpg'
+        , 123, 'PG-13', '20 Sep 2019'
+        , 'Astronaut Roy McBride undertakes a mission across an unforgiving solar system to uncover the truth about his missing father and his doomed expedition that now, 30 years later, threatens the universe.'
+        , 'Adventure, Drama, Mystery, Sci-Fi, Thriller');
 
 insert into Ratings values (default, 1, 1, current_date(), 5);
 insert into Ratings values (default, 2, 1, current_date(), 5);

@@ -46,7 +46,7 @@ class MovieDaoTest {
     void insert() {
         Set<Collection> collections = new HashSet<>();
         collections.add(new GenericDao<Collection>(Collection.class).getById(1));
-        Movie movie = new Movie(4, "Interstellar");
+        Movie movie = new Movie(4, "tt1327489", "Interstellar", "https://", 155, "PG-13", "", "", "");
 
         int id = dao.insert(movie);
         assertEquals(movie, dao.getById(id));
