@@ -10,18 +10,20 @@
 
 
 <main>
+    <c:forEach var="movie" items="${searchResults}">
     <section class="movie-page">
-        <img src="images/the_martian.jpg" alt="The Martian">
+        <img src="${movie.image}" alt="${movie.title}">
         <div class="movie-page-info">
-            <h2>The Martian (2015)</h2>
-            <p>Matt Damon on mars</p>
+            <h2>${movie.title} (${movie.releaseDate})</h2>
+            <p>${movie.plot}</p>
             <button>add to Collection</button>
         </div>
     </section>
+    </c:forEach>
 
     <section class="movie-grouping">
         <div class="movie-grouping-heading">
-            <h2>Similar Movies</h2>
+            <h2>Other Movies</h2>
             <a href="#">See More</a>
         </div>
 
