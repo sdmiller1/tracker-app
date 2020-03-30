@@ -3,9 +3,10 @@ package com.movieapp.controller;
 import com.movieapp.model.Movie;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
-import java.util.List;
+import org.junit.jupiter.api.Test;
+
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -21,7 +22,7 @@ public class OMDBDaoTest {
         Database database = Database.getInstance();
         database.runSQL("cleanDB.sql");
 
-        genericDao = new GenericDao<Movie>(Movie.class);
+        genericDao = new GenericDao<>(Movie.class);
     }
 
     @Test
@@ -37,7 +38,7 @@ public class OMDBDaoTest {
 
         dao.addMovieToDatabase(title);
 
-        List<Movie> movies = genericDao.findByPropertyEqual("title", title);
+        List<Movie> movies = genericDao.findByPropertyEqual("title", "The Martian");
 
         assertEquals(movies.size(), 1);
     }
