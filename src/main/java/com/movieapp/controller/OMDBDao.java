@@ -32,7 +32,7 @@ public class OMDBDao {
         } catch (JsonProcessingException e) {
             logger.error(e);
         }
-        
+
 //        TODO: figure out what this returns if the movie isnt found by the api
 
         return movie;

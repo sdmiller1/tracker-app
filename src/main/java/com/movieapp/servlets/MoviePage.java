@@ -32,7 +32,7 @@ public class MoviePage extends HttpServlet {
 
         MovieSearcher searcher = new MovieSearcher();
 
-        if (request.getParameter("search") != null) {
+        if (request.getParameter("search") != null && request.getParameter("search").length() != 0) {
             String title = request.getParameter("search");
 
             List<Movie> searchResults = searcher.findByTitle(title);
