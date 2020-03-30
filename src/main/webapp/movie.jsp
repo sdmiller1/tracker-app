@@ -10,7 +10,7 @@
 
 
 <main>
-    <c:forEach var="movie" items="${searchResults}">
+    <c:if test="${movie != null}">
     <section class="movie-page">
         <img src="${movie.image}" alt="${movie.title}">
         <div class="movie-page-info">
@@ -19,7 +19,28 @@
             <button>add to Collection</button>
         </div>
     </section>
-    </c:forEach>
+    </c:if>
+
+    <c:if test="${searchResults != null}">
+    <section class="movie-grouping">
+        <div class="movie-grouping-heading">
+            <h2>Search results for: ${request.getParamater("search")}</h2>
+            <a href="#">See More</a>
+        </div>
+
+        <div class="movie-list">
+            <c:forEach var="movie" items="${searchResults}">
+                <div class="movie">
+                    <a href="movie?id=${movie.imdbId}">
+                        <img src="${movie.image}" alt="${movie.title}">
+                    </a>
+                    <button><i class="fa fa-plus"></i></button>
+                </div>
+            </c:forEach>
+        </div>
+    </section>
+    </c:if>
+
 
     <section class="movie-grouping">
         <div class="movie-grouping-heading">
@@ -30,7 +51,9 @@
         <div class="movie-list">
             <c:forEach var="movie" items="${movies}">
                 <div class="movie">
-                    <img src="${movie.image}" alt="${movie.title}">
+                    <a href="movie?id=${movie.imdbId}">
+                        <img src="${movie.image}" alt="${movie.title}">
+                    </a>
                     <button><i class="fa fa-plus"></i></button>
                 </div>
             </c:forEach>

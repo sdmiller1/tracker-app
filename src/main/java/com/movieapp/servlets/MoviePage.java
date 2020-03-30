@@ -32,12 +32,22 @@ public class MoviePage extends HttpServlet {
 
         MovieSearcher searcher = new MovieSearcher();
 
+        // display movies based on title search query
         if (request.getParameter("search") != null && request.getParameter("search").length() != 0) {
             String title = request.getParameter("search");
 
             List<Movie> searchResults = searcher.findByTitle(title);
 
             request.setAttribute("searchResults", searchResults);
+        }
+
+        // Display a movie based on IMDB ID
+        if (request.getParameter("id") != null && request.getParameter("id").length() != 0) {
+            String id = request.getParameter("id");
+
+            Movie movie = searcher.findById(id);
+
+            request.setAttribute("movie", movie);
         }
 
         request.setAttribute("movies", movies);

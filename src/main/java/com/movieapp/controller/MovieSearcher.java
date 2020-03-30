@@ -16,7 +16,7 @@ public class MovieSearcher {
 
     public List<Movie> findByTitle(String title) {
         List<Movie> searchResults;
-        searchResults = dao.findByPropertyEqual("title", title);
+        searchResults = dao.findByPropertyLike("title", title);
 
         if (searchResults.size() == 0) {
             int id = apiDao.addMovieToDatabase(title);
@@ -24,6 +24,15 @@ public class MovieSearcher {
         }
 
         return searchResults;
+    }
+
+    public Movie findById(String id) {
+
+        List<Movie> movies = dao.findByPropertyEqual("imdbId", id);
+
+        Movie movie = movies.get(0);
+
+        return movie;
     }
 
 }
