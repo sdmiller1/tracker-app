@@ -32,11 +32,13 @@ public class OMDBDao {
         } catch (JsonProcessingException e) {
             logger.error(e);
         }
+        
+//        TODO: figure out what this returns if the movie isnt found by the api
 
         return movie;
     }
 
-    public void addMovieToDatabase(String title) {
+    public int addMovieToDatabase(String title) {
         Movie apiResult = getMovieByTitle(title);
         com.movieapp.model.Movie movie = new com.movieapp.model.Movie();
 
@@ -53,6 +55,8 @@ public class OMDBDao {
         movie.setPlot(apiResult.getPlot());
         movie.setGenre(apiResult.getGenre());
 
-        movieDao.insert(movie);
+        int id = movieDao.insert(movie);
+
+        return id;
     }
 }
