@@ -12,8 +12,14 @@ public class MovieSearcher {
 
     private GenericDao<Movie> dao = new GenericDao<>(Movie.class);
 
+    private OMDBDao apiDao = new OMDBDao();
+
     public List<Movie> findByTitle(String title) {
         List<Movie> searchResults = dao.findByPropertyEqual("title", title);
+
+        if (searchResults.size() == 0) {
+//            movie isnt in the database yet... so call api and add it to db
+        }
 
         return searchResults;
     }

@@ -15,6 +15,8 @@ public class OMDBDao {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    private GenericDao<com.movieapp.model.Movie> movieDao = new GenericDao<>(com.movieapp.model.Movie.class);
+
     public Movie getMovieByTitle(String title) {
         title = title.replaceAll(" ", "+");
 
@@ -32,5 +34,25 @@ public class OMDBDao {
         }
 
         return movie;
+    }
+
+    public void addMovieToDatabase(String title) {
+        Movie apiResult = getMovieByTitle(title);
+        com.movieapp.model.Movie movie = new com.movieapp.model.Movie();
+
+        movie.setTitle(apiResult.getTitle());
+        movie.setImdbId(apiResult.getImdbID());
+        movie.setImage(apiResult.getPoster());
+
+        String runtime = apiResult.getRuntime();
+        runtime = runtime.substring(0, runtime.length() - 4);
+        movie.setRuntime(Integer.parseInt(runtime));
+
+        movie.setRatingMPAA(apiResult.getRated());
+        movie.setReleaseDate(apiResult.getReleased());
+        movie.setPlot(apiResult.getPlot());
+        movie.setGenre(apiResult.getGenre());
+
+        movieDao.insert(movie);
     }
 }
