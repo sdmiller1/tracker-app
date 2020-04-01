@@ -20,8 +20,8 @@
   <!-- Protect the user display page. -->
   <security-constraint>
     <web-resource-collection>
-      <web-resource-name>displayUsers</web-resource-name>
-      <url-pattern>/displayUsers</url-pattern>
+      <web-resource-name>userPage</web-resource-name>
+      <url-pattern>/profile</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>admin</role-name>
