@@ -2,6 +2,7 @@ package com.movieapp.api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.movieapp.controller.CollectionUpdater;
 import com.movieapp.controller.GenericDao;
 import com.movieapp.model.Movie;
 import com.movieapp.model.MovieCollection;
@@ -20,12 +21,10 @@ import java.util.List;
 public class UpdateMovieCollection {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
-    GenericDao<MovieCollection> movieCollectionDao = new GenericDao<>(MovieCollection.class);
-    GenericDao<Movie> movieDao = new GenericDao<>(Movie.class);
-    GenericDao<User> userDao = new GenericDao<>(User.class);
+    private CollectionUpdater collectionUpdater = new CollectionUpdater();
 
 
-//    TODO: replace with post/delete
+//    TODO: replace with post/delete, also pass in bluray/dvd/4k values
     @GET
     @Produces("text/plain")
     @Path("/{param}")
@@ -33,10 +32,15 @@ public class UpdateMovieCollection {
 
 //        TODO: This needs to be got from the request not hardcoded
         String username = "astroscott";
+        String collectionName = "personal";
 
         String result = "Failed to Add Movie";
 
+        int newEntryId = collectionUpdater.addMovieToUserCollection(imdbId, username, collectionName);
 
+        if (newEntryId != 0) {
+            result = "Successfully added the Movie to your collection";
+        }
 
         return Response.status(200).entity(result).build();
     }
