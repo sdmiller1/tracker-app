@@ -37,7 +37,7 @@ public class CollectionUpdater {
         int entryId = 0;
 
         for (Collection collection: collections) {
-            if (collection.getCollectionName() == collectionName && collection.getOwnedByUser() == username) {
+            if (collection.getCollectionName() == collectionName && collection.getUser().getUsername() == username) {
 
                 MovieCollection movieCollection = new MovieCollection(collection, movie, true, false, false);
                 entryId = movieCollectionGenericDao.insert(movieCollection);

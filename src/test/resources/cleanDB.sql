@@ -9,13 +9,13 @@ drop table if exists Users;
 
 
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2020-04-03 19:11:31.302
+-- Last modification date: 2020-04-03 19:49:12.87
 
 -- tables
 -- Table: Collections
 CREATE TABLE Collections (
                              id int NOT NULL AUTO_INCREMENT,
-                             ownedByUser varchar(255) NOT NULL,
+                             user_id int NOT NULL,
                              collectionName varchar(255) NOT NULL,
                              CONSTRAINT Collections_pk PRIMARY KEY (id)
 );
@@ -78,14 +78,11 @@ CREATE TABLE Users (
                        CONSTRAINT Users_pk PRIMARY KEY (id)
 );
 
--- Table: UsersCollections
-CREATE TABLE UsersCollections (
-                                  user_id int NOT NULL,
-                                  collection_id int NOT NULL,
-                                  CONSTRAINT UsersCollections_pk PRIMARY KEY (user_id,collection_id)
-);
-
 -- foreign keys
+-- Reference: Collections_Users (table: Collections)
+ALTER TABLE Collections ADD CONSTRAINT Collections_Users FOREIGN KEY Collections_Users (user_id)
+    REFERENCES Users (id);
+
 -- Reference: MoviesCollections_Collections (table: MoviesCollections)
 ALTER TABLE MoviesCollections ADD CONSTRAINT MoviesCollections_Collections FOREIGN KEY MoviesCollections_Collections (collection_id)
     REFERENCES Collections (id)
@@ -109,16 +106,6 @@ ALTER TABLE Ratings ADD CONSTRAINT Ratings_Users FOREIGN KEY Ratings_Users (user
 -- Reference: Roles_Users (table: Roles)
 ALTER TABLE Roles ADD CONSTRAINT Roles_Users FOREIGN KEY Roles_Users (user_id)
     REFERENCES Users (id);
-
--- Reference: UsersCollections_Collections (table: UsersCollections)
-ALTER TABLE UsersCollections ADD CONSTRAINT UsersCollections_Collections FOREIGN KEY UsersCollections_Collections (collection_id)
-    REFERENCES Collections (id)
-    ON DELETE CASCADE;
-
--- Reference: UsersCollections_Users (table: UsersCollections)
-ALTER TABLE UsersCollections ADD CONSTRAINT UsersCollections_Users FOREIGN KEY UsersCollections_Users (user_id)
-    REFERENCES Users (id)
-    ON DELETE CASCADE;
 
 -- End of file.
 
@@ -160,16 +147,10 @@ insert into Ratings values (default, 3, 1, current_date(), 5);
 insert into Ratings values (default, 4, 2, current_date(), 5);
 insert into Ratings values (default, 1, 1, current_date(), 4);
 
-insert into Collections values (default, 'astrobob', 'personal');
-insert into Collections values (default, 'astrodoug', 'personal');
-insert into Collections values (default, 'astrochris', 'personal');
-insert into Collections values (default, 'astroscott', 'personal');
-
-insert into UsersCollections values (1, 1);
-insert into UsersCollections values (2, 2);
-insert into UsersCollections values (3, 3);
-insert into UsersCollections values (4, 4);
-insert into UsersCollections values (4, 1);
+insert into Collections values (default, 1, 'personal');
+insert into Collections values (default, 2, 'personal');
+insert into Collections values (default, 3, 'personal');
+insert into Collections values (default, 4, 'personal');
 
 insert into MoviesCollections values (default, 1, 1, true, true, false);
 insert into MoviesCollections values (default, 1, 2, true, false, false);

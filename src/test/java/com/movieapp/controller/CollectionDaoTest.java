@@ -42,10 +42,9 @@ class CollectionDaoTest {
 
     @Test
     void insert() {
-        Set<User> users = new HashSet<>();
-        Set<MovieCollection> moviesCollections = new HashSet<>();
-        users.add(new GenericDao<User>(User.class).getById(1));
-        Collection collection = new Collection("Netflix", users);
+        User user = new GenericDao<User>(User.class).getById(1);
+
+        Collection collection = new Collection("Netflix", user);
 
         int id = dao.insert(collection);
         assertEquals(collection, dao.getById(id));
@@ -66,14 +65,14 @@ class CollectionDaoTest {
 
     @Test
     void getRatingsByPropertyEquals() {
-        List<Collection> collections = dao.findByPropertyEqual("collectionType", "personal");
+        List<Collection> collections = dao.findByPropertyEqual("collectionName", "personal");
         assertEquals(4, collections.size());
     }
 
     @Test
     void getRatingsByPropertyEqualsMap() {
         Map<String, Object> propertiesMap = new HashMap<String, Object>();
-        propertiesMap.put("collectionType", "personal");
+        propertiesMap.put("collectionName", "personal");
 
         List<Collection> collections = dao.findByPropertyEqual(propertiesMap);
         assertEquals(4, collections.size());

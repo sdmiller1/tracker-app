@@ -16,20 +16,12 @@ public class Collection {
     @GenericGenerator(name = "native",strategy = "native")
     private int id;
 
-    @Column(name = "ownedByUser")
-    private String ownedByUser;
-
     @Column(name = "collectionName")
     private String collectionName;
 
-
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-            name = "UsersCollections",
-            joinColumns = { @JoinColumn(name = "collection_id") },
-            inverseJoinColumns = { @JoinColumn(name = "user_id") }
-    )
-    Set<User> users = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @OneToMany(mappedBy = "collection", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<MovieCollection> movieCollections = new HashSet<MovieCollection>();
@@ -38,9 +30,9 @@ public class Collection {
 
     }
 
-    public Collection(String collectionName, Set<User> users) {
+    public Collection(String collectionName, User user) {
         this.collectionName = collectionName;
-        this.users = users;
+        this.user = user;
     }
 
     public int getId() {
@@ -51,14 +43,6 @@ public class Collection {
         this.id = id;
     }
 
-    public String getOwnedByUser() {
-        return ownedByUser;
-    }
-
-    public void setOwnedByUser(String ownedByUser) {
-        this.ownedByUser = ownedByUser;
-    }
-
     public String getCollectionName() {
         return collectionName;
     }
@@ -67,12 +51,12 @@ public class Collection {
         this.collectionName = collectionName;
     }
 
-    public Set<User> getUsers() {
-        return users;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Set<MovieCollection> getMovieCollections() {
@@ -89,21 +73,21 @@ public class Collection {
         if (o == null || getClass() != o.getClass()) return false;
         Collection that = (Collection) o;
         return id == that.id &&
-                Objects.equals(ownedByUser, that.ownedByUser) &&
-                Objects.equals(collectionName, that.collectionName);
+                Objects.equals(collectionName, that.collectionName) &&
+                Objects.equals(user, that.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, ownedByUser, collectionName);
+        return Objects.hash(id, collectionName, user);
     }
 
     @Override
     public String toString() {
         return "Collection{" +
                 "id=" + id +
-                ", ownedByUser='" + ownedByUser + '\'' +
                 ", collectionName='" + collectionName + '\'' +
+                ", user=" + user +
                 '}';
     }
 }
