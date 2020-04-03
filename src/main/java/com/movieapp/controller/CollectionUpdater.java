@@ -32,12 +32,10 @@ public class CollectionUpdater {
 
         Set<Collection> collections = user.getCollections();
 
-        logger.error(collections);
-
         int entryId = 0;
 
         for (Collection collection: collections) {
-            if (collection.getCollectionName() == collectionName && collection.getUser().getUsername() == username) {
+            if (collection.getCollectionName().equals(collectionName)) {
 
                 MovieCollection movieCollection = new MovieCollection(collection, movie, true, false, false);
                 entryId = movieCollectionGenericDao.insert(movieCollection);

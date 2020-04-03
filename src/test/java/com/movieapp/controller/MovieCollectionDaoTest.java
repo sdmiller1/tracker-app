@@ -84,27 +84,27 @@ class MovieCollectionDaoTest {
         assertEquals(2, movieCollections.size());
     }
 
-//    @Test
-//    void addMovieToUsersPersonalCollection() {
-//        GenericDao<Movie> movieGenericDao = new GenericDao<>(Movie.class);
-//        GenericDao<User> userGenericDao = new GenericDao<>(User.class);
-//
-//        String username = "astroscott";
-//        String collectionType = "personal";
-//        String movieTitle = "The Martian";
-//
-//        Movie movie = movieGenericDao.findByPropertyEqual("title", movieTitle).get(0);
-//        User user = userGenericDao.findByPropertyEqual("username", username).get(0);
-//
-//
-//        CollectionUpdater collectionUpdater = new CollectionUpdater();
-//
-//        int entryId = collectionUpdater.addMovieToUserCollection(movie.getImdbId(), username, collectionType);
-//
-//        MovieCollection movieCollection = (MovieCollection)dao.getById(entryId);
-//
-//        assertEquals(movie, movieCollection.getMovie());
-//        assertEquals(user.getCollections(), movieCollection.getCollection());
-//
-//    }
+    @Test
+    void addMovieToUsersPersonalCollection() {
+        GenericDao<Movie> movieGenericDao = new GenericDao<>(Movie.class);
+        GenericDao<User> userGenericDao = new GenericDao<>(User.class);
+
+        String username = "astroscott";
+        String collectionType = "personal";
+        String movieTitle = "The Martian";
+
+        Movie movie = movieGenericDao.findByPropertyEqual("title", movieTitle).get(0);
+        User user = userGenericDao.findByPropertyEqual("username", username).get(0);
+
+
+        CollectionUpdater collectionUpdater = new CollectionUpdater();
+
+        int entryId = collectionUpdater.addMovieToUserCollection(movie.getImdbId(), username, collectionType);
+
+        MovieCollection movieCollection = (MovieCollection)dao.getById(entryId);
+
+        assertEquals(movie, movieCollection.getMovie());
+        assertEquals(user, movieCollection.getCollection().getUser());
+
+    }
 }

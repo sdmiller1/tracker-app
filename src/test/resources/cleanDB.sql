@@ -127,7 +127,7 @@ insert into Movies values (default
         , 'Adventure, Drama, Sci-Fi');
 insert into Movies values (default
         , 'tt1201607'
-        , 'Harry Potter and the Deathly Hallows – Part 2'
+        , 'Harry Potter and the Deathly Hallows: Part 2'
         , 'https://m.media-amazon.com/images/M/MV5BMjIyZGU4YzUtNDkzYi00ZDRhLTljYzctYTMxMDQ4M2E0Y2YxXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_SX300.jpg'
         , 130, 'PG-13', '15 Jul 2011'
         , 'Harry, Ron, and Hermione search for Voldemort''s remaining Horcruxes in their effort to destroy the Dark Lord as the final battle rages on at Hogwarts.'
