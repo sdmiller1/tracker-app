@@ -107,4 +107,26 @@ class MovieCollectionDaoTest {
         assertEquals(user, movieCollection.getCollection().getUser());
 
     }
+
+    @Test
+    void removeMovieFromUsersPersonalCollection() {
+        GenericDao<Movie> movieGenericDao = new GenericDao<>(Movie.class);
+        GenericDao<User> userGenericDao = new GenericDao<>(User.class);
+
+        String username = "astrobob";
+        String collectionType = "personal";
+        String movieTitle = "The Martian";
+
+        Movie movie = movieGenericDao.findByPropertyEqual("title", movieTitle).get(0);
+        User user = userGenericDao.findByPropertyEqual("username", username).get(0);
+
+
+        CollectionUpdater collectionUpdater = new CollectionUpdater();
+
+        collectionUpdater.removeMovieFromUserCollection(movie.getImdbId(), username, collectionType);
+
+        MovieCollection movieCollection = (MovieCollection)dao.getById(1);
+
+        assertNull(movieCollection);
+    }
 }

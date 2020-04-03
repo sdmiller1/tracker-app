@@ -13,6 +13,10 @@ public class CollectionUpdater {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    private GenericDao<Movie> movieGenericDao = new GenericDao<>(Movie.class);
+    private GenericDao<User> userGenericDao = new GenericDao<>(User.class);
+    private GenericDao<MovieCollection> movieCollectionGenericDao = new GenericDao<>(MovieCollection.class);
+
     /**
      * Add a movie to a user's collection
      *
@@ -22,9 +26,6 @@ public class CollectionUpdater {
      * @return the id of the entry that was just added or 0 if error
      */
     public int addMovieToUserCollection(String imdbId, String username, String collectionName) {
-        GenericDao<Movie> movieGenericDao = new GenericDao<>(Movie.class);
-        GenericDao<User> userGenericDao = new GenericDao<>(User.class);
-        GenericDao<MovieCollection> movieCollectionGenericDao = new GenericDao<>(MovieCollection.class);
 
         Movie movie = movieGenericDao.findByPropertyEqual("imdbId", imdbId).get(0);
 
@@ -44,5 +45,24 @@ public class CollectionUpdater {
         }
 
         return entryId;
+    }
+
+    public void removeMovieFromUserCollection(String imdbId, String username, String collectionName) {
+
+        Movie movie = movieGenericDao.findByPropertyEqual("imdbId", imdbId).get(0);
+
+        User user = userGenericDao.findByPropertyEqual("username", username).get(0);
+
+        Set<Collection> collections = user.getCollections();
+
+        for (Collection collection: collections) {
+            if (collection.getCollectionName().equals(collectionName)) {
+
+                MovieCollection movieCollection = movieCollectionGenericDao.findByPropertyEqual("movie", movie).get(0);
+                movieCollectionGenericDao.delete(movieCollection);
+
+            }
+        }
+
     }
 }
