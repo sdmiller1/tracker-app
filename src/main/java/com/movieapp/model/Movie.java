@@ -18,9 +18,6 @@ public class Movie {
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
 
-    @Column(name = "api_id")
-    private int apiId;
-
     @Column(name = "imdb_id")
     private String imdbId;
 
@@ -54,8 +51,7 @@ public class Movie {
 
     }
 
-    public Movie(int apiId, String imdbId, String title, String image, int runtime, String ratingMPAA, String releaseDate, String plot, String genre) {
-        this.apiId = apiId;
+    public Movie(String imdbId, String title, String image, int runtime, String ratingMPAA, String releaseDate, String plot, String genre) {
         this.imdbId = imdbId;
         this.title = title;
         this.image = image;
@@ -72,14 +68,6 @@ public class Movie {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getApiId() {
-        return apiId;
-    }
-
-    public void setApiId(int apiId) {
-        this.apiId = apiId;
     }
 
     public String getImdbId() {
@@ -160,7 +148,6 @@ public class Movie {
         if (o == null || getClass() != o.getClass()) return false;
         Movie movie = (Movie) o;
         return id == movie.id &&
-                apiId == movie.apiId &&
                 runtime == movie.runtime &&
                 Objects.equals(imdbId, movie.imdbId) &&
                 Objects.equals(title, movie.title) &&
@@ -173,14 +160,13 @@ public class Movie {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, apiId, imdbId, title, image, runtime, ratingMPAA, releaseDate, plot, genre);
+        return Objects.hash(id, imdbId, title, image, runtime, ratingMPAA, releaseDate, plot, genre);
     }
 
     @Override
     public String toString() {
         return "Movie{" +
                 "id=" + id +
-                ", apiId=" + apiId +
                 ", imdbId='" + imdbId + '\'' +
                 ", title='" + title + '\'' +
                 ", image='" + image + '\'' +

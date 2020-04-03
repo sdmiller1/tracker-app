@@ -9,7 +9,7 @@ drop table if exists Users;
 
 
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2020-04-03 19:49:12.87
+-- Last modification date: 2020-04-03 21:55:01.645
 
 -- tables
 -- Table: Collections
@@ -23,7 +23,6 @@ CREATE TABLE Collections (
 -- Table: Movies
 CREATE TABLE Movies (
                         id int NOT NULL AUTO_INCREMENT,
-                        api_id int NOT NULL,
                         imdb_id varchar(100) NOT NULL,
                         title varchar(255) NOT NULL,
                         image text NOT NULL,
@@ -119,21 +118,21 @@ insert into Users values (default, 'Doug', 'Hurley', 'astrodoug', 'password', tr
 insert into Users values (default, 'Chris', 'Hadfield', 'astrochris', 'password', true, true, false);
 insert into Users values (default, 'Scott', 'Kelly', 'astroscott', 'password', true, true, false);
 
-insert into Movies values (default, 1
+insert into Movies values (default
         , 'tt3659388'
         ,'The Martian'
         , 'https://m.media-amazon.com/images/M/MV5BMTc2MTQ3MDA1Nl5BMl5BanBnXkFtZTgwODA3OTI4NjE@._V1_SX300.jpg'
         , 144, 'PG-13', '02 Oct 2015'
         , 'An astronaut becomes stranded on Mars after his team assume him dead, and must rely on his ingenuity to find a way to signal to Earth that he is alive.'
         , 'Adventure, Drama, Sci-Fi');
-insert into Movies values (default, 2
+insert into Movies values (default
         , 'tt1201607'
-        , 'Harry Potter'
+        , 'Harry Potter and the Deathly Hallows – Part 2'
         , 'https://m.media-amazon.com/images/M/MV5BMjIyZGU4YzUtNDkzYi00ZDRhLTljYzctYTMxMDQ4M2E0Y2YxXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_SX300.jpg'
         , 130, 'PG-13', '15 Jul 2011'
         , 'Harry, Ron, and Hermione search for Voldemort''s remaining Horcruxes in their effort to destroy the Dark Lord as the final battle rages on at Hogwarts.'
         , 'Adventure, Drama, Fantasy, Mystery');
-insert into Movies values (default, 3
+insert into Movies values (default
         , 'tt2935510'
         , 'Ad Astra'
         , 'https://m.media-amazon.com/images/M/MV5BZTllZTdlOGEtZTBmMi00MGQ5LWFjN2MtOGEyZTliNGY1MzFiXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_SX300.jpg'
