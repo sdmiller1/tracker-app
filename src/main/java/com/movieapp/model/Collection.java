@@ -16,8 +16,11 @@ public class Collection {
     @GenericGenerator(name = "native",strategy = "native")
     private int id;
 
-    @Column(name = "collectionType")
-    private String collectionType;
+    @Column(name = "ownedByUser")
+    private String ownedByUser;
+
+    @Column(name = "collectionName")
+    private String collectionName;
 
 
     @ManyToMany(cascade = { CascadeType.ALL })
@@ -35,11 +38,9 @@ public class Collection {
 
     }
 
-    public Collection(String collectionType, Set<User> users) {
-        this.collectionType = collectionType;
+    public Collection(String collectionName, Set<User> users) {
+        this.collectionName = collectionName;
         this.users = users;
-        // TODO should this be in this constructor? probably not
-        //this.movieCollections = movieCollections;
     }
 
     public int getId() {
@@ -50,12 +51,20 @@ public class Collection {
         this.id = id;
     }
 
-    public String getCollectionType() {
-        return collectionType;
+    public String getOwnedByUser() {
+        return ownedByUser;
     }
 
-    public void setCollectionType(String collectionType) {
-        this.collectionType = collectionType;
+    public void setOwnedByUser(String ownedByUser) {
+        this.ownedByUser = ownedByUser;
+    }
+
+    public String getCollectionName() {
+        return collectionName;
+    }
+
+    public void setCollectionName(String collectionName) {
+        this.collectionName = collectionName;
     }
 
     public Set<User> getUsers() {
@@ -80,19 +89,21 @@ public class Collection {
         if (o == null || getClass() != o.getClass()) return false;
         Collection that = (Collection) o;
         return id == that.id &&
-                Objects.equals(collectionType, that.collectionType);
+                Objects.equals(ownedByUser, that.ownedByUser) &&
+                Objects.equals(collectionName, that.collectionName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, collectionType);
+        return Objects.hash(id, ownedByUser, collectionName);
     }
 
     @Override
     public String toString() {
         return "Collection{" +
                 "id=" + id +
-                ", collectionType='" + collectionType + '\'' +
+                ", ownedByUser='" + ownedByUser + '\'' +
+                ", collectionName='" + collectionName + '\'' +
                 '}';
     }
 }

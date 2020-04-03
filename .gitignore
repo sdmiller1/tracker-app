@@ -55,3 +55,6 @@ logs/
 # Database properties containing usernames and passwords
 hibernate.cfg.xml
 database.properties
+
+# Some javadoc file i don't want
+intellij-javadocs-4.0.1.xml

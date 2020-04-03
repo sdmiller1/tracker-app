@@ -28,13 +28,13 @@ class CollectionDaoTest {
     void getById() {
         Collection collection = (Collection)dao.getById(1);
         assertEquals(1, collection.getId());
-        assertEquals("personal", collection.getCollectionType());
+        assertEquals("personal", collection.getCollectionName());
     }
 
     @Test
     void saveOrUpdate() {
         Collection collection = (Collection)dao.getById(1);
-        collection.setCollectionType("Netflix");
+        collection.setCollectionName("Netflix");
         dao.saveOrUpdate(collection);
         Collection updatedCollection = (Collection)dao.getById(1);
         assertEquals(collection, updatedCollection);

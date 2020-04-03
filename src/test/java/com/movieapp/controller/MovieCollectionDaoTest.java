@@ -45,8 +45,6 @@ class MovieCollectionDaoTest {
 
     @Test
     void insert() {
-        // TODO Test this: if the movie is not already in the db it needs to be inserted before being added to movieCollection
-        // Movie movie = new Movie(7, "Solaris");
         Movie movie = new GenericDao<Movie>(Movie.class).getById(3);
 
         Collection collection = new GenericDao<Collection>(Collection.class).getById(2);
@@ -85,4 +83,28 @@ class MovieCollectionDaoTest {
         List<MovieCollection> movieCollections = dao.findByPropertyEqual(propertiesMap);
         assertEquals(2, movieCollections.size());
     }
+
+//    @Test
+//    void addMovieToUsersPersonalCollection() {
+//        GenericDao<Movie> movieGenericDao = new GenericDao<>(Movie.class);
+//        GenericDao<User> userGenericDao = new GenericDao<>(User.class);
+//
+//        String username = "astroscott";
+//        String collectionType = "personal";
+//        String movieTitle = "The Martian";
+//
+//        Movie movie = movieGenericDao.findByPropertyEqual("title", movieTitle).get(0);
+//        User user = userGenericDao.findByPropertyEqual("username", username).get(0);
+//
+//
+//        CollectionUpdater collectionUpdater = new CollectionUpdater();
+//
+//        int entryId = collectionUpdater.addMovieToUserCollection(movie.getImdbId(), username, collectionType);
+//
+//        MovieCollection movieCollection = (MovieCollection)dao.getById(entryId);
+//
+//        assertEquals(movie, movieCollection.getMovie());
+//        assertEquals(user.getCollections(), movieCollection.getCollection());
+//
+//    }
 }

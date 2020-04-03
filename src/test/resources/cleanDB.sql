@@ -9,13 +9,14 @@ drop table if exists Users;
 
 
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2020-03-26 18:12:01.991
+-- Last modification date: 2020-04-03 19:11:31.302
 
 -- tables
 -- Table: Collections
 CREATE TABLE Collections (
                              id int NOT NULL AUTO_INCREMENT,
-                             collectionType varchar(255) NOT NULL,
+                             ownedByUser varchar(255) NOT NULL,
+                             collectionName varchar(255) NOT NULL,
                              CONSTRAINT Collections_pk PRIMARY KEY (id)
 );
 
@@ -159,10 +160,10 @@ insert into Ratings values (default, 3, 1, current_date(), 5);
 insert into Ratings values (default, 4, 2, current_date(), 5);
 insert into Ratings values (default, 1, 1, current_date(), 4);
 
-insert into Collections values (default, 'personal');
-insert into Collections values (default, 'personal');
-insert into Collections values (default, 'personal');
-insert into Collections values (default, 'personal');
+insert into Collections values (default, 'astrobob', 'personal');
+insert into Collections values (default, 'astrodoug', 'personal');
+insert into Collections values (default, 'astrochris', 'personal');
+insert into Collections values (default, 'astroscott', 'personal');
 
 insert into UsersCollections values (1, 1);
 insert into UsersCollections values (2, 2);
