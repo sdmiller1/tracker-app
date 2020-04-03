@@ -30,7 +30,7 @@ public class UserPage extends HttpServlet {
         GenericDao<Movie> movieDao = new GenericDao<>(Movie.class);
         GenericDao<User> userDao = new GenericDao<>(User.class);
 
-//      TODO: replace user specific movies
+//      TODO: replace with user specific movies
         List<Movie> movies = movieDao.getAll();
 
         String username = request.getRemoteUser();

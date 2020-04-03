@@ -16,6 +16,7 @@ public class ServicesRouting extends Application {
     public Set<Class<?>> getClasses() {
         HashSet h = new HashSet<Class<?>>();
         h.add(MovieData.class );
+        h.add(UpdateMovieCollection.class);
         return h;
     }
 }
