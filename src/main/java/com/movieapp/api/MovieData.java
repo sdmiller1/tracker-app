@@ -2,9 +2,9 @@ package com.movieapp.api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mchange.v2.log.MLogger;
 import com.movieapp.controller.GenericDao;
 import com.movieapp.controller.MovieSearcher;
+import com.movieapp.model.Collection;
 import com.movieapp.model.Movie;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -41,10 +41,33 @@ public class MovieData {
 
     @GET
     @Produces("application/json")
-    @Path("/{param}")
+    @Path("/title={param}")
     public Response getMovieByTitle(@PathParam("param") String title) {
 
         List<Movie> movies = new MovieSearcher().findByTitle(title);
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        String jsonOutput = "An Error Occurred";
+
+        try {
+            jsonOutput = mapper.writeValueAsString(movies);
+        } catch (JsonProcessingException e) {
+            logger.error(e);
+        }
+
+        return Response.status(200).entity(jsonOutput).build();
+    }
+
+//  TODO: this method is just for testing right now
+    @GET
+    @Produces("application/json")
+    @Path("/collection={param}")
+    public Response getMoviesFromCollection(@PathParam("param") String collection) {
+
+        int collectionId = Integer.parseInt(collection);
+
+        List<Movie> movies = new MovieSearcher().findByCollectionId(collectionId);
 
         ObjectMapper mapper = new ObjectMapper();
 
