@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mchange.v2.log.MLogger;
 import com.movieapp.controller.GenericDao;
+import com.movieapp.controller.MovieSearcher;
 import com.movieapp.model.Movie;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -43,12 +44,11 @@ public class MovieData {
     @Path("/{param}")
     public Response getMovieByTitle(@PathParam("param") String title) {
 
-
-        List<Movie> movies = new GenericDao<Movie>(Movie.class).findByPropertyEqual("title", title);
+        List<Movie> movies = new MovieSearcher().findByTitle(title);
 
         ObjectMapper mapper = new ObjectMapper();
 
-        String jsonOutput = "oops";
+        String jsonOutput = "An Error Occurred";
 
         try {
             jsonOutput = mapper.writeValueAsString(movies);
