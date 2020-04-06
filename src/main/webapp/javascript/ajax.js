@@ -20,13 +20,14 @@ const makeAJAXRequest = (url, callback) => {
 
 const addMovieToCollection = (movieId) => {
 
-    let url = '/tracker-app/services/update-movie-collection/' + movieId;
+    let url = '/tracker_app/services/update-movie-collection/' + movieId;
 
     const callback = data => {
-        data = JSON.parse(data);
-        alert(data);
-
-        displayMessage(data, "success");
+        if (data == "The Movie was added") {
+            displayMessage(data, "success");
+        } else {
+            displayMessage(data, "error");
+        }
     }
 
     makeAJAXRequest(url, callback);
@@ -34,15 +35,14 @@ const addMovieToCollection = (movieId) => {
 
 const getMoviesToDisplay = (title) => {
 
-    let url = '/tracker-app/services/movies/title=' + title;
+    let url = '/tracker_app/services/movies/title=' + title;
 
     const callback = data => {
         data = JSON.parse(data);
-        alert(data);
 
-        let movieGrouping = document.querySelector("#movie-grouping");
+        let movieGrouping = document.querySelector(".movie-list");
 
-        for (movie in data) {
+        for (let movie of data) {
             let movieElement = document.createElement("div");
             let image = document.createElement("img");
             let addButton = document.createElement("button");
@@ -51,7 +51,7 @@ const getMoviesToDisplay = (title) => {
             movieElement.className = "movie";
             image.src = movie.image;
             image.alt = movie.title;
-            addButton.setAttribute("onclick", "addMovieToCollection(" + movie.imdbId + ")")
+            addButton.setAttribute("onclick", "addMovieToCollection('" + movie.imdbId + "')")
             plusSign.className = "fa fa-plus";
 
             addButton.appendChild(plusSign);

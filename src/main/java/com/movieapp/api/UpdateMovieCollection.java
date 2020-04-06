@@ -34,12 +34,12 @@ public class UpdateMovieCollection {
         String username = "astroscott";
         String collectionName = "personal";
 
-        String result = "Failed to Add Movie";
+        String result = "Failed to add the Movie";
 
         int newEntryId = collectionUpdater.addMovieToUserCollection(imdbId, username, collectionName);
 
         if (newEntryId != 0) {
-            result = "Successfully added the Movie to your collection";
+            result = "The Movie was added";
         }
 
         return Response.status(200).entity(result).build();
