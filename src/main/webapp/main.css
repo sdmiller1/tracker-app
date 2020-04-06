@@ -80,10 +80,6 @@ body h1 {
 /*
     Display Movies w/ subheading
 */
-.movie-grouping {
-
-}
-
 .movie-grouping-heading {
     display: flex;
     align-items: center;
@@ -164,4 +160,53 @@ body h1 {
 .movie-page-info {
     padding: 0px 10px;
     flex-grow: 1;
+}
+
+
+/*
+    Success/Error Message
+*/
+.message {
+    width: 40%;
+    height: 40px;
+    text-align: center;
+    background-color: rgb(146, 146, 146);
+    font-size: 1.5em;
+    line-height: 40px;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    margin-left: -20%;
+    border-radius: 5px;
+}
+
+.message button {
+    border: none;
+    background-color: inherit;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    cursor: pointer;
+}
+
+.message button:hover {
+    background-color: rgb(238, 238, 238, .5);
+}
+
+.message button i {
+    font-size: 20px;
+}
+
+.error {
+    background-color: rgb(255, 60, 60);
+    color: black;
+}
+
+.success {
+    background-color: rgb(77, 255, 77);
+    color: black;
 }
