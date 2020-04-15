@@ -2,28 +2,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="main.css">
-    <script src="js.js"></script>
     <title>Browse Movies</title>
+    <c:import url="templates/head.jsp" />
 </head>
 <body>
-<nav>
-    <a href="#">Browse Movies</a>
-    <a href="#">My Movies</a>
-    <a href="#">Watch Later</a>
-</nav>
+<c:import url="templates/nav.jsp" />
 
 <main>
-    <h1>Browse Movies</h1>
+    <h1>${collectionName}</h1>
     <section class="movie-grouping">
-        <div class="movie-grouping-heading">
-            <h2>All Movies</h2>
-            <a href="#">See More</a>
-        </div>
-
         <div class="movie-list">
         <c:forEach var="movie" items="${movies}">
             <div class="movie">

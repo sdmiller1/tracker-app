@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
+<%--    TODO: make this title dynamic to the movie--%>
     <title>Browse Movies</title>
     <c:import url="templates/head.jsp" />
 </head>
