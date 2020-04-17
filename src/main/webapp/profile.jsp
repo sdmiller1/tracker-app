@@ -21,8 +21,8 @@
     <c:forEach var="collection" items="${collections}">
         <section class="movie-grouping">
             <div class="movie-grouping-heading">
-                <h2></h2>
-                <a href="browse?collection=">See More</a>
+                <h2>Your ${collection.collectionName}</h2>
+                <a href="browse?collection=${collection.id}">See More</a>
             </div>
 
             <c:set var="movies" value="${collection.movies}"/>
