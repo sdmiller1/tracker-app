@@ -3,9 +3,7 @@ package com.movieapp.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity(name = "Collections")
 @Table(name = "Collections")
@@ -33,6 +31,16 @@ public class Collection {
     public Collection(String collectionName, User user) {
         this.collectionName = collectionName;
         this.user = user;
+    }
+
+    public List<Movie> getMovies() {
+        List<Movie> movies = new ArrayList<>();
+
+        for (MovieCollection movieCollection : movieCollections) {
+            movies.add(movieCollection.getMovie());
+        }
+
+        return movies;
     }
 
     public int getId() {

@@ -18,22 +18,25 @@
         </div>
     </section>
 
-    <section class="movie-grouping">
-        <div class="movie-grouping-heading">
-            <h2>Your Favorite Movies</h2>
-            <a href="#">See More</a>
-        </div>
+    <c:forEach var="collection" items="${collections}">
+        <section class="movie-grouping">
+            <div class="movie-grouping-heading">
+                <h2></h2>
+                <a href="browse?collection=">See More</a>
+            </div>
 
-        <div class="movie-list">
-            <c:forEach var="movie" items="${movies}">
-                <div class="movie">
-                    <a href="movie?id=${movie.imdbId}">
-                        <img src="${movie.image}" alt="${movie.title}">
-                    </a>
-                    <button><i class="fa fa-plus"></i></button>
-                </div>
-            </c:forEach>
-        </div>
-    </section>
+            <c:set var="movies" value="${collection.movies}"/>
+            <div class="movie-list">
+                <c:forEach var="movie" items="${movies}">
+                    <div class="movie">
+                        <a href="movie?id=${movie.imdbId}">
+                            <img src="${movie.image}" alt="${movie.title}">
+                        </a>
+                        <button><i class="fa fa-plus"></i></button>
+                    </div>
+                </c:forEach>
+            </div>
+        </section>
+    </c:forEach>
 </main>
 </body>
