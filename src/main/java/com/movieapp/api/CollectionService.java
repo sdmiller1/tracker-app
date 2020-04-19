@@ -10,13 +10,24 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
+/**
+ * Service that manipulates the collections
+ */
 @Path("/collections")
-public class CollectionSevice {
+public class CollectionService {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
     private CollectionUpdater collectionUpdater = new CollectionUpdater();
 
 
+    /**
+     * Add movie to collection
+     *
+     * @param imdbId       the imdb id
+     * @param collectionId the collection id
+     * @param username     the username
+     * @return the response
+     */
 //    TODO: replace with post/delete, also pass in bluray/dvd/4k values
     @GET
     @Produces("text/plain")

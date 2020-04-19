@@ -5,10 +5,10 @@ import javax.ws.rs.core.Application;
 import java.util.HashSet;
 import java.util.Set;
 
-//Defines the base URI for all resource URIs.
+/**
+ * Sets the base path for all of the services
+ */
 @ApplicationPath("/services")
-
-//The java class declares root resource and provider classes
 public class ServicesRouting extends Application {
 
     //The method returns a non-empty collection with classes, that must be included in the published JAX-RS application
@@ -16,7 +16,7 @@ public class ServicesRouting extends Application {
     public Set<Class<?>> getClasses() {
         HashSet h = new HashSet<Class<?>>();
         h.add(MovieService.class );
-        h.add(CollectionSevice.class);
+        h.add(CollectionService.class);
         return h;
     }
 }

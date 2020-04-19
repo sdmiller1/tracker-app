@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.Set;
 
 /**
- * Used to update the user's collections
+ * Used to update the user's movie collections
  */
 public class CollectionUpdater {
 
