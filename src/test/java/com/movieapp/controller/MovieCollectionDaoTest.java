@@ -90,7 +90,7 @@ class MovieCollectionDaoTest {
         GenericDao<User> userGenericDao = new GenericDao<>(User.class);
 
         String username = "astroscott";
-        String collectionType = "personal";
+        int collectionId = 4;
         String movieTitle = "The Martian";
 
         Movie movie = movieGenericDao.findByPropertyEqual("title", movieTitle).get(0);
@@ -99,7 +99,7 @@ class MovieCollectionDaoTest {
 
         CollectionUpdater collectionUpdater = new CollectionUpdater();
 
-        int entryId = collectionUpdater.addMovieToUserCollection(movie.getImdbId(), username, collectionType);
+        int entryId = collectionUpdater.addMovieToUserCollection(movie.getImdbId(), username, collectionId);
 
         MovieCollection movieCollection = (MovieCollection)dao.getById(entryId);
 
@@ -114,7 +114,7 @@ class MovieCollectionDaoTest {
         GenericDao<User> userGenericDao = new GenericDao<>(User.class);
 
         String username = "astrobob";
-        String collectionType = "personal";
+        int collectionId = 1;
         String movieTitle = "The Martian";
 
         Movie movie = movieGenericDao.findByPropertyEqual("title", movieTitle).get(0);
@@ -123,7 +123,7 @@ class MovieCollectionDaoTest {
 
         CollectionUpdater collectionUpdater = new CollectionUpdater();
 
-        collectionUpdater.removeMovieFromUserCollection(movie.getImdbId(), username, collectionType);
+        collectionUpdater.removeMovieFromUserCollection(movie.getImdbId(), username, collectionId);
 
         MovieCollection movieCollection = (MovieCollection)dao.getById(1);
 
