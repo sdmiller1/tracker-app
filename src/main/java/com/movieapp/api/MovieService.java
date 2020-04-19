@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.movieapp.controller.GenericDao;
 import com.movieapp.controller.MovieSearcher;
-import com.movieapp.model.Collection;
 import com.movieapp.model.Movie;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,18 +16,18 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 @Path("/movies")
-public class MovieData {
+public class MovieService {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
     @GET
     @Produces("application/json")
     public Response getMovies() {
-        List<Movie> movies = new GenericDao<Movie>(Movie.class).getAll();
+        List<Movie> movies = new GenericDao<>(Movie.class).getAll();
 
         ObjectMapper mapper = new ObjectMapper();
 
-        String jsonOutput = "oops";
+        String jsonOutput = "An error occurred";
 
         try {
             jsonOutput = mapper.writeValueAsString(movies);
@@ -48,10 +47,30 @@ public class MovieData {
 
         ObjectMapper mapper = new ObjectMapper();
 
-        String jsonOutput = "An Error Occurred";
+        String jsonOutput = "An error occurred";
 
         try {
             jsonOutput = mapper.writeValueAsString(movies);
+        } catch (JsonProcessingException e) {
+            logger.error(e);
+        }
+
+        return Response.status(200).entity(jsonOutput).build();
+    }
+
+    @GET
+    @Produces("application/json")
+    @Path("/imdbid={param}")
+    public Response getMovieByImdbId(@PathParam("param") String imdbid) {
+
+        Movie movie = new MovieSearcher().findById(imdbid);
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        String jsonOutput = "An error occurred";
+
+        try {
+            jsonOutput = mapper.writeValueAsString(movie);
         } catch (JsonProcessingException e) {
             logger.error(e);
         }
