@@ -9,59 +9,61 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Set;
 
+/**
+ * Used to update the user's collections
+ */
 public class CollectionUpdater {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
     private GenericDao<Movie> movieGenericDao = new GenericDao<>(Movie.class);
-    private GenericDao<User> userGenericDao = new GenericDao<>(User.class);
     private GenericDao<MovieCollection> movieCollectionGenericDao = new GenericDao<>(MovieCollection.class);
+    private GenericDao<Collection> collectionGenericDao = new GenericDao<>(Collection.class);
 
     /**
      * Add a movie to a user's collection
      *
-     * @param imdbId         the imdb id
-     * @param username       the username
-     * @param collectionName the collection name
+     * @param imdbId       the imdb id
+     * @param username     the username
+     * @param collectionId the Id of the collection
      * @return the id of the entry that was just added or 0 if error
      */
-    public int addMovieToUserCollection(String imdbId, String username, String collectionName) {
+    public int addMovieToUserCollection(String imdbId, String username, int collectionId) {
 
         Movie movie = movieGenericDao.findByPropertyEqual("imdbId", imdbId).get(0);
 
-        User user = userGenericDao.findByPropertyEqual("username", username).get(0);
-
-        Set<Collection> collections = user.getCollections();
+        Collection collection = collectionGenericDao.getById(collectionId);
 
         int entryId = 0;
 
-        for (Collection collection: collections) {
-            if (collection.getCollectionName().equals(collectionName)) {
+        if (collection.getUser().getUsername().equals(username)) {
 
-                MovieCollection movieCollection = new MovieCollection(collection, movie, true, false, false);
-                entryId = movieCollectionGenericDao.insert(movieCollection);
+            MovieCollection movieCollection = new MovieCollection(collection, movie, false, false, false);
+            entryId = movieCollectionGenericDao.insert(movieCollection);
 
-            }
         }
 
         return entryId;
     }
 
-    public void removeMovieFromUserCollection(String imdbId, String username, String collectionName) {
+    /**
+     * Remove movie from user collection.
+     *
+     * @param imdbId       the imdb id
+     * @param username     the username
+     * @param collectionId the collection id
+     */
+    public void removeMovieFromUserCollection(String imdbId, String username, int collectionId) {
 
         Movie movie = movieGenericDao.findByPropertyEqual("imdbId", imdbId).get(0);
 
-        User user = userGenericDao.findByPropertyEqual("username", username).get(0);
+        Collection collection = collectionGenericDao.getById(collectionId);
 
-        Set<Collection> collections = user.getCollections();
+        if (collection.getUser().getUsername().equals(username)) {
 
-        for (Collection collection: collections) {
-            if (collection.getCollectionName().equals(collectionName)) {
+            MovieCollection movieCollection = movieCollectionGenericDao.findByPropertyEqual("movie", movie).get(0);
+            movieCollectionGenericDao.delete(movieCollection);
 
-                MovieCollection movieCollection = movieCollectionGenericDao.findByPropertyEqual("movie", movie).get(0);
-                movieCollectionGenericDao.delete(movieCollection);
-
-            }
         }
 
     }

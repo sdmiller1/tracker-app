@@ -20,16 +20,12 @@ public class CollectionSevice {
 //    TODO: replace with post/delete, also pass in bluray/dvd/4k values
     @GET
     @Produces("text/plain")
-    @Path("/{param}")
-    public Response addMovieToCollection(@PathParam("param") String imdbId) {
-
-//        TODO: This needs to be got from the request not hardcoded
-        String username = "astroscott";
-        String collectionName = "personal";
+    @Path("/id={imdbid}&collection={collectionId}&user={username}")
+    public Response addMovieToCollection(@PathParam("imdbid") String imdbId, @PathParam("collectionId") String collectionId, @PathParam("username") String username) {
 
         String result = "Failed to add the Movie";
 
-        int newEntryId = collectionUpdater.addMovieToUserCollection(imdbId, username, collectionName);
+        int newEntryId = collectionUpdater.addMovieToUserCollection(imdbId, username, Integer.parseInt(collectionId));
 
         if (newEntryId != 0) {
             result = "The Movie was added";
