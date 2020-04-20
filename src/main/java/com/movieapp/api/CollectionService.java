@@ -42,6 +42,6 @@ public class CollectionService {
             result = "The Movie was added";
         }
 
-        return Response.status(200).entity(result).build();
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(result).build();
     }
 }

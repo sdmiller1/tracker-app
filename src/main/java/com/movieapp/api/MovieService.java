@@ -35,7 +35,7 @@ public class MovieService {
             logger.error(e);
         }
 
-        return Response.status(200).entity(jsonOutput).build();
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(jsonOutput).build();
     }
 
     @GET
@@ -55,7 +55,7 @@ public class MovieService {
             logger.error(e);
         }
 
-        return Response.status(200).entity(jsonOutput).build();
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(jsonOutput).build();
     }
 
     @GET
@@ -75,7 +75,7 @@ public class MovieService {
             logger.error(e);
         }
 
-        return Response.status(200).entity(jsonOutput).build();
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(jsonOutput).build();
     }
 
 //  TODO: this method is just for testing right now
@@ -98,6 +98,6 @@ public class MovieService {
             logger.error(e);
         }
 
-        return Response.status(200).entity(jsonOutput).build();
+        return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(jsonOutput).build();
     }
 }
