@@ -37,14 +37,14 @@ public class UserDaoTest {
 
     @Test
     void insert() {
-        User user = new User("Brad", "Pitt", "movieGuy12", "password", true, true, true, new HashSet<Rating>());
+        User user = new User("Brad", "Pitt", "movieGuy12", "password", true, true, true);
         int id = dao.insert(user);
         assertEquals(user, dao.getById(id));
     }
 
     @Test
     void insertWithRating() {
-        User user = new User("Brad", "Pitt", "movieGuy12", "password", true, true, true, new HashSet<Rating>());
+        User user = new User("Brad", "Pitt", "movieGuy12", "password", true, true, true);
         Movie movie = new GenericDao<Movie>(Movie.class).getById(2);
 
         Rating rating = new Rating(user, movie, "2020-02-25", 4);

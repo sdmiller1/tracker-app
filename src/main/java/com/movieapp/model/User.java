@@ -50,7 +50,7 @@ public class User {
 
     }
 
-    public User(String firstName, String lastName, String username, String password, boolean hasDvd, boolean hasBluRay, boolean has4k, Set<Rating> ratings) {
+    public User(String firstName, String lastName, String username, String password, boolean hasDvd, boolean hasBluRay, boolean has4k) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
@@ -58,7 +58,6 @@ public class User {
         this.hasDvd = hasDvd;
         this.hasBluRay = hasBluRay;
         this.has4k = has4k;
-        this.ratings = ratings;
     }
 
     public void addRating(Rating rating) {
