@@ -1,6 +1,8 @@
 package com.movieapp.servlets;
 
 import com.movieapp.controller.GenericDao;
+import com.movieapp.model.Collection;
+import com.movieapp.model.Role;
 import com.movieapp.model.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -33,10 +35,16 @@ public class Signup extends HttpServlet {
         String password = request.getParameter("password");
 
         GenericDao<User> userGenericDao = new GenericDao<>(User.class);
+        GenericDao<Role> roleGenericDao = new GenericDao<>(Role.class);
+        GenericDao<Collection> collectionGenericDao = new GenericDao<>(Collection.class);
 
         if (userGenericDao.findByPropertyEqual("username", username).size() == 0) {
+//            TODO: put this in a create default user class
             User user = new User(firstName, lastName, username, password, false, false, false);
+            Role role = new Role("user", user);
+
             userGenericDao.insert(user);
+            roleGenericDao.insert(role);
 
             url = "profile";
         } else {

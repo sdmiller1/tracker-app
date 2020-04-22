@@ -9,7 +9,7 @@ drop table if exists Users;
 
 
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2020-04-03 21:55:01.645
+-- Last modification date: 2020-04-22 17:56:58.848
 
 -- tables
 -- Table: Collections
@@ -104,7 +104,9 @@ ALTER TABLE Ratings ADD CONSTRAINT Ratings_Users FOREIGN KEY Ratings_Users (user
 
 -- Reference: Roles_Users (table: Roles)
 ALTER TABLE Roles ADD CONSTRAINT Roles_Users FOREIGN KEY Roles_Users (user_id)
-    REFERENCES Users (id);
+    REFERENCES Users (id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE;
 
 -- End of file.
 
