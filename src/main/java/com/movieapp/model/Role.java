@@ -28,6 +28,12 @@ public class Role {
 
     }
 
+    public Role(String roleName, User user) {
+        this.roleName = roleName;
+        this.username = user.getUsername();
+        this.user = user;
+    }
+
     public int getId() {
         return id;
     }
