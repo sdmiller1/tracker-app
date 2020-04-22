@@ -156,4 +156,8 @@ insert into MoviesCollections values (default, 1, 2, true, false, false);
 insert into MoviesCollections values (default, 1, 3, true, true, true);
 insert into MoviesCollections values (default, 2, 1, true, true, true);
 
+insert into Roles values (default, 'user', 'astrobob', 1);
+insert into Roles values (default, 'user', 'astrodoug', 2);
+insert into Roles values (default, 'user', 'astrochris', 3);
+insert into Roles values (default, 'user', 'astroscott', 4);
 insert into Roles values (default, 'admin', 'astroscott', 4);
