@@ -26,7 +26,7 @@ public class CollectionUpdater {
      * @param imdbId       the imdb id
      * @param username     the username
      * @param collectionId the Id of the collection
-     * @return the id of the entry that was just added or 0 if error
+     * @return the id of the entry that was just added or 0 if error -1 if already exists
      */
     public int addMovieToUserCollection(String imdbId, String username, int collectionId) {
 
@@ -43,6 +43,8 @@ public class CollectionUpdater {
             MovieCollection movieCollection = new MovieCollection(collection, movie, false, false, false);
             entryId = movieCollectionGenericDao.insert(movieCollection);
 
+        } else if (collection.getUser().getUsername().equals(username) && movieAlreadyInCollection) {
+            entryId = -1;
         }
 
         return entryId;

@@ -38,8 +38,10 @@ public class CollectionService {
 
         int newEntryId = collectionUpdater.addMovieToUserCollection(imdbId, username, Integer.parseInt(collectionId));
 
-        if (newEntryId != 0) {
+        if (newEntryId > 0) {
             result = "The Movie was added";
+        } else if (newEntryId == -1) {
+            result = "The Movie was already in the collection";
         }
 
         return Response.status(200).entity(result).build();
