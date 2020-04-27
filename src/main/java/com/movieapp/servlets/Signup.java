@@ -1,6 +1,7 @@
 package com.movieapp.servlets;
 
 import com.movieapp.controller.GenericDao;
+import com.movieapp.controller.UserController;
 import com.movieapp.model.Collection;
 import com.movieapp.model.Role;
 import com.movieapp.model.User;
@@ -27,6 +28,8 @@ public class Signup extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        UserController userController = new UserController();
+
         String url = "signup.jsp";
 
         String firstName = request.getParameter("firstName");
@@ -34,21 +37,12 @@ public class Signup extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        GenericDao<User> userGenericDao = new GenericDao<>(User.class);
-        GenericDao<Role> roleGenericDao = new GenericDao<>(Role.class);
-        GenericDao<Collection> collectionGenericDao = new GenericDao<>(Collection.class);
+        String successMessage = userController.createNewUser(firstName, lastName, username, password);
 
-        if (userGenericDao.findByPropertyEqual("username", username).size() == 0) {
-//            TODO: put this in a create default user class
-            User user = new User(firstName, lastName, username, password, false, false, false);
-            Role role = new Role("user", user);
-
-            userGenericDao.insert(user);
-            roleGenericDao.insert(role);
-
+        if (successMessage.equals("Success")) {
             url = "profile";
-        } else {
-//            TODO: error message that username was taken
+        } else if (successMessage.equals("Username taken")) {
+//            TODO: handle case when username is already taken
         }
 
         response.sendRedirect(url);
