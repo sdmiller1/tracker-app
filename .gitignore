@@ -58,3 +58,6 @@ database.properties
 
 # Some javadoc file i don't want
 intellij-javadocs-4.0.1.xml
+
+# intellij environment settings files
+.idea/
