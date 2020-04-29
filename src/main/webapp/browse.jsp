@@ -8,18 +8,31 @@
 <body>
 <c:import url="templates/nav.jsp" />
 
-<main>
-    <h1>${collectionName}</h1>
-    <section class="movie-grouping">
-        <div class="movie-list">
-        <c:forEach var="movie" items="${movies}">
-            <div class="movie">
-                <img src="${movie.image}" alt="${movie.title}">
-                <button><i class="fa fa-plus"></i></button>
+<main class="container-md">
+    <div class="row">
+        <h1 class="col-sm-12 text-center">
+            ${collectionName}
+        </h1>
+    </div>
+    <div class="row">
+    <c:forEach var="movie" items="${movies}">
+        <div class="col-6 col-sm-4 col-lg-3 my-2">
+            <div class="card">
+                <a href="#">
+                    <img class="card-img-top" src="${movie.image}" alt="${movie.title}">
+                </a>
+                <div class="card-body">
+                    <a href="#" class="noLinkStyle"><h2 class="card-title h4">${movie.title}</h2></a>
+                    <button type="button" class="btn btn-primary" onclick="console.log('${movie.title}')" data-toggle="modal" data-target="#collectionModal">Add To Collection</button>
+                </div>
             </div>
-        </c:forEach>
         </div>
-    </section>
+    </c:forEach>
+    </div>
 </main>
+
+<c:import url="templates/modal.jsp" />
+
+<c:import url="templates/alertbox.jsp" />
 </body>
 </html>
