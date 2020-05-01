@@ -13,6 +13,8 @@
             Login
         </h1>
         <form class="col-12 col-md-6 needs-validation" novalidate action="j_security_check" method="post">
+            <section id="formAlertBox">
+            </section>
             <fieldset class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" name="j_username" id="username" class="form-control" placeholder="Username" required>

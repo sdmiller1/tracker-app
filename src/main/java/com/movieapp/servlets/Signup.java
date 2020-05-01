@@ -43,6 +43,7 @@ public class Signup extends HttpServlet {
             url = "profile";
         } else if (successMessage.equals("Username taken")) {
             request.setAttribute("errorMessage", "That username was already taken");
+//            TODO: need to re-display the user data if the username was taken
             RequestDispatcher dispatcher = request.getRequestDispatcher(url);
             dispatcher.forward(request, response);
         }

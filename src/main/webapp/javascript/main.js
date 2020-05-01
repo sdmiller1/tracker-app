@@ -7,15 +7,19 @@ const displayCollectionModal = (imdbid) => {
 }
 
 const errorMessage = (message) => {
-    displayMessage(message, "Error!", "danger");
+    displayMessage(message, "Error! ", "danger", "#alertBox");
 }
 
 const successMessage = (message) => {
-    displayMessage(message, "Success!", "success");
+    displayMessage(message, "Success! ", "success", "#alertBox");
 }
 
-const displayMessage = (message, keyword, bootstrapColor) => {
-    let alertLocation = document.querySelector("#alertBox");
+const formErrorMessage = (message) => {
+    displayMessage(message, "", "danger", "#formAlertBox");
+}
+
+const displayMessage = (message, keyword, bootstrapColor, outputBox) => {
+    let alertLocation = document.querySelector(outputBox);
     alertLocation.innerHTML = "";
 
     let alertBox = document.createElement("div");
@@ -28,7 +32,7 @@ const displayMessage = (message, keyword, bootstrapColor) => {
     closeButton.innerHTML = "&times;";
 
     let boldText = document.createElement("strong");
-    boldText.textContent = keyword + " ";
+    boldText.textContent = keyword;
 
     let errorMessage = document.createElement("span");
     errorMessage.textContent = message;

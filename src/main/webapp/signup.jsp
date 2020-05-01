@@ -13,6 +13,8 @@
             Create an Account
         </h1>
         <form class="col-12 col-md-6 needs-validation" novalidate action="signup" method="post">
+            <section id="formAlertBox">
+            </section>
             <fieldset class="form-group">
                 <label for="username">Username:</label>
                 <input type="text" name="username" id="username" class="form-control" placeholder="Username" required>
@@ -42,14 +44,17 @@
                 </div>
             </fieldset>
             <fieldset class="form-group">
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="dvd" id="dvd"> <label for="dvd" class="form-check-label">I have a DVD Player</label>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" name="dvd" id="dvd">
+                    <label for="dvd" class="custom-control-label">I have a DVD Player</label>
                 </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="bluray" id="bluray"> <label for="bluray" class="form-check-label">I have a Blu-ray Player</label>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" name="bluray" id="bluray">
+                    <label for="bluray" class="custom-control-label">I have a Blu-ray Player</label>
                 </div>
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" name="4k" id="4k"> <label for="4k" class="form-check-label">I have a 4K Player</label>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" name="4k" id="4k">
+                    <label for="4k" class="custom-control-label">I have a 4K Player</label>
                 </div>
             </fieldset>
             <button class="btn btn-primary" type="submit">
@@ -66,7 +71,7 @@
 
 <c:if test="${errorMessage != null}">
     <script>
-        errorMessage("${errorMessage}");
+        formErrorMessage("${errorMessage}");
     </script>
 </c:if>
 
