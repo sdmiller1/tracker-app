@@ -7,15 +7,7 @@
             </div>
 
             <div class="modal-body">
-                <ul class="list-group">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Personal
-                        <button class="btn btn-primary" type="button" onclick="console.log('waaaaaaaaa')">Add</button>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Personal
-                        <button class="btn btn-primary" type="button" onclick="console.log('waaaaaaaaa')">Add</button>
-                    </li>
+                <ul class="list-group" id="collectionList">
                 </ul>
             </div>
         </div>
