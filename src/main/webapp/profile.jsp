@@ -8,35 +8,50 @@
 <body>
 <c:import url="templates/nav.jsp" />
 
-
-<main>
-    <section class="profile">
-        <img src="" alt="Profile Picture">
-        <div class="profile-info">
-            <h2>${user.firstName}</h2>
-            <p>Favorite Genre: Drama</p>
+<main class="container-md">
+    <c:if test="${user != null}">
+    <section class="row mt-3">
+        <div class="col-lg-3 col-md-4 col-6">
+            <img src="images/default_profile.jpg" alt="Profile Picture" class="rounded-lg w-100">
+        </div>
+        <div class="col-lg-9 col-md-8 col-6">
+            <h2>${user.firstName} ${user.lastName} <small>(${user.username})</small></h2>
+            <p class="">
+<%--                TODO: remove placeholder text --%>
+                placeholder text
+            </p>
         </div>
     </section>
+    </c:if>
 
     <c:forEach var="collection" items="${collections}">
-        <section class="movie-grouping">
-            <div class="movie-grouping-heading">
-                <h2>Your ${collection.collectionName}</h2>
-                <a href="browse?collection=${collection.id}">See More</a>
-            </div>
+    <div class="row">
+        <h2 class="col-sm-6 text-dark mt-2">
+            ${collection.collectionName}
+        </h2>
+        <div class="col-sm-6 text-right mt-2 d-flex align-items-center justify-content-end">
+            <a href="browse?collection=${collection.id}" class="btn btn-link btn-lg">See More</a>
+        </div>
+    </div>
 
-            <c:set var="movies" value="${collection.movies}"/>
-            <div class="movie-list">
-                <c:forEach var="movie" items="${movies}">
-                    <div class="movie">
-                        <a href="movie?id=${movie.imdbId}">
-                            <img src="${movie.image}" alt="${movie.title}">
-                        </a>
-                        <button><i class="fa fa-plus"></i></button>
+    <div class="row">
+        <c:set var="movies" value="${collection.movies}"/>
+        <c:forEach var="movie" items="${movies}">
+            <div class="col-6 col-sm-4 col-lg-3 my-2">
+                <div class="card h-100">
+                    <a href="movie?id=${movie.imdbId}">
+                        <img class="card-img-top" src="${movie.image}" alt="${movie.title}">
+                    </a>
+                    <div class="card-body">
+                        <a href="movie?id=${movie.imdbId}" class="noLinkStyle"><h2 class="card-title h4">${movie.title}</h2></a>
+                        <button type="button" class="btn btn-primary w-100" onclick="displayCollectionModal('${movie.imdbId}')" data-toggle="modal" data-target="#collectionModal">
+                            Add To Collection
+                        </button>
                     </div>
-                </c:forEach>
+                </div>
             </div>
-        </section>
+        </c:forEach>
+    </div>
     </c:forEach>
 </main>
 </body>
