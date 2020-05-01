@@ -22,13 +22,13 @@
     <div class="row">
     <c:forEach var="movie" items="${movies}">
         <div class="col-6 col-sm-4 col-lg-3 my-2">
-            <div class="card">
-                <a href="#">
+            <div class="card h-100">
+                <a href="movie?id=${movie.imdbId}">
                     <img class="card-img-top" src="${movie.image}" alt="${movie.title}">
                 </a>
                 <div class="card-body">
-                    <a href="#" class="noLinkStyle"><h2 class="card-title h4">${movie.title}</h2></a>
-                    <button type="button" class="btn btn-primary" onclick="console.log('${movie.title}')" data-toggle="modal" data-target="#collectionModal">Add To Collection</button>
+                    <a href="movie?id=${movie.imdbId}" class="noLinkStyle"><h2 class="card-title h4">${movie.title}</h2></a>
+                    <button type="button" class="btn btn-primary w-100" onclick="console.log('${movie.imdbId}')" data-toggle="modal" data-target="#collectionModal">Add To Collection</button>
                 </div>
             </div>
         </div>
