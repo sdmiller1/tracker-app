@@ -34,21 +34,28 @@ public class Signup extends HttpServlet {
 
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        String username = request.getParameter("j_username");
+        String password = request.getParameter("j_password");
 //        TODO: record bluray dvd 4k stuff
-        String successMessage = userController.createNewUser(firstName, lastName, username, password);
+        String successMessage = "Error";
 
-        if (successMessage.equals("Success")) {
-            url = "profile";
-        } else if (successMessage.equals("Username taken")) {
-            request.setAttribute("errorMessage", "That username was already taken");
-//            TODO: need to re-display the user data if the username was taken
-            RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-            dispatcher.forward(request, response);
+        if (firstName != null && lastName != null && username != null && password != null) {
+            successMessage = userController.createNewUser(firstName, lastName, username, password);
         }
 
-        response.sendRedirect(url);
+        if (successMessage.equals("Success")) {
+//            TODO: implement auto login after sign up
+            url = "profile";
+        } else if (successMessage.equals("Username taken")) {
+            // returns the user to the sign up page and persists their form data
+            request.setAttribute("errorMessage", "That username was already taken");
+            request.setAttribute("username", username);
+            request.setAttribute("firstName", firstName);
+            request.setAttribute("lastName", lastName);
+        }
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+        dispatcher.forward(request, response);
 
     }
 

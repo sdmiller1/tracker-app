@@ -17,28 +17,28 @@
             </section>
             <fieldset class="form-group">
                 <label for="username">Username:</label>
-                <input type="text" name="username" id="username" class="form-control" placeholder="Username" required>
+                <input type="text" name="j_username" id="username" class="form-control" placeholder="Username" required value="${username}">
                 <div class="invalid-feedback">
                     Please choose a different username.
                 </div>
             </fieldset>
             <fieldset class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+                <input type="password" name="j_password" id="password" class="form-control" placeholder="Password" required>
                 <div class="invalid-feedback">
                     Please enter a password.
                 </div>
             </fieldset>
             <fieldset class="form-group">
                 <label for="firstName">First Name:</label>
-                <input type="text" name="firstName" id="firstName" class="form-control" placeholder="John" required>
+                <input type="text" name="firstName" id="firstName" class="form-control" placeholder="John" required value="${firstName}">
                 <div class="invalid-feedback">
                     Please enter your first name.
                 </div>
             </fieldset>
             <fieldset class="form-group">
                 <label for="lastName">Last Name:</label>
-                <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Smith" required>
+                <input type="text" name="lastName" id="lastName" class="form-control" placeholder="Smith" required value="${lastName}">
                 <div class="invalid-feedback">
                     Please enter your last name.
                 </div>
