@@ -36,13 +36,15 @@ public class Signup extends HttpServlet {
         String lastName = request.getParameter("lastName");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-
+//        TODO: record bluray dvd 4k stuff
         String successMessage = userController.createNewUser(firstName, lastName, username, password);
 
         if (successMessage.equals("Success")) {
             url = "profile";
         } else if (successMessage.equals("Username taken")) {
-//            TODO: handle case when username is already taken
+            request.setAttribute("errorMessage", "That username was already taken");
+            RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+            dispatcher.forward(request, response);
         }
 
         response.sendRedirect(url);
