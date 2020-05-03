@@ -22,7 +22,7 @@
                 <img src="${movie.image}" alt="${movie.title}" class="rounded-lg w-100">
             </div>
             <div class="col-lg-9 col-md-8 col-6">
-                <h2>${movie.title} <small>${movie.releaseDate}</small></h2>
+                <h2>${movie.title} <small>${movie.releaseYear}</small></h2>
                 <p class="">
                         ${movie.plot}
                 </p>

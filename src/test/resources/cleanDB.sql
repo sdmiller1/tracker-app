@@ -124,21 +124,21 @@ insert into Movies values (default
         , 'tt3659388'
         ,'The Martian'
         , 'https://m.media-amazon.com/images/M/MV5BMTc2MTQ3MDA1Nl5BMl5BanBnXkFtZTgwODA3OTI4NjE@._V1_SX300.jpg'
-        , 144, 'PG-13', '02 Oct 2015'
+        , 144, 'PG-13', '2015'
         , 'An astronaut becomes stranded on Mars after his team assume him dead, and must rely on his ingenuity to find a way to signal to Earth that he is alive.'
         , 'Adventure, Drama, Sci-Fi');
 insert into Movies values (default
         , 'tt1201607'
         , 'Harry Potter and the Deathly Hallows: Part 2'
         , 'https://m.media-amazon.com/images/M/MV5BMjIyZGU4YzUtNDkzYi00ZDRhLTljYzctYTMxMDQ4M2E0Y2YxXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_SX300.jpg'
-        , 130, 'PG-13', '15 Jul 2011'
+        , 130, 'PG-13', '2011'
         , 'Harry, Ron, and Hermione search for Voldemort''s remaining Horcruxes in their effort to destroy the Dark Lord as the final battle rages on at Hogwarts.'
         , 'Adventure, Drama, Fantasy, Mystery');
 insert into Movies values (default
         , 'tt2935510'
         , 'Ad Astra'
         , 'https://m.media-amazon.com/images/M/MV5BZTllZTdlOGEtZTBmMi00MGQ5LWFjN2MtOGEyZTliNGY1MzFiXkEyXkFqcGdeQXVyODk4OTc3MTY@._V1_SX300.jpg'
-        , 123, 'PG-13', '20 Sep 2019'
+        , 123, 'PG-13', '2019'
         , 'Astronaut Roy McBride undertakes a mission across an unforgiving solar system to uncover the truth about his missing father and his doomed expedition that now, 30 years later, threatens the universe.'
         , 'Adventure, Drama, Mystery, Sci-Fi, Thriller');
 
