@@ -28,7 +28,9 @@
                 </a>
                 <div class="card-body">
                     <a href="movie?id=${movie.imdbId}" class="noLinkStyle"><h2 class="card-title h4">${movie.title}</h2></a>
-                    <button type="button" class="btn btn-primary w-100" onclick="console.log('${movie.imdbId}')" data-toggle="modal" data-target="#collectionModal">Add To Collection</button>
+                    <button type="button" class="btn btn-primary w-100" onclick="displayCollectionModal('${movie.imdbId}')" data-toggle="modal" data-target="#collectionModal">
+                        Add To Collection
+                    </button>
                 </div>
             </div>
         </div>
@@ -54,7 +56,7 @@
                 <c:forEach var="collection" items="${user.getCollections()}">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         ${collection.collectionName}
-                        <button class="btn btn-primary addToCollectionButton" type="button" onclick="console.log('waaaaaaaaa')">Add</button>
+                        <button class="btn btn-primary addToCollectionButton" data-collectionid="${collection.id}" type="button">Add</button>
                     </li>
                 </c:forEach>
                 </ul>

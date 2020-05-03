@@ -2,7 +2,8 @@ const displayCollectionModal = (imdbid) => {
     let collectionButtons = document.querySelectorAll(".addToCollectionButton");
 
     for (button of collectionButtons) {
-        button.onclick = () => {addMovieToCollection(imdbid)};
+        let collectionId = button.dataset.collectionid;
+        button.onclick = () => {addMovieToCollection(imdbid, collectionId)};
     }
 }
 

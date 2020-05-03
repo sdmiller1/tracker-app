@@ -1,66 +1,15 @@
-const makeAJAXRequest = (url, callback) => {
-    let xhr = new XMLHttpRequest();
+const addMovieToCollection = (movieId, collectionId) => {
+    let url = `/tracker_app/services/collections/id=${movieId}&collection=${collectionId}&user=${username}`;
+    let parameters = {
+        "method": "post"
+    };
 
-    let method = "get";
-
-    xhr.open(method, url);
-
-    xhr.send();
-
-    xhr.addEventListener("readystatechange", () => {
-        if(xhr.readyState == 4 && xhr.status == 200) {
-            if(xhr.responseXML) {
-                callback(xhr.responseXML);
-            } else {
-                callback(xhr.responseText);
-            }
-        }
-    })
-};
-
-const addMovieToCollection = (movieId) => {
-
-    let url = '/tracker_app/services/update-movie-collection/' + movieId;
-
-    const callback = data => {
-        if (data == "The Movie was added") {
-            displayMessage(data, "success");
-        } else {
-            displayMessage(data, "error");
-        }
-    }
-
-    makeAJAXRequest(url, callback);
-}
-
-const getMoviesToDisplay = (title) => {
-
-    let url = '/tracker_app/services/movies/title=' + title;
-
-    const callback = data => {
-        data = JSON.parse(data);
-
-        let movieGrouping = document.querySelector(".movie-list");
-
-        for (let movie of data) {
-            let movieElement = document.createElement("div");
-            let image = document.createElement("img");
-            let addButton = document.createElement("button");
-            let plusSign = document.createElement("i");
-
-            movieElement.className = "movie";
-            image.src = movie.image;
-            image.alt = movie.title;
-            addButton.setAttribute("onclick", "addMovieToCollection('" + movie.imdbId + "')")
-            plusSign.className = "fa fa-plus";
-
-            addButton.appendChild(plusSign);
-            movieElement.appendChild(image);
-            movieElement.appendChild(addButton);
-
-            movieGrouping.appendChild(movieElement);
-        }
-    }
-
-    makeAJAXRequest(url, callback);
+    fetch(url, parameters)
+        .then(result => {
+            return result.text();
+        }).then(result => {
+        console.log(result);
+    }).catch(error => {
+        console.log(error);
+    });
 }
