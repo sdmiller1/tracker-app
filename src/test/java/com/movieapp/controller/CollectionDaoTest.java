@@ -77,4 +77,12 @@ class CollectionDaoTest {
         List<Collection> collections = dao.findByPropertyEqual(propertiesMap);
         assertEquals(4, collections.size());
     }
+
+    @Test
+    void getMoviesFromCollection() {
+        Collection collection = dao.getById(1);
+        List<Movie> movies =  collection.getMovies();
+
+        assertEquals(3, movies.size());
+    }
 }
