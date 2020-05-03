@@ -3,6 +3,7 @@ package com.movieapp.servlets;
 import com.movieapp.controller.GenericDao;
 import com.movieapp.controller.MovieSearcher;
 import com.movieapp.model.Movie;
+import com.movieapp.model.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -26,9 +27,18 @@ public class MoviePage extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        GenericDao<Movie> dao = new GenericDao<>(Movie.class);
+        GenericDao<Movie> movieGenericDao = new GenericDao<>(Movie.class);
+        GenericDao<User> userGenericDao = new GenericDao<>(User.class);
 //      TODO: replace with related/similar movies
-        List<Movie> movies = dao.getAll();
+        List<Movie> movies = movieGenericDao.getAll();
+
+
+        String username = request.getRemoteUser();
+        if (username != null && username.length() != 0) {
+            User user = userGenericDao.findByPropertyEqual("username", username).get(0);
+
+            request.setAttribute("user", user);
+        }
 
         MovieSearcher searcher = new MovieSearcher();
 

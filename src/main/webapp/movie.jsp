@@ -73,7 +73,7 @@
 
     <div class="row">
         <c:forEach var="movie" items="${movies}">
-            <div class="col-6 col-sm-4 col-lg-3 my-2">
+            <div class="col-6 col-lg-3 my-2">
                 <div class="card h-100">
                     <a href="movie?id=${movie.imdbId}">
                         <img class="card-img-top" src="${movie.image}" alt="${movie.title}">

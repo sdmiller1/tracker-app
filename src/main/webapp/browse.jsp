@@ -15,13 +15,13 @@
 
 <main class="container-md">
     <div class="row">
-        <h1 class="col-sm-12 text-center text-dark">
+        <h1 class="col-sm-12 mt-2 text-center text-dark">
             ${collectionName}
         </h1>
     </div>
     <div class="row">
     <c:forEach var="movie" items="${movies}">
-        <div class="col-6 col-sm-4 col-lg-3 my-2">
+        <div class="col-6 col-lg-3 my-2">
             <div class="card h-100">
                 <a href="movie?id=${movie.imdbId}">
                     <img class="card-img-top" src="${movie.image}" alt="${movie.title}">
