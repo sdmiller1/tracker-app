@@ -9,7 +9,7 @@ drop table if exists Users;
 
 
 -- Created by Vertabelo (http://vertabelo.com)
--- Last modification date: 2020-04-22 17:56:58.848
+-- Last modification date: 2020-05-03 18:10:24.533
 
 -- tables
 -- Table: Collections
@@ -28,7 +28,7 @@ CREATE TABLE Movies (
                         image text NOT NULL,
                         runtime int NOT NULL,
                         ratingMPAA varchar(10) NOT NULL,
-                        releaseDate varchar(20) NOT NULL,
+                        releaseYear varchar(20) NOT NULL,
                         plot text NOT NULL,
                         genre text NOT NULL,
                         CONSTRAINT Movies_pk PRIMARY KEY (id)

@@ -14,11 +14,6 @@ public class Movie{
 	@JsonProperty("Language")
 	private String language;
 
-
-// TODO: switch with year
-	@JsonProperty("Released")
-	private String released;
-
 	@JsonProperty("imdbID")
 	private String imdbID;
 
@@ -68,14 +63,6 @@ public class Movie{
 
 	public void setLanguage(String language) {
 		this.language = language;
-	}
-
-	public String getReleased() {
-		return released;
-	}
-
-	public void setReleased(String released) {
-		this.released = released;
 	}
 
 	public String getImdbID() {
@@ -147,7 +134,6 @@ public class Movie{
 		return "Movie{" +
 				"runtime='" + runtime + '\'' +
 				", language='" + language + '\'' +
-				", released='" + released + '\'' +
 				", imdbID='" + imdbID + '\'' +
 				", plot='" + plot + '\'' +
 				", title='" + title + '\'' +

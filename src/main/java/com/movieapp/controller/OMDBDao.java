@@ -51,7 +51,7 @@ public class OMDBDao {
         movie.setRuntime(Integer.parseInt(runtime));
 
         movie.setRatingMPAA(apiResult.getRated());
-        movie.setReleaseDate(apiResult.getReleased());
+        movie.setReleaseYear(apiResult.getYear());
         movie.setPlot(apiResult.getPlot());
         movie.setGenre(apiResult.getGenre());
 

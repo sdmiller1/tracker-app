@@ -33,9 +33,8 @@ public class Movie {
     @Column(name = "ratingMPAA")
     private String ratingMPAA;
 
-//    TODO: convert this to a date object
-    @Column(name = "releaseDate")
-    private String releaseDate;
+    @Column(name = "releaseYear")
+    private String releaseYear;
 
     @Column(name = "plot")
     private String plot;
@@ -51,13 +50,13 @@ public class Movie {
 
     }
 
-    public Movie(String imdbId, String title, String image, int runtime, String ratingMPAA, String releaseDate, String plot, String genre) {
+    public Movie(String imdbId, String title, String image, int runtime, String ratingMPAA, String releaseYear, String plot, String genre) {
         this.imdbId = imdbId;
         this.title = title;
         this.image = image;
         this.runtime = runtime;
         this.ratingMPAA = ratingMPAA;
-        this.releaseDate = releaseDate;
+        this.releaseYear = releaseYear;
         this.plot = plot;
         this.genre = genre;
     }
@@ -110,12 +109,12 @@ public class Movie {
         this.ratingMPAA = ratingMPAA;
     }
 
-    public String getReleaseDate() {
-        return releaseDate;
+    public String getReleaseYear() {
+        return releaseYear;
     }
 
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
+    public void setReleaseYear(String releaseYear) {
+        this.releaseYear = releaseYear;
     }
 
     public String getPlot() {
@@ -153,14 +152,14 @@ public class Movie {
                 Objects.equals(title, movie.title) &&
                 Objects.equals(image, movie.image) &&
                 Objects.equals(ratingMPAA, movie.ratingMPAA) &&
-                Objects.equals(releaseDate, movie.releaseDate) &&
+                Objects.equals(releaseYear, movie.releaseYear) &&
                 Objects.equals(plot, movie.plot) &&
                 Objects.equals(genre, movie.genre);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, imdbId, title, image, runtime, ratingMPAA, releaseDate, plot, genre);
+        return Objects.hash(id, imdbId, title, image, runtime, ratingMPAA, releaseYear, plot, genre);
     }
 
     @Override
@@ -172,7 +171,7 @@ public class Movie {
                 ", image='" + image + '\'' +
                 ", runtime=" + runtime +
                 ", ratingMPAA='" + ratingMPAA + '\'' +
-                ", releaseDate='" + releaseDate + '\'' +
+                ", releaseYear='" + releaseYear + '\'' +
                 ", plot='" + plot + '\'' +
                 ", genre='" + genre + '\'' +
                 '}';
