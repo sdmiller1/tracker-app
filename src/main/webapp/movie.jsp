@@ -108,7 +108,7 @@
                     <c:forEach var="collection" items="${user.getCollections()}">
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                 ${collection.collectionName}
-                            <button class="btn btn-primary addToCollectionButton" type="button" onclick="console.log('waaaaaaaaa')">Add</button>
+                            <button class="btn btn-primary addToCollectionButton" type="button" data-collectionid="${collection.id}">Add</button>
                         </li>
                     </c:forEach>
                 </ul>
