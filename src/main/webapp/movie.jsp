@@ -118,4 +118,6 @@
 </section>
 
 <c:import url="templates/alertbox.jsp" />
+
+<c:import url="templates/formValidationScript.jsp" />
 </body>

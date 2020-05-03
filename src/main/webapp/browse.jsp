@@ -15,7 +15,7 @@
 
 <main class="container-md">
     <div class="row">
-        <h1 class="col-sm-12 text-center">
+        <h1 class="col-sm-12 text-center text-dark">
             ${collectionName}
         </h1>
     </div>
@@ -73,5 +73,7 @@
 </section>
 
 <c:import url="templates/alertbox.jsp" />
+
+<c:import url="templates/formValidationScript.jsp" />
 </body>
 </html>

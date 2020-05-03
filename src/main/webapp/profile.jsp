@@ -59,4 +59,7 @@
     </div>
     </c:forEach>
 </main>
+
+<c:import url="templates/formValidationScript.jsp" />
 </body>
+</html>
