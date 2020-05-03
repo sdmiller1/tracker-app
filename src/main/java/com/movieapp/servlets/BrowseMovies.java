@@ -56,6 +56,7 @@ public class BrowseMovies extends HttpServlet {
             String collectionName = collection.getUser().getUsername() + "'s " + collection.getCollectionName() + " movies";
 
             request.setAttribute("collectionName", collectionName);
+            request.setAttribute("collectionId", collection.getId());
         } else {
             GenericDao<Movie> dao = new GenericDao<>(Movie.class);
 

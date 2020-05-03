@@ -28,9 +28,16 @@
                 </a>
                 <div class="card-body">
                     <a href="movie?id=${movie.imdbId}" class="noLinkStyle"><h2 class="card-title h4">${movie.title}</h2></a>
-                    <button type="button" class="btn btn-primary w-100" onclick="displayCollectionModal('${movie.imdbId}')" data-toggle="modal" data-target="#collectionModal">
-                        Add To Collection
-                    </button>
+                    <c:if test="${collectionId == null}">
+                        <button type="button" class="btn btn-primary w-100" onclick="displayCollectionModal('${movie.imdbId}')" data-toggle="modal" data-target="#collectionModal">
+                            Add To Collection
+                        </button>
+                    </c:if>
+                    <c:if test="${collectionId != null}">
+                        <button type="button" class="btn btn-danger w-100" onclick="removeMovieFromCollection('${movie.imdbId}', '${collectionId}')">
+                            Remove
+                        </button>
+                    </c:if>
                 </div>
             </div>
         </div>
