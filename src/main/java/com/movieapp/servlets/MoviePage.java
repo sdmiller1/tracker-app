@@ -49,6 +49,7 @@ public class MoviePage extends HttpServlet {
             List<Movie> searchResults = searcher.findByTitle(title);
 
             request.setAttribute("searchResults", searchResults);
+            request.setAttribute("searchTerm", title);
         }
 
         // Display a movie based on IMDB ID
