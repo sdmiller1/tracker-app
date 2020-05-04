@@ -3,7 +3,6 @@ package com.movieapp.controller;
 import com.movieapp.model.Collection;
 import com.movieapp.model.Movie;
 import com.movieapp.model.MovieCollection;
-import com.movieapp.model.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeEach;
@@ -84,49 +83,4 @@ class MovieCollectionDaoTest {
         assertEquals(2, movieCollections.size());
     }
 
-    @Test
-    void addMovieToUsersPersonalCollection() {
-        GenericDao<Movie> movieGenericDao = new GenericDao<>(Movie.class);
-        GenericDao<User> userGenericDao = new GenericDao<>(User.class);
-
-        String username = "astroscott";
-        int collectionId = 4;
-        String movieTitle = "The Martian";
-
-        Movie movie = movieGenericDao.findByPropertyEqual("title", movieTitle).get(0);
-        User user = userGenericDao.findByPropertyEqual("username", username).get(0);
-
-
-        CollectionUpdater collectionUpdater = new CollectionUpdater();
-
-        int entryId = collectionUpdater.addMovieToUserCollection(movie.getImdbId(), username, collectionId);
-
-        MovieCollection movieCollection = (MovieCollection)dao.getById(entryId);
-
-        assertEquals(movie, movieCollection.getMovie());
-        assertEquals(user, movieCollection.getCollection().getUser());
-
-    }
-
-    @Test
-    void removeMovieFromUsersPersonalCollection() {
-        GenericDao<Movie> movieGenericDao = new GenericDao<>(Movie.class);
-        GenericDao<User> userGenericDao = new GenericDao<>(User.class);
-
-        String username = "astrobob";
-        int collectionId = 1;
-        String movieTitle = "The Martian";
-
-        Movie movie = movieGenericDao.findByPropertyEqual("title", movieTitle).get(0);
-        User user = userGenericDao.findByPropertyEqual("username", username).get(0);
-
-
-        CollectionUpdater collectionUpdater = new CollectionUpdater();
-
-        collectionUpdater.removeMovieFromUserCollection(movie.getImdbId(), username, collectionId);
-
-        MovieCollection movieCollection = (MovieCollection)dao.getById(1);
-
-        assertNull(movieCollection);
-    }
 }
