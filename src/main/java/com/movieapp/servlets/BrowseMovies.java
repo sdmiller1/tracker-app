@@ -43,26 +43,11 @@ public class BrowseMovies extends HttpServlet {
         }
 
         List<Movie> movies;
-        String collectionId = request.getParameter("collection");
 
-        if (collectionId != null && collectionId.length() != 0) {
-            MovieSearcher movieSearcher = new MovieSearcher();
-            GenericDao<Collection> dao = new GenericDao<>(Collection.class);
+        GenericDao<Movie> dao = new GenericDao<>(Movie.class);
 
-            Collection collection = dao.getById(Integer.parseInt(collectionId));
-
-            movies = movieSearcher.findByCollectionId(Integer.parseInt(collectionId));
-
-            String collectionName = collection.getUser().getUsername() + "'s " + collection.getCollectionName() + " movies";
-
-            request.setAttribute("collectionName", collectionName);
-            request.setAttribute("collectionId", collection.getId());
-        } else {
-            GenericDao<Movie> dao = new GenericDao<>(Movie.class);
-
-            movies = dao.getAll();
-            request.setAttribute("collectionName", "All Movies");
-        }
+        movies = dao.getAll();
+        request.setAttribute("collectionName", "All Movies");
 
 
         request.setAttribute("movies", movies);
