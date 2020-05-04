@@ -1,8 +1,7 @@
 package com.movieapp.controller;
 
+import com.movieapp.model.*;
 import com.movieapp.model.Collection;
-import com.movieapp.model.Movie;
-import com.movieapp.model.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeEach;
@@ -54,9 +53,18 @@ class MovieDaoTest {
 
     @Test
     void delete() {
-        Movie movie = dao.getById(3);
+        Movie movie = dao.getById(1);
         dao.delete(movie);
-        assertNull(dao.getById(3));
+        assertNull(dao.getById(1));
+
+        // verify that ratings are deleted along with the movie
+        GenericDao<Rating> ratingGenericDao = new GenericDao<>(Rating.class);
+        assertNull(ratingGenericDao.getById(1));
+
+        // Verify the movie was removed from collections
+        GenericDao<MovieCollection> movieCollectionGenericDao = new GenericDao<>(MovieCollection.class);
+        assertNull(movieCollectionGenericDao.getById(1));
+        assertNull(movieCollectionGenericDao.getById(4));
     }
 
     @Test
