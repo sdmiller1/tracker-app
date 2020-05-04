@@ -2,8 +2,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
-<%--    TODO: make this title dynamic to the movie--%>
-    <title>Browse Movies</title>
+    <c:if test="${movie != null}">
+        <title>${movie.title}</title>
+    </c:if>
+    <c:if test="${movie == null}">
+        <title>Search For Movies</title>
+    </c:if>
+
     <c:if test="${user != null}">
         <script>
             let username = "${user.username}";
