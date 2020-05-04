@@ -40,22 +40,8 @@
     </div>
 
     <div class="row">
-        <c:set var="movies" value="${collection.movies}"/>
-        <c:forEach var="movie" items="${movies}">
-            <div class="col-6 col-lg-3 my-2">
-                <div class="card h-100">
-                    <a href="movie?id=${movie.imdbId}">
-                        <img class="card-img-top" src="${movie.image}" alt="${movie.title}">
-                    </a>
-                    <div class="card-body">
-                        <a href="movie?id=${movie.imdbId}" class="noLinkStyle"><h2 class="card-title h4">${movie.title}</h2></a>
-                        <button type="button" class="btn btn-danger w-100" onclick="removeMovieFromCollection('${movie.imdbId}', '${collection.id}')">
-                            Remove
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </c:forEach>
+        <c:set var="moviesToDisplay" value="${collection.movies}" scope="request"/>
+        <c:import url="templates/displayMovies.jsp" />
     </div>
     </c:forEach>
 </main>
