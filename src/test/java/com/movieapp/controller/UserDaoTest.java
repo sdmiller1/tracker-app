@@ -9,10 +9,16 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.*;
 
+/**
+ * Tests for the User class
+ */
 public class UserDaoTest {
 
-    GenericDao<User> dao;
+    private GenericDao<User> dao;
 
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
         Database database = Database.getInstance();
@@ -21,12 +27,18 @@ public class UserDaoTest {
         dao = new GenericDao<User>(User.class);
     }
 
+    /**
+     * Gets by id.
+     */
     @Test
     void getById() {
         User user = dao.getById(1);
         assertEquals(1, user.getId());
     }
 
+    /**
+     * Save or update.
+     */
     @Test
     void saveOrUpdate() {
         User user = dao.getById(1);
@@ -36,6 +48,9 @@ public class UserDaoTest {
         assertEquals(user, dao.getById(1));
     }
 
+    /**
+     * Insert.
+     */
     @Test
     void insert() {
         User user = new User("Brad", "Pitt", "movieGuy12", "password", true, true, true);
@@ -43,6 +58,9 @@ public class UserDaoTest {
         assertEquals(user, dao.getById(id));
     }
 
+    /**
+     * Insert with rating.
+     */
     @Test
     void insertWithRating() {
         User user = new User("Brad", "Pitt", "movieGuy12", "password", true, true, true);
@@ -56,6 +74,9 @@ public class UserDaoTest {
         assertEquals(user, dao.getById(id));
     }
 
+    /**
+     * Delete.
+     */
     @Test
     void delete() {
         User user = dao.getById(1);
@@ -72,20 +93,29 @@ public class UserDaoTest {
         assertNull(collectionGenericDao.getById(1));
     }
 
+    /**
+     * Gets all.
+     */
     @Test
     void getAll() {
         List<User> users = dao.getAll();
         assertEquals(4, users.size());
     }
 
+    /**
+     * Gets users by property equals.
+     */
     @Test
-    void getRatingsByPropertyEquals() {
+    void getUsersByPropertyEquals() {
         List<User> users = dao.findByPropertyEqual("password", "password");
         assertEquals(4, users.size());
     }
 
+    /**
+     * Gets users by property equals map.
+     */
     @Test
-    void getRatingsByPropertyEqualsMap() {
+    void getUsersByPropertyEqualsMap() {
         Map<String, Object> propertiesMap = new HashMap<String, Object>();
         propertiesMap.put("password", "password");
         propertiesMap.put("hasDvd", true);
@@ -94,8 +124,11 @@ public class UserDaoTest {
         assertEquals(4, users.size());
     }
 
+    /**
+     * Gets users by property like.
+     */
     @Test
-    void getMovieByPropertyLike() {
+    void getUsersByPropertyLike() {
         List<User> users = dao.findByPropertyLike("username", "astro");
         assertEquals(4, users.size());
     }

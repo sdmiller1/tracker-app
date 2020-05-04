@@ -12,11 +12,17 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Tests for the MovieCollection class
+ */
 class MovieCollectionDaoTest {
 
-    GenericDao<MovieCollection> dao;
+    private GenericDao<MovieCollection> dao;
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
         Database database = Database.getInstance();
@@ -25,6 +31,9 @@ class MovieCollectionDaoTest {
         dao = new GenericDao<MovieCollection>(MovieCollection.class);
     }
 
+    /**
+     * Gets by id.
+     */
     @Test
     void getById() {
         MovieCollection myMovie = (MovieCollection)dao.getById(1);
@@ -33,6 +42,9 @@ class MovieCollectionDaoTest {
         assertFalse(myMovie.isHas4k());
     }
 
+    /**
+     * Save or update.
+     */
     @Test
     void saveOrUpdate() {
         MovieCollection myMovie = (MovieCollection)dao.getById(1);
@@ -42,6 +54,9 @@ class MovieCollectionDaoTest {
         assertEquals(myMovie, myNewMovie);
     }
 
+    /**
+     * Insert.
+     */
     @Test
     void insert() {
         Movie movie = new GenericDao<Movie>(Movie.class).getById(3);
@@ -54,6 +69,9 @@ class MovieCollectionDaoTest {
         assertEquals(myNewMovie, dao.getById(id));
     }
 
+    /**
+     * Delete.
+     */
     @Test
     void delete() {
         MovieCollection movieToDeleteFromCollection = dao.getById(3);
@@ -61,21 +79,30 @@ class MovieCollectionDaoTest {
         assertNull(dao.getById(3));
     }
 
+    /**
+     * Gets all.
+     */
     @Test
     void getAll() {
         List<MovieCollection> movieCollections = dao.getAll();
         assertEquals(4, movieCollections.size());
     }
 
+    /**
+     * Gets MovieCollection by property equals.
+     */
     @Test
-    void getRatingsByPropertyEquals() {
+    void getMovieCollectionByPropertyEquals() {
         List<MovieCollection> movieCollections = dao.findByPropertyEqual("hasDvd", true);
         assertEquals(4, movieCollections.size());
     }
 
+    /**
+     * Gets MovieCollection by property equals map.
+     */
     @Test
-    void getRatingsByPropertyEqualsMap() {
-        Map<String, Object> propertiesMap = new HashMap<String, Object>();
+    void getMovieCollectionByPropertyEqualsMap() {
+        Map<String, Object> propertiesMap = new HashMap<>();
         propertiesMap.put("hasDvd", true);
         propertiesMap.put("has4k", false);
 

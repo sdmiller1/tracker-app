@@ -11,11 +11,17 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The type Collection dao test.
+ */
 class CollectionDaoTest {
 
-    GenericDao<Collection> dao;
+    private GenericDao<Collection> dao;
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
         Database database = Database.getInstance();
@@ -24,6 +30,9 @@ class CollectionDaoTest {
         dao = new GenericDao<Collection>(Collection.class);
     }
 
+    /**
+     * Gets by id.
+     */
     @Test
     void getById() {
         Collection collection = (Collection)dao.getById(1);
@@ -31,6 +40,9 @@ class CollectionDaoTest {
         assertEquals("personal", collection.getCollectionName());
     }
 
+    /**
+     * Save or update.
+     */
     @Test
     void saveOrUpdate() {
         Collection collection = (Collection)dao.getById(1);
@@ -40,6 +52,9 @@ class CollectionDaoTest {
         assertEquals(collection, updatedCollection);
     }
 
+    /**
+     * Insert.
+     */
     @Test
     void insert() {
         User user = new GenericDao<User>(User.class).getById(1);
@@ -50,6 +65,9 @@ class CollectionDaoTest {
         assertEquals(collection, dao.getById(id));
     }
 
+    /**
+     * Delete.
+     */
     @Test
     void delete() {
         Collection collection = dao.getById(3);
@@ -57,20 +75,29 @@ class CollectionDaoTest {
         assertNull(dao.getById(3));
     }
 
+    /**
+     * Gets all.
+     */
     @Test
     void getAll() {
         List<Collection> collections = dao.getAll();
         assertEquals(4, collections.size());
     }
 
+    /**
+     * Gets collections by property equals.
+     */
     @Test
-    void getRatingsByPropertyEquals() {
+    void getCollectionsByPropertyEquals() {
         List<Collection> collections = dao.findByPropertyEqual("collectionName", "personal");
         assertEquals(4, collections.size());
     }
 
+    /**
+     * Gets collections by property equals map.
+     */
     @Test
-    void getRatingsByPropertyEqualsMap() {
+    void getCollectionsByPropertyEqualsMap() {
         Map<String, Object> propertiesMap = new HashMap<String, Object>();
         propertiesMap.put("collectionName", "personal");
 
@@ -78,6 +105,9 @@ class CollectionDaoTest {
         assertEquals(4, collections.size());
     }
 
+    /**
+     * Gets movies from collection.
+     */
     @Test
     void getMoviesFromCollection() {
         Collection collection = dao.getById(1);

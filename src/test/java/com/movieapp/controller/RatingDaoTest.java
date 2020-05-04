@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RatingDaoTest {
 
-    GenericDao<Rating> dao;
+    private GenericDao<Rating> dao;
     private final Logger logger = LogManager.getLogger(this.getClass());
 
     @BeforeEach

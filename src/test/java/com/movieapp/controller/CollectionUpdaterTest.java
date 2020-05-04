@@ -9,11 +9,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
+/**
+ * Tests for the CollectionUpdater class
+ */
 public class CollectionUpdaterTest {
 
-    GenericDao<MovieCollection> dao;
+    private GenericDao<MovieCollection> dao;
     private final Logger logger = LogManager.getLogger(this.getClass());
 
 
@@ -22,14 +24,20 @@ public class CollectionUpdaterTest {
 
     private CollectionUpdater collectionUpdater = new CollectionUpdater();
 
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
         Database database = Database.getInstance();
         database.runSQL("cleanDB.sql");
 
-        dao = new GenericDao<MovieCollection>(MovieCollection.class);
+        dao = new GenericDao<>(MovieCollection.class);
     }
 
+    /**
+     * Add movie to users personal collection.
+     */
     @Test
     void addMovieToUsersPersonalCollection() {
         String username = "astroscott";
@@ -49,6 +57,9 @@ public class CollectionUpdaterTest {
 
     }
 
+    /**
+     * Add movie to collection but movie already exists in collection.
+     */
     @Test
     void addMovieToCollectionAlreadyExists() {
         String username = "astrobob";
@@ -64,6 +75,9 @@ public class CollectionUpdaterTest {
         assertEquals(-1, entryId);
     }
 
+    /**
+     * Remove movie from users personal collection.
+     */
     @Test
     void removeMovieFromUsersPersonalCollection() {
         String username = "astrobob";
@@ -78,6 +92,10 @@ public class CollectionUpdaterTest {
         assertEquals("Success", message);
     }
 
+    /**
+     * Remove movie from users personal collection
+     * Test for failure
+     */
     @Test
     void removeMovieFromUsersPersonalCollectionFailure() {
         String username = "wrong username";

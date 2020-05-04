@@ -12,11 +12,17 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+/**
+ * Tests for the Movie class
+ */
 class MovieDaoTest {
 
-    GenericDao<Movie> dao;
+    private GenericDao<Movie> dao;
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
         Database database = Database.getInstance();
@@ -25,6 +31,9 @@ class MovieDaoTest {
         dao = new GenericDao<Movie>(Movie.class);
     }
 
+    /**
+     * Gets by id.
+     */
     @Test
     void getById() {
         Movie movie = (Movie)dao.getById(1);
@@ -32,6 +41,9 @@ class MovieDaoTest {
         assertEquals("The Martian", movie.getTitle());
     }
 
+    /**
+     * Save or update.
+     */
     @Test
     void saveOrUpdate() {
         Movie movie = (Movie)dao.getById(1);
@@ -41,6 +53,9 @@ class MovieDaoTest {
         assertEquals(movie, updatedMovie);
     }
 
+    /**
+     * Insert.
+     */
     @Test
     void insert() {
         Set<Collection> collections = new HashSet<>();
@@ -51,6 +66,9 @@ class MovieDaoTest {
         assertEquals(movie, dao.getById(id));
     }
 
+    /**
+     * Delete.
+     */
     @Test
     void delete() {
         Movie movie = dao.getById(1);
@@ -67,20 +85,29 @@ class MovieDaoTest {
         assertNull(movieCollectionGenericDao.getById(4));
     }
 
+    /**
+     * Gets all.
+     */
     @Test
     void getAll() {
         List<Movie> movies = dao.getAll();
         assertEquals(3, movies.size());
     }
 
+    /**
+     * Gets movies by property equals.
+     */
     @Test
-    void getRatingsByPropertyEquals() {
+    void getMoviesByPropertyEquals() {
         List<Movie> movies = dao.findByPropertyEqual("title", "The Martian");
         assertEquals(1, movies.size());
     }
 
+    /**
+     * Gets movies by property equals map.
+     */
     @Test
-    void getRatingsByPropertyEqualsMap() {
+    void getMoviesByPropertyEqualsMap() {
         Map<String, Object> propertiesMap = new HashMap<String, Object>();
         propertiesMap.put("title", "The Martian");
 
@@ -88,8 +115,11 @@ class MovieDaoTest {
         assertEquals(1, movies.size());
     }
 
+    /**
+     * Gets movies by property like.
+     */
     @Test
-    void getMovieByPropertyLike() {
+    void getMoviesByPropertyLike() {
         List<Movie> movies = dao.findByPropertyLike("title", "e");
         assertEquals(2, movies.size());
     }

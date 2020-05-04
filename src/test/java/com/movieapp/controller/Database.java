@@ -5,14 +5,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
+
 /**
  * Provides access to the database
  * Created on 8/31/16.
@@ -20,7 +19,6 @@ import java.util.Properties;
  * @author pwaite
  * @author Alex M - Fall 2019 - added multi-line sql capability
  */
-
 public class Database implements PropertiesLoader {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
@@ -35,15 +33,29 @@ public class Database implements PropertiesLoader {
         properties = loadProperties("/database.properties");
     }
 
-    // get the only Database object available
+    /**
+     * get the only Database object available
+     *
+     * @return the instance
+     */
     public static Database getInstance() {
         return instance;
     }
 
+    /**
+     * Gets connection.
+     *
+     * @return the connection
+     */
     public Connection getConnection() {
         return connection;
     }
 
+    /**
+     * Connect.
+     *
+     * @throws Exception the exception
+     */
     public void connect() throws Exception {
         if (connection != null)
             return;
@@ -58,6 +70,9 @@ public class Database implements PropertiesLoader {
         connection = DriverManager.getConnection(url, properties.getProperty("username"),  properties.getProperty("password"));
     }
 
+    /**
+     * Disconnect.
+     */
     public void disconnect() {
         if (connection != null) {
             try {

@@ -10,6 +10,9 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Tests for the OMDB API
+ */
 public class OMDBDaoTest {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
@@ -17,6 +20,9 @@ public class OMDBDaoTest {
     private OMDBDao dao = new OMDBDao();
     private GenericDao<Movie> genericDao;
 
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
         Database database = Database.getInstance();
@@ -25,6 +31,9 @@ public class OMDBDaoTest {
         genericDao = new GenericDao<>(Movie.class);
     }
 
+    /**
+     * Test api for response.
+     */
     @Test
     public void testAPIForResponse() {
         com.omdb.Movie movie = dao.getMovieByTitle("The Martian");
@@ -32,6 +41,9 @@ public class OMDBDaoTest {
         assertEquals("The Martian", movie.getTitle());
     }
 
+    /**
+     * Add movie to db from api.
+     */
     @Test
     public void addMovieToDBFromAPI() {
         String title = "Interstellar";

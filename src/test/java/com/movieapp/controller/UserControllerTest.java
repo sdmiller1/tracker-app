@@ -6,11 +6,12 @@ import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.*;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
+/**
+ * Tests for the UserController
+ */
 public class UserControllerTest {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
@@ -18,6 +19,9 @@ public class UserControllerTest {
     private GenericDao<User> genericDao;
     private UserController userController = new UserController();
 
+    /**
+     * Sets up.
+     */
     @BeforeEach
     void setUp() {
         Database database = Database.getInstance();
@@ -26,8 +30,11 @@ public class UserControllerTest {
         genericDao = new GenericDao<>(User.class);
     }
 
+    /**
+     * Create new user.
+     */
     @Test
-    void createNewUserSuccess() {
+    void createNewUser() {
         String username = "Jeff123";
         String password = "password";
         String firstName = "Jeff";
@@ -43,8 +50,11 @@ public class UserControllerTest {
         assertEquals(2, user.getCollections().size());
     }
 
+    /**
+     * Tries to create new user but username is already taken.
+     */
     @Test
-    void createNewUserUsernameTaken() {
+    void createNewUserButUsernameTaken() {
         String username = "astrobob";
         String password = "password";
         String firstName = "Jeff";
