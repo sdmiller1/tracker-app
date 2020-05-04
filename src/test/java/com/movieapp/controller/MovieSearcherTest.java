@@ -10,8 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MovieSearcherTest {
 
@@ -59,7 +58,13 @@ public class MovieSearcherTest {
         Movie movie = movieSearcher.findById("tt3659388");
 
         assertEquals("The Martian", movie.getTitle());
-//        TODO: what should return if the movie is not found
+    }
+
+    @Test
+    void findByImdbIDNoResults() {
+        Movie movie = movieSearcher.findById("wrong id");
+
+        assertNull(movie);
     }
 
     @Test

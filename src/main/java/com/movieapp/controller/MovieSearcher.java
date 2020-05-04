@@ -35,7 +35,11 @@ public class MovieSearcher {
 
         List<Movie> movies = movieGenericDao.findByPropertyEqual("imdbId", id);
 
-        Movie movie = movies.get(0);
+        Movie movie = null;
+
+        if (!movies.isEmpty()) {
+            movie = movies.get(0);
+        }
 
         return movie;
     }
