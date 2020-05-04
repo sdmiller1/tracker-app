@@ -35,7 +35,7 @@
             ${collection.collectionName}
         </h2>
         <div class="col-sm-6 text-right mt-2 d-flex align-items-center justify-content-end">
-            <a href="browse?collection=${collection.id}" class="btn btn-link btn-lg">See More</a>
+            <a href="collection?id=${collection.id}" class="btn btn-link btn-lg">See More</a>
         </div>
     </div>
 
