@@ -1,5 +1,6 @@
 package com.movieapp.controller;
 
+import com.movieapp.utilities.PropertiesLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,7 +21,7 @@ import java.util.Properties;
  * @author Alex M - Fall 2019 - added multi-line sql capability
  */
 
-public class Database {
+public class Database implements PropertiesLoader {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
     // create an object of the class Database
@@ -31,21 +32,7 @@ public class Database {
 
     // private constructor prevents instantiating this class anywhere else
     private Database() {
-        loadProperties();
-
-    }
-
-    // TODO use properties loader (interface from adv java)
-    private void loadProperties() {
-        properties = new Properties();
-        try {
-            properties.load (this.getClass().getResourceAsStream("/database.properties"));
-        } catch (IOException ioe) {
-            logger.error("Database.loadProperties()...Cannot load the properties file", ioe);
-        } catch (Exception e) {
-            logger.error("Database.loadProperties()..." + e);
-        }
-
+        properties = loadProperties("/database.properties");
     }
 
     // get the only Database object available
@@ -111,8 +98,6 @@ public class Database {
                     sql += inputValue;
             }
 
-        } catch (SQLException se) {
-            logger.error(se);
         } catch (Exception e) {
             logger.error(e);
         } finally {
