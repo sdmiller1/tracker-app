@@ -1,5 +1,6 @@
 package com.movieapp.controller;
 
+import com.movieapp.model.Collection;
 import com.movieapp.model.Movie;
 import com.movieapp.model.Rating;
 import com.movieapp.model.User;
@@ -60,6 +61,15 @@ public class UserDaoTest {
         User user = dao.getById(1);
         dao.delete(user);
         assertNull(dao.getById(1));
+
+        // verify that ratings are deleted along with the user
+        GenericDao<Rating> ratingGenericDao = new GenericDao<>(Rating.class);
+        assertNull(ratingGenericDao.getById(1));
+        assertNull(ratingGenericDao.getById(5));
+
+        // Verify that collections were deleted
+        GenericDao<Collection> collectionGenericDao = new GenericDao<>(Collection.class);
+        assertNull(collectionGenericDao.getById(1));
     }
 
     @Test
