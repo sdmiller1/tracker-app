@@ -7,6 +7,7 @@ Sam Miller's individual project for Enterprise Java
 Like many people I watch many movies both streaming and on DVD. 
 However, I frequently find myself unsure of what to watch. 
 To solve this problem I am creating a site that will track movies that a user owns and movies that they want to watch later.
+Users will be able to rate movies on a scale of 1-10, then they will be able to sort their movies to find their favorites.
 
 ### Project Technologies
 * Security Authentication
