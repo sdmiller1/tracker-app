@@ -33,8 +33,6 @@ public class OMDBDao {
             logger.error(e);
         }
 
-//        TODO: figure out what this returns if the movie isnt found by the api
-
         return movie;
     }
 
@@ -42,20 +40,24 @@ public class OMDBDao {
         Movie apiResult = getMovieByTitle(title);
         com.movieapp.model.Movie movie = new com.movieapp.model.Movie();
 
-        movie.setTitle(apiResult.getTitle());
-        movie.setImdbId(apiResult.getImdbID());
-        movie.setImage(apiResult.getPoster());
+        int id = 0;
 
-        String runtime = apiResult.getRuntime();
-        runtime = runtime.substring(0, runtime.length() - 4);
-        movie.setRuntime(Integer.parseInt(runtime));
+        if (apiResult.getTitle() != null) {
+            movie.setTitle(apiResult.getTitle());
+            movie.setImdbId(apiResult.getImdbID());
+            movie.setImage(apiResult.getPoster());
 
-        movie.setRatingMPAA(apiResult.getRated());
-        movie.setReleaseYear(apiResult.getYear());
-        movie.setPlot(apiResult.getPlot());
-        movie.setGenre(apiResult.getGenre());
+            String runtime = apiResult.getRuntime();
+            runtime = runtime.substring(0, runtime.length() - 4);
+            movie.setRuntime(Integer.parseInt(runtime));
 
-        int id = movieDao.insert(movie);
+            movie.setRatingMPAA(apiResult.getRated());
+            movie.setReleaseYear(apiResult.getYear());
+            movie.setPlot(apiResult.getPlot());
+            movie.setGenre(apiResult.getGenre());
+
+            id = movieDao.insert(movie);
+        }
 
         return id;
     }

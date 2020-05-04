@@ -23,7 +23,7 @@ public class MovieSearcher {
         List<Movie> searchResults;
         searchResults = movieGenericDao.findByPropertyLike("title", title);
 
-        if (searchResults.size() == 0) {
+        if (searchResults.isEmpty()) {
             int id = apiDao.addMovieToDatabase(title);
             searchResults = movieGenericDao.findByPropertyEqual("id", id);
         }
