@@ -23,6 +23,10 @@
       <web-resource-name>userPage</web-resource-name>
       <url-pattern>/profile</url-pattern>
     </web-resource-collection>
+    <web-resource-collection>
+      <web-resource-name>collectionPage</web-resource-name>
+      <url-pattern>/collection</url-pattern>
+    </web-resource-collection>
     <auth-constraint>
       <role-name>user</role-name>
     </auth-constraint>
