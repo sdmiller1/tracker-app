@@ -49,11 +49,15 @@ public class CollectionService {
     @Path("/id={imdbid}&collection={collectionId}&user={username}")
     public Response removeMovieToCollection(@PathParam("imdbid") String imdbId, @PathParam("collectionId") String collectionId, @PathParam("username") String username) {
 
-        String result = "Failed to remove the Movie";
+        String result;
 
-        collectionUpdater.removeMovieFromUserCollection(imdbId, username, Integer.parseInt(collectionId));
-//      TODO: this needs to verify the movie was removed
-        result = "Successfully removed the Movie";
+        String message = collectionUpdater.removeMovieFromUserCollection(imdbId, username, Integer.parseInt(collectionId));
+
+        if (message.equals("Success")) {
+            result = "Successfully removed the Movie";
+        } else {
+            result = "Failed to remove the movie";
+        }
 
         return Response.status(200).entity(result).build();
     }

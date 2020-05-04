@@ -71,13 +71,24 @@ public class CollectionUpdaterTest {
         String movieTitle = "The Martian";
 
         Movie movie = movieGenericDao.findByPropertyEqual("title", movieTitle).get(0);
-        User user = userGenericDao.findByPropertyEqual("username", username).get(0);
 
 
-        collectionUpdater.removeMovieFromUserCollection(movie.getImdbId(), username, collectionId);
+        String message = collectionUpdater.removeMovieFromUserCollection(movie.getImdbId(), username, collectionId);
 
-        MovieCollection movieCollection = dao.getById(1);
+        assertEquals("Success", message);
+    }
 
-        assertNull(movieCollection);
+    @Test
+    void removeMovieFromUsersPersonalCollectionFailure() {
+        String username = "wrong username";
+        int collectionId = 1;
+        String movieTitle = "The Martian";
+
+        Movie movie = movieGenericDao.findByPropertyEqual("title", movieTitle).get(0);
+
+
+        String message = collectionUpdater.removeMovieFromUserCollection(movie.getImdbId(), username, collectionId);
+
+        assertEquals("Failed to remove movie", message);
     }
 }

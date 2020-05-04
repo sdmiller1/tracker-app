@@ -56,8 +56,9 @@ public class CollectionUpdater {
      * @param imdbId       the imdb id
      * @param username     the username
      * @param collectionId the collection id
+     * @return success or failure message
      */
-    public void removeMovieFromUserCollection(String imdbId, String username, int collectionId) {
+    public String removeMovieFromUserCollection(String imdbId, String username, int collectionId) {
 
         Movie movie = movieGenericDao.findByPropertyEqual("imdbId", imdbId).get(0);
 
@@ -66,9 +67,16 @@ public class CollectionUpdater {
         if (collection.getUser().getUsername().equals(username)) {
 
             MovieCollection movieCollection = movieCollectionGenericDao.findByPropertyEqual("movie", movie).get(0);
+            int movieCollectionId = movieCollection.getId();
+
             movieCollectionGenericDao.delete(movieCollection);
 
+            if (movieCollectionGenericDao.getById(movieCollectionId) == null) {
+                return "Success";
+            }
         }
+
+        return "Failed to remove movie";
 
     }
 }
