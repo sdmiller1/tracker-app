@@ -30,32 +30,41 @@ public class Signup extends HttpServlet {
 
         UserController userController = new UserController();
 
-        String url = "signup.jsp";
-
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String username = request.getParameter("j_username");
         String password = request.getParameter("j_password");
 //        TODO: record bluray dvd 4k stuff
-        String successMessage = "Error";
 
         if (firstName != null && lastName != null && username != null && password != null) {
-            successMessage = userController.createNewUser(firstName, lastName, username, password);
+            String successMessage = userController.createNewUser(firstName, lastName, username, password);
+
+            if (successMessage.equals("Success")) {
+                request.login(username, password);
+
+                String url = "browse";
+                response.sendRedirect(url);
+            } else if (successMessage.equals("Username taken")) {
+                // returns the user to the sign up page and persists their form data
+                request.setAttribute("errorMessage", "That username was already taken");
+                request.setAttribute("username", username);
+                request.setAttribute("firstName", firstName);
+                request.setAttribute("lastName", lastName);
+
+                String url = "signup.jsp";
+                RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+                dispatcher.forward(request, response);
+            }
+        } else {
+            String url = "signup.jsp";
+
+            request.setAttribute("errorMessage", "There was an error submitting the form");
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+            dispatcher.forward(request, response);
         }
 
-        if (successMessage.equals("Success")) {
-//            TODO: implement auto login after sign up
-            url = "profile";
-        } else if (successMessage.equals("Username taken")) {
-            // returns the user to the sign up page and persists their form data
-            request.setAttribute("errorMessage", "That username was already taken");
-            request.setAttribute("username", username);
-            request.setAttribute("firstName", firstName);
-            request.setAttribute("lastName", lastName);
-        }
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-        dispatcher.forward(request, response);
 
     }
 
