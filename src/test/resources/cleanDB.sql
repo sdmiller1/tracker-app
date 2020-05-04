@@ -148,10 +148,14 @@ insert into Ratings values (default, 3, 1, current_date(), 5);
 insert into Ratings values (default, 4, 2, current_date(), 5);
 insert into Ratings values (default, 1, 1, current_date(), 4);
 
-insert into Collections values (default, 1, 'personal');
-insert into Collections values (default, 2, 'personal');
-insert into Collections values (default, 3, 'personal');
-insert into Collections values (default, 4, 'personal');
+insert into Collections values (default, 1, 'Personal Collection');
+insert into Collections values (default, 1, 'Watch Later');
+insert into Collections values (default, 2, 'Personal Collection');
+insert into Collections values (default, 2, 'Watch Later');
+insert into Collections values (default, 3, 'Personal Collection');
+insert into Collections values (default, 3, 'Watch Later');
+insert into Collections values (default, 4, 'Personal Collection');
+insert into Collections values (default, 4, 'Watch Later');
 
 insert into MoviesCollections values (default, 1, 1, true, true, false);
 insert into MoviesCollections values (default, 1, 2, true, false, false);

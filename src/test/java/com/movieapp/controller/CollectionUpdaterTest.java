@@ -41,7 +41,7 @@ public class CollectionUpdaterTest {
     @Test
     void addMovieToUsersPersonalCollection() {
         String username = "astroscott";
-        int collectionId = 4;
+        int collectionId = 8;
         String movieTitle = "The Martian";
 
         Movie movie = movieGenericDao.findByPropertyEqual("title", movieTitle).get(0);

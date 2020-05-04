@@ -35,9 +35,9 @@ class CollectionDaoTest {
      */
     @Test
     void getById() {
-        Collection collection = (Collection)dao.getById(1);
+        Collection collection = dao.getById(1);
         assertEquals(1, collection.getId());
-        assertEquals("personal", collection.getCollectionName());
+        assertEquals("Personal Collection", collection.getCollectionName());
     }
 
     /**
@@ -81,7 +81,7 @@ class CollectionDaoTest {
     @Test
     void getAll() {
         List<Collection> collections = dao.getAll();
-        assertEquals(4, collections.size());
+        assertEquals(8, collections.size());
     }
 
     /**
@@ -89,7 +89,7 @@ class CollectionDaoTest {
      */
     @Test
     void getCollectionsByPropertyEquals() {
-        List<Collection> collections = dao.findByPropertyEqual("collectionName", "personal");
+        List<Collection> collections = dao.findByPropertyEqual("collectionName", "Personal Collection");
         assertEquals(4, collections.size());
     }
 
@@ -99,7 +99,7 @@ class CollectionDaoTest {
     @Test
     void getCollectionsByPropertyEqualsMap() {
         Map<String, Object> propertiesMap = new HashMap<String, Object>();
-        propertiesMap.put("collectionName", "personal");
+        propertiesMap.put("collectionName", "Personal Collection");
 
         List<Collection> collections = dao.findByPropertyEqual(propertiesMap);
         assertEquals(4, collections.size());
