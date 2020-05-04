@@ -40,7 +40,12 @@
     </div>
 
     <div class="row">
-        <c:set var="moviesToDisplay" value="${collection.movies}" scope="request"/>
+        <c:if test="${collection.movies.size() > 4}">
+            <c:set var="moviesToDisplay" value="${collection.movies.subList(0, 4)}" scope="request"/>
+        </c:if>
+        <c:if test="${collection.movies.size() <= 4}">
+            <c:set var="moviesToDisplay" value="${collection.movies}" scope="request"/>
+        </c:if>
         <c:import url="templates/displayMovies.jsp" />
     </div>
     </c:forEach>

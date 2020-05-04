@@ -46,7 +46,12 @@
         </div>
 
         <div class="row">
-            <c:set var="moviesToDisplay" value="${searchResults}" scope="request"/>
+            <c:if test="${searchResults.size() > 4}">
+                <c:set var="moviesToDisplay" value="${searchResults.subList(0, 4)}" scope="request"/>
+            </c:if>
+            <c:if test="${searchResults.size() <= 4}">
+                <c:set var="moviesToDisplay" value="${searchResults}" scope="request"/>
+            </c:if>
             <c:import url="templates/displayMovies.jsp" />
         </div>
     </c:if>
@@ -61,7 +66,12 @@
     </div>
 
     <div class="row">
-        <c:set var="moviesToDisplay" value="${movies}" scope="request"/>
+        <c:if test="${movies.size() > 4}">
+            <c:set var="moviesToDisplay" value="${movies.subList(0, 4)}" scope="request"/>
+        </c:if>
+        <c:if test="${movies.size() <= 4}">
+            <c:set var="moviesToDisplay" value="${movies}" scope="request"/>
+        </c:if>
         <c:import url="templates/displayMovies.jsp" />
     </div>
 </main>
