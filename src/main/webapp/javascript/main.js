@@ -3,7 +3,10 @@ const displayCollectionModal = (imdbid) => {
 
     for (button of collectionButtons) {
         let collectionId = button.dataset.collectionid;
-        button.onclick = () => {addMovieToCollection(imdbid, collectionId)};
+        button.onclick = (event) => {addMovieToCollection(imdbid, collectionId, event)};
+
+        button.innerHTML = "Add";
+        button.classList = "btn btn-primary addToCollectionButton";
     }
 }
 
