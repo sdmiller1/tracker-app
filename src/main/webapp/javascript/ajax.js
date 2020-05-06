@@ -32,7 +32,10 @@ const addMovieToCollection = (movieId, collectionId, event) => {
     });
 }
 
-const removeMovieFromCollection = (movieId, collectionId) => {
+const removeMovieFromCollection = (movieId, collectionId, buttonElement) => {
+
+    let movieCard = buttonElement.parentNode.parentNode.parentNode;
+
     let url = `/tracker_app/services/collections/id=${movieId}&collection=${collectionId}&user=${username}`;
     let parameters = {
         "method": "delete"
@@ -43,7 +46,13 @@ const removeMovieFromCollection = (movieId, collectionId) => {
             return result.text();
         }).then(result => {
         console.log(result);
+        if (result == "Successfully removed the Movie") {
+            movieCard.remove();
+        } else {
+            buttonElement.innerHTML = "Error";
+        }
     }).catch(error => {
         console.log(error);
+        buttonElement.innerHTML = "Error";
     });
 }

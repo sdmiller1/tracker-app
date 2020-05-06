@@ -13,7 +13,7 @@
                     </button>
                 </c:if>
                 <c:if test="${collectionId != null}">
-                    <button type="button" class="btn btn-danger w-100" onclick="removeMovieFromCollection('${movie.imdbId}', '${collectionId}')">
+                    <button type="button" class="btn btn-danger w-100" onclick="removeMovieFromCollection('${movie.imdbId}', '${collectionId}', this)">
                         Remove
                     </button>
                 </c:if>
