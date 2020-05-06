@@ -3,11 +3,9 @@
 <html lang="en">
 <head>
     <title>Browse Movies</title>
-    <c:if test="${user != null}">
-    <script>
-        let username = "${user.username}";
-    </script>
-    </c:if>
+
+    <c:import url="templates/setJavascriptUsername.jsp" />
+
     <c:import url="templates/head.jsp" />
 </head>
 <body>

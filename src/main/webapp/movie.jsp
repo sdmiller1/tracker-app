@@ -9,11 +9,8 @@
         <title>Search For Movies</title>
     </c:if>
 
-    <c:if test="${user != null}">
-        <script>
-            let username = "${user.username}";
-        </script>
-    </c:if>
+    <c:import url="templates/setJavascriptUsername.jsp" />
+
     <c:import url="templates/head.jsp" />
 </head>
 <body>
@@ -34,6 +31,7 @@
                 <button type="button" class="btn btn-primary" onclick="displayCollectionModal('${movie.imdbId}')" data-toggle="modal" data-target="#collectionModal">
                     Add To Collection
                 </button>
+                <c:if test="${user != null}">
                 <div class="rating mt-2" data-imdbid="${movie.imdbId}">
                     <i class="fa fa-star-o" onclick="rateMovie(this)" data-rating="1"></i>
                     <i class="fa fa-star-o" onclick="rateMovie(this)" data-rating="2"></i>
@@ -41,6 +39,7 @@
                     <i class="fa fa-star-o" onclick="rateMovie(this)" data-rating="4"></i>
                     <i class="fa fa-star-o" onclick="rateMovie(this)" data-rating="5"></i>
                 </div>
+                </c:if>
             </div>
         </section>
     </c:if>
