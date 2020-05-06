@@ -11,7 +11,7 @@
                 <ul class="list-group" id="collectionList">
                     <c:if test="${user == null}">
                         <li class="list-group-item text-center">
-                            You need to <a href="login.jsp">log in</a> to save movies
+                            You need to <a href="profile">log in</a> to save movies
                         </li>
                     </c:if>
                     <c:forEach var="collection" items="${user.getCollections()}">
