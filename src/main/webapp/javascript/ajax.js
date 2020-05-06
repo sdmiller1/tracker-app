@@ -59,7 +59,7 @@ const removeMovieFromCollection = (movieId, collectionId, buttonElement) => {
 
 const submitRating = (imdbid, rating) => {
 
-    let url = `/tracker_app/services/ratings/id=${movieId}&rating=${collectionId}&user=${username}`;
+    let url = `/tracker_app/services/ratings/id=${imdbid}&rating=${rating}&user=${username}`;
     let parameters = {
         "method": "post"
     };

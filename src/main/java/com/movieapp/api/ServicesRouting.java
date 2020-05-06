@@ -17,6 +17,7 @@ public class ServicesRouting extends Application {
         HashSet h = new HashSet<Class<?>>();
         h.add(MovieService.class );
         h.add(CollectionService.class);
+        h.add(RatingService.class);
         return h;
     }
 }

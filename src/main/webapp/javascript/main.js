@@ -9,7 +9,7 @@ const rateMovie = (ratingButton) => {
     fullStars.map(x => x.classList = "fa fa-star text-warning");
     emptyStars.map(x => x.classList = "fa fa-star-o text-secondary");
 
-    submitRating('', rating);
+    submitRating(imdbId, rating);
 }
 
 const displayCollectionModal = (imdbid) => {
