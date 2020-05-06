@@ -32,8 +32,6 @@ public class BrowseCollection extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-// TODO: this page requires login and should redirct to browse if the collection isn't theirs. the collection functionallity should be removed from the browse page
-
         GenericDao<User> userGenericDao = new GenericDao<>(User.class);
 
         List<Movie> movies;
