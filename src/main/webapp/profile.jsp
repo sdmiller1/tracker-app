@@ -30,6 +30,7 @@
     </c:if>
 
     <c:forEach var="collection" items="${collections}">
+    <c:set var="collectionId" value="${collection.id}" scope="request"/>
     <div class="row">
         <h2 class="col-sm-6 text-dark mt-2">
             ${collection.collectionName}
