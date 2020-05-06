@@ -34,6 +34,13 @@
                 <button type="button" class="btn btn-primary" onclick="displayCollectionModal('${movie.imdbId}')" data-toggle="modal" data-target="#collectionModal">
                     Add To Collection
                 </button>
+                <div class="rating mt-2" data-imdbid="${movie.imdbId}">
+                    <i class="fa fa-star-o" onclick="rateMovie(this)" data-rating="1"></i>
+                    <i class="fa fa-star-o" onclick="rateMovie(this)" data-rating="2"></i>
+                    <i class="fa fa-star-o" onclick="rateMovie(this)" data-rating="3"></i>
+                    <i class="fa fa-star-o" onclick="rateMovie(this)" data-rating="4"></i>
+                    <i class="fa fa-star-o" onclick="rateMovie(this)" data-rating="5"></i>
+                </div>
             </div>
         </section>
     </c:if>

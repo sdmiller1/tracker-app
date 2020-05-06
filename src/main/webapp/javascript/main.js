@@ -1,3 +1,17 @@
+const rateMovie = (ratingButton) => {
+    let rating = ratingButton.dataset.rating;
+    let imdbId = ratingButton.parentNode.dataset.imdbid;
+
+    let stars = Array.from(document.querySelectorAll(".rating i"));
+    let fullStars = stars.filter(x => x.dataset.rating <= rating);
+    let emptyStars = stars.filter(x => x.dataset.rating > rating)
+
+    fullStars.map(x => x.classList = "fa fa-star text-warning");
+    emptyStars.map(x => x.classList = "fa fa-star-o text-secondary");
+
+    submitRating('', rating);
+}
+
 const displayCollectionModal = (imdbid) => {
     let collectionButtons = document.querySelectorAll(".addToCollectionButton");
 

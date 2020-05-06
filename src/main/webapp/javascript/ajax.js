@@ -56,3 +56,20 @@ const removeMovieFromCollection = (movieId, collectionId, buttonElement) => {
         buttonElement.innerHTML = "Error";
     });
 }
+
+const submitRating = (imdbid, rating) => {
+
+    let url = `/tracker_app/services/ratings/id=${movieId}&rating=${collectionId}&user=${username}`;
+    let parameters = {
+        "method": "post"
+    };
+
+    fetch(url, parameters)
+        .then(result => {
+            return result.text();
+        }).then(result => {
+        console.log(result);
+    }).catch(error => {
+        console.log(error);
+    });
+}
