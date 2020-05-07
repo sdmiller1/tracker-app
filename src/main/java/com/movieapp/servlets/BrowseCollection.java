@@ -68,7 +68,7 @@ public class BrowseCollection extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher(url);
             dispatcher.forward(request, response);
         } else {
-            response.sendRedirect("/browse");
+            response.sendRedirect("browse");
         }
 
 
