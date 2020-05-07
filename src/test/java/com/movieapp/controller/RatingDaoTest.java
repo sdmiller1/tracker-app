@@ -55,9 +55,9 @@ class RatingDaoTest {
 
     @Test
     void delete() {
-        Rating rating = dao.getById(5);
+        Rating rating = dao.getById(4);
         dao.delete(rating);
-        assertNull(dao.getById(5));
+        assertNull(dao.getById(4));
 
         //Verify that user is not deleted
         GenericDao<User> userGenericDao = new GenericDao<>(User.class);
@@ -67,7 +67,7 @@ class RatingDaoTest {
     @Test
     void getAll() {
         List<Rating> ratings = dao.getAll();
-        assertEquals(5, ratings.size());
+        assertEquals(4, ratings.size());
     }
 
     @Test
