@@ -3,11 +3,9 @@ package com.movieapp.controller;
 import com.movieapp.model.Collection;
 import com.movieapp.model.Movie;
 import com.movieapp.model.MovieCollection;
-import com.movieapp.model.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Set;
 
 /**
  * Used to update the user's movie collections

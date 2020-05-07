@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Contains methods for finding movies based off certain criteria
+ */
 public class MovieSearcher {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
@@ -19,6 +22,12 @@ public class MovieSearcher {
 
     private OMDBDao apiDao = new OMDBDao();
 
+    /**
+     * Find by title
+     *
+     * @param title the title
+     * @return the list of movies
+     */
     public List<Movie> findByTitle(String title) {
         List<Movie> searchResults;
         searchResults = movieGenericDao.findByPropertyLike("title", title);
@@ -31,6 +40,12 @@ public class MovieSearcher {
         return searchResults;
     }
 
+    /**
+     * Find movie by id
+     *
+     * @param id the id
+     * @return the movie
+     */
     public Movie findById(String id) {
 
         List<Movie> movies = movieGenericDao.findByPropertyEqual("imdbId", id);
@@ -44,6 +59,12 @@ public class MovieSearcher {
         return movie;
     }
 
+    /**
+     * Find by collection id
+     *
+     * @param collectionId the collection id
+     * @return a list of movies
+     */
     public List<Movie> findByCollectionId(int collectionId) {
 
         List<Movie> movies = new ArrayList<>();
