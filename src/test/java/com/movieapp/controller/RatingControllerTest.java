@@ -37,7 +37,21 @@ public class RatingControllerTest {
     @Test
     void rateAMovie() {
         String imdbId = "tt3659388";
-        String username = "astrodoug";
+        String username = "astroscott";
+        int score = 5;
+
+        String message = ratingController.rateMovie(imdbId, username, score);
+
+        assertEquals("Successfully Rated", message);
+    }
+
+    /**
+     * Re-Rate a movie
+     */
+    @Test
+    void reRateAMovie() {
+        String imdbId = "tt3659388";
+        String username = "astrobob";
         int score = 5;
 
         String message = ratingController.rateMovie(imdbId, username, score);
