@@ -33,7 +33,13 @@ public class CollectionService {
 
         String result = "Failed to add the Movie";
 
-        int newEntryId = collectionUpdater.addMovieToUserCollection(imdbId, username, Integer.parseInt(collectionId));
+        int newEntryId = 0;
+
+        try {
+            newEntryId = collectionUpdater.addMovieToUserCollection(imdbId, username, Integer.parseInt(collectionId));
+        } catch (Exception e) {
+            logger.error(e);
+        }
 
         if (newEntryId > 0) {
             result = "The Movie was added";
@@ -51,12 +57,18 @@ public class CollectionService {
 
         String result;
 
-        String message = collectionUpdater.removeMovieFromUserCollection(imdbId, username, Integer.parseInt(collectionId));
+        String message = "Failed to remove the movie";
+
+        try {
+            message = collectionUpdater.removeMovieFromUserCollection(imdbId, username, Integer.parseInt(collectionId));
+        } catch (Exception e) {
+            logger.error(e);
+        }
 
         if (message.equals("Success")) {
             result = "Successfully removed the Movie";
         } else {
-            result = "Failed to remove the movie";
+            result = message;
         }
 
         return Response.status(200).entity(result).build();
