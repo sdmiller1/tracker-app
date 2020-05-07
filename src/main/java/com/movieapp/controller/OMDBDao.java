@@ -72,9 +72,13 @@ public class OMDBDao implements PropertiesLoader {
             movie.setImdbId(apiResult.getImdbID());
             movie.setImage(apiResult.getPoster());
 
-            String runtime = apiResult.getRuntime();
-            runtime = runtime.substring(0, runtime.length() - 4);
-            movie.setRuntime(Integer.parseInt(runtime));
+            try {
+                String runtime = apiResult.getRuntime();
+                runtime = runtime.substring(0, runtime.length() - 4);
+                movie.setRuntime(Integer.parseInt(runtime));
+            } catch (Exception e) {
+                movie.setRuntime(0);
+            }
 
             movie.setRatingMPAA(apiResult.getRated());
             movie.setReleaseYear(apiResult.getYear());
