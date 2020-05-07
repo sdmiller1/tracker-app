@@ -1,10 +1,6 @@
 package com.movieapp.api;
 
-import com.movieapp.controller.GenericDao;
 import com.movieapp.controller.RatingController;
-import com.movieapp.model.Movie;
-import com.movieapp.model.Rating;
-import com.movieapp.model.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

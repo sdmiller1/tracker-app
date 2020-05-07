@@ -9,6 +9,9 @@ import org.apache.logging.log4j.Logger;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * class for interacting with a Ratings object
+ */
 public class RatingController {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
@@ -17,6 +20,14 @@ public class RatingController {
     private GenericDao<Rating> ratingGenericDao = new GenericDao<>(Rating.class);
     private GenericDao<User> userGenericDao = new GenericDao<>(User.class);
 
+    /**
+     * Rate a movie
+     *
+     * @param imdbId      the imdb id
+     * @param username    the username
+     * @param ratingValue the rating value
+     * @return success or error message
+     */
     public String rateMovie(String imdbId, String username, int ratingValue) {
 
         String result = "Error";
