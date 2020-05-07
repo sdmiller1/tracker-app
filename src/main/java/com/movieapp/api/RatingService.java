@@ -1,6 +1,7 @@
 package com.movieapp.api;
 
 import com.movieapp.controller.GenericDao;
+import com.movieapp.controller.RatingController;
 import com.movieapp.model.Movie;
 import com.movieapp.model.Rating;
 import com.movieapp.model.User;
@@ -18,9 +19,7 @@ public class RatingService {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
-    private GenericDao<Movie> movieGenericDao = new GenericDao<>(Movie.class);
-    private GenericDao<Rating> ratingGenericDao = new GenericDao<>(Rating.class);
-    private GenericDao<User> userGenericDao = new GenericDao<>(User.class);
+    private RatingController ratingController = new RatingController();
 
     /**
      * Add rating for a movie
@@ -35,26 +34,17 @@ public class RatingService {
     @Path("/id={imdbid}&rating={rating}&user={username}")
     public Response addRatingForMovie(@PathParam("imdbid") String imdbId, @PathParam("rating") String ratingString, @PathParam("username") String username) {
 
-        String result = "Failed submit the rating";
-
-        Movie movie = movieGenericDao.findByPropertyEqual("imdbId", imdbId).get(0);
-
-        User user = userGenericDao.findByPropertyEqual("username", username).get(0);
-
-        int ratingValue = 0;
+        String result = "Failed to submit the rating";
 
         try {
-            ratingValue = Integer.parseInt(ratingString);
+            int ratingValue = Integer.parseInt(ratingString);
+
+            result = ratingController.rateMovie(imdbId, username, ratingValue);
         } catch (Exception e) {
             logger.error(e);
         }
 
-        Rating rating = new Rating(user, movie, "2020-02-25", ratingValue);
-
-//        TODO: make this save or update but make sure to verify it is inserted/updated also move this code to another class
-        int entryId = ratingGenericDao.insert(rating);
-
-        if (entryId != 0) {
+        if (result.equals("Successfully Rated")) {
             result = "Successfully rated the movie";
         }
 
