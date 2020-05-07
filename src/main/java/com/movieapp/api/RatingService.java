@@ -41,7 +41,13 @@ public class RatingService {
 
         User user = userGenericDao.findByPropertyEqual("username", username).get(0);
 
-        int ratingValue = Integer.parseInt(ratingString);
+        int ratingValue = 0;
+
+        try {
+            ratingValue = Integer.parseInt(ratingString);
+        } catch (Exception e) {
+            logger.error(e);
+        }
 
         Rating rating = new Rating(user, movie, "2020-02-25", ratingValue);
 

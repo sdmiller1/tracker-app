@@ -1,10 +1,7 @@
 package com.movieapp.servlets;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.movieapp.controller.GenericDao;
 import com.movieapp.controller.MovieSearcher;
-import com.movieapp.controller.UserController;
 import com.movieapp.model.Collection;
 import com.movieapp.model.Movie;
 import com.movieapp.model.User;
@@ -19,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-import java.util.Set;
 
 @WebServlet (
         name = "BrowseCollection",
@@ -37,21 +33,27 @@ public class BrowseCollection extends HttpServlet {
         List<Movie> movies;
 
         String username = request.getRemoteUser();
-        String collectionId = request.getParameter("id");
+        int collectionId = 0;
+
+        try {
+            collectionId = Integer.parseInt(request.getParameter("id"));
+        } catch (Exception e) {
+            logger.error(e);
+        }
 
         // Send a user object to the jsp
         User user = userGenericDao.findByPropertyEqual("username", username).get(0);
         request.setAttribute("user", user);
 
 
-        if (collectionId != null && collectionId.length() != 0) {
+        if (collectionId != 0) {
             MovieSearcher movieSearcher = new MovieSearcher();
             GenericDao<Collection> dao = new GenericDao<>(Collection.class);
 
-            Collection collection = dao.getById(Integer.parseInt(collectionId));
+            Collection collection = dao.getById(collectionId);
 
             if (collection.getUser().getUsername().equals(username)) {
-                movies = movieSearcher.findByCollectionId(Integer.parseInt(collectionId));
+                movies = movieSearcher.findByCollectionId(collectionId);
 
                 request.setAttribute("collectionName", collection.getCollectionName());
                 request.setAttribute("collectionId", collection.getId());
