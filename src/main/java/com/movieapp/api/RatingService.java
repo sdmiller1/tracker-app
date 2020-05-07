@@ -37,6 +37,7 @@ public class RatingService {
 
         Rating rating = new Rating(user, movie, "2020-02-25", ratingValue);
 
+//        TODO: make this save or update but make sure to verify it is inserted/updated also move this code to another class
         int entryId = ratingGenericDao.insert(rating);
 
         if (entryId != 0) {
