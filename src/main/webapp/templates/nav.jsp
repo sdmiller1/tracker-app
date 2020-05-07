@@ -20,9 +20,8 @@
             </li>
         </ul>
 
-        <form class="form-inline my-2 my-lg-0 needs-validation" novalidate action="movie" method="get">
-            <!-- TODO: this needs to be one line at medium break point and small break point -->
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" name="search" required>
+        <form class="form-inline my-2 my-lg-0 d-flex needs-validation" novalidate action="movie" method="get">
+            <input class="form-control mr-2 flex-fill" id="searchBox" type="search" placeholder="Search" name="search" required>
             <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
