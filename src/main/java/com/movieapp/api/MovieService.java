@@ -15,11 +15,19 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+/**
+ * Service used to get movie information
+ */
 @Path("/movies")
 public class MovieService {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    /**
+     * Gets movies.
+     *
+     * @return the movies
+     */
     @GET
     @Produces("application/json")
     public Response getMovies() {
@@ -38,6 +46,12 @@ public class MovieService {
         return Response.status(200).entity(jsonOutput).build();
     }
 
+    /**
+     * Gets movie by title.
+     *
+     * @param title the title
+     * @return the movie by title
+     */
     @GET
     @Produces("application/json")
     @Path("/title={param}")
@@ -58,6 +72,12 @@ public class MovieService {
         return Response.status(200).entity(jsonOutput).build();
     }
 
+    /**
+     * Gets movie by imdb id.
+     *
+     * @param imdbid the imdbid
+     * @return the movie by imdb id
+     */
     @GET
     @Produces("application/json")
     @Path("/imdbid={param}")

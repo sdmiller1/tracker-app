@@ -18,10 +18,18 @@ public class RatingService {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
-    GenericDao<Movie> movieGenericDao = new GenericDao<>(Movie.class);
-    GenericDao<Rating> ratingGenericDao = new GenericDao<>(Rating.class);
-    GenericDao<User> userGenericDao = new GenericDao<>(User.class);
+    private GenericDao<Movie> movieGenericDao = new GenericDao<>(Movie.class);
+    private GenericDao<Rating> ratingGenericDao = new GenericDao<>(Rating.class);
+    private GenericDao<User> userGenericDao = new GenericDao<>(User.class);
 
+    /**
+     * Add rating for a movie
+     *
+     * @param imdbId       the imdb id
+     * @param ratingString the rating string
+     * @param username     the username
+     * @return the response
+     */
     @POST
     @Produces("text/plain")
     @Path("/id={imdbid}&rating={rating}&user={username}")

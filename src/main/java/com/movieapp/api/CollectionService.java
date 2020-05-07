@@ -50,10 +50,18 @@ public class CollectionService {
         return Response.status(200).entity(result).build();
     }
 
+    /**
+     * Remove movie from collection
+     *
+     * @param imdbId       the imdb id
+     * @param collectionId the collection id
+     * @param username     the username
+     * @return response
+     */
     @DELETE
     @Produces("text/plain")
     @Path("/id={imdbid}&collection={collectionId}&user={username}")
-    public Response removeMovieToCollection(@PathParam("imdbid") String imdbId, @PathParam("collectionId") String collectionId, @PathParam("username") String username) {
+    public Response removeMovieFromCollection(@PathParam("imdbid") String imdbId, @PathParam("collectionId") String collectionId, @PathParam("username") String username) {
 
         String result;
 
