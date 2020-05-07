@@ -77,27 +77,4 @@ public class MovieService {
 
         return Response.status(200).entity(jsonOutput).build();
     }
-
-//  TODO: this method is just for testing right now
-    @GET
-    @Produces("application/json")
-    @Path("/collection={param}")
-    public Response getMoviesFromCollection(@PathParam("param") String collection) {
-
-        int collectionId = Integer.parseInt(collection);
-
-        List<Movie> movies = new MovieSearcher().findByCollectionId(collectionId);
-
-        ObjectMapper mapper = new ObjectMapper();
-
-        String jsonOutput = "An Error Occurred";
-
-        try {
-            jsonOutput = mapper.writeValueAsString(movies);
-        } catch (JsonProcessingException e) {
-            logger.error(e);
-        }
-
-        return Response.status(200).entity(jsonOutput).build();
-    }
 }
