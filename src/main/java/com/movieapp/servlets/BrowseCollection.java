@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -41,10 +42,10 @@ public class BrowseCollection extends HttpServlet {
             logger.error(e);
         }
 
-        // Send a user object to the jsp
+        // Put the user object in the session
+        HttpSession session = request.getSession();
         User user = userGenericDao.findByPropertyEqual("username", username).get(0);
-        request.setAttribute("user", user);
-
+        session.setAttribute("user", user);
 
         if (collectionId != 0) {
             MovieSearcher movieSearcher = new MovieSearcher();

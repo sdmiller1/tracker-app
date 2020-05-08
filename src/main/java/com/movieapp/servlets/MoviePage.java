@@ -28,17 +28,9 @@ public class MoviePage extends HttpServlet {
             throws ServletException, IOException {
 
         GenericDao<Movie> movieGenericDao = new GenericDao<>(Movie.class);
-        GenericDao<User> userGenericDao = new GenericDao<>(User.class);
 //      TODO: replace with related/similar movies
         List<Movie> movies = movieGenericDao.getAll();
 
-
-        String username = request.getRemoteUser();
-        if (username != null && username.length() != 0) {
-            User user = userGenericDao.findByPropertyEqual("username", username).get(0);
-
-            request.setAttribute("user", user);
-        }
 
         MovieSearcher searcher = new MovieSearcher();
 

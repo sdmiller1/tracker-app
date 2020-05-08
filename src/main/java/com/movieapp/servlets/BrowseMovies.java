@@ -32,16 +32,6 @@ public class BrowseMovies extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        GenericDao<User> userGenericDao = new GenericDao<>(User.class);
-
-        String username = request.getRemoteUser();
-
-        if (username != null && username.length() != 0) {
-            User user = userGenericDao.findByPropertyEqual("username", username).get(0);
-
-            request.setAttribute("user", user);
-        }
-
         List<Movie> movies;
 
         GenericDao<Movie> dao = new GenericDao<>(Movie.class);
