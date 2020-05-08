@@ -2,7 +2,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
-    <title>Browse Movies</title>
+    <title>Add Movie With Your Voice</title>
+
+    <c:import url="templates/setJavascriptUsername.jsp" />
+
     <c:import url="templates/head.jsp" />
     <script>
         if (annyang) {
@@ -18,17 +21,18 @@
 <body>
 <c:import url="templates/nav.jsp" />
 
-<main>
-    <section id="movie-grouping">
-        <div class="movie-list">
-
-        </div>
-    </section>
+<main class="container-md">
+    <div class="row">
+        <h1 class="col-sm-12 mt-2 text-center text-dark">
+            Movies To Add
+        </h1>
+    </div>
+    <div class="row" id="movieOutputLocation">
+    </div>
 </main>
 
-<div class="message error">
-    <span id="messageText">Failed to add to Collection</span>
-    <button onclick="closeMessage()"><i class="fa fa-close"></i></button>
-</div>
+<c:import url="templates/alertbox.jsp" />
+
+<c:import url="templates/collectionModal.jsp" />
 </body>
 </html>
