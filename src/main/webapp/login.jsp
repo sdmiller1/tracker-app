@@ -40,6 +40,12 @@
     </section>
 </main>
 
+<c:if test="${requestScope['javax.servlet.forward.servlet_path'].equals('/j_security_check')}">
+    <script>
+        formErrorMessage("Username or Password is incorrect");
+    </script>
+</c:if>
+
 <c:import url="templates/alertbox.jsp" />
 
 <c:import url="templates/formValidationScript.jsp" />
