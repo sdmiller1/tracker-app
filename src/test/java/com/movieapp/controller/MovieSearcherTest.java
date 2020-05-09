@@ -65,6 +65,24 @@ public class MovieSearcherTest {
     }
 
     /**
+     * Find tv show by title but the movie is not in the db yet.
+     */
+    @Test
+    void findTVShowByTitleNotInDB() {
+        List<Movie> movies = movieSearcher.findByTitle("Star Trek Voyager");
+
+        assertEquals(1, movies.size());
+
+        Movie movie = movies.get(0);
+
+        assertEquals("1995–2001", movie.getReleaseYear());
+
+        Movie movieInDB = genericDao.getById(movie.getId());
+
+        assertEquals(movie, movieInDB);
+    }
+
+    /**
      * Find movies by imdb id.
      */
     @Test
