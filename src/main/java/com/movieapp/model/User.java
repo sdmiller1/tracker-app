@@ -1,5 +1,6 @@
 package com.movieapp.model;
 
+import com.movieapp.controller.GenericDao;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -69,6 +70,21 @@ public class User {
         }
 
         return movies;
+    }
+
+    public int getMovieRating(String imdbId) {
+        GenericDao<Movie> movieGenericDao = new GenericDao<>(Movie.class);
+        Movie movie = movieGenericDao.findByPropertyEqual("imdbId", imdbId).get(0);
+
+        int ratingValue = 0;
+
+        for (Rating rating: ratings) {
+            if (rating.getMovie().equals(movie)) {
+                ratingValue = rating.getRating();
+            }
+        }
+
+        return ratingValue;
     }
 
     public void addRating(Rating rating) {

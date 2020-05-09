@@ -42,6 +42,12 @@
                 </c:if>
             </div>
         </section>
+
+        <c:if test="${user != null}">
+            <script>
+                setMovieRating(${user.getMovieRating(movie.imdbId)});
+            </script>
+        </c:if>
     </c:if>
 
     <c:if test="${searchResults != null}">
