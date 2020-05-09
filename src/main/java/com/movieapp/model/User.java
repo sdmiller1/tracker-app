@@ -3,9 +3,7 @@ package com.movieapp.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity(name = "Users")
 @Table(name = "Users")
@@ -61,6 +59,16 @@ public class User {
         this.hasDvd = hasDvd;
         this.hasBluRay = hasBluRay;
         this.has4k = has4k;
+    }
+
+    public List<Movie> getRatedMovies() {
+        List<Movie> movies = new ArrayList<>();
+
+        for (Rating rating: this.ratings) {
+            movies.add(rating.getMovie());
+        }
+
+        return movies;
     }
 
     public void addRating(Rating rating) {

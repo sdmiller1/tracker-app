@@ -132,4 +132,18 @@ public class UserDaoTest {
         List<User> users = dao.findByPropertyLike("username", "astro");
         assertEquals(4, users.size());
     }
+
+    /**
+     * Gets movies rated by user.
+     */
+    @Test
+    void getMoviesRatedByUser() {
+        String username = "astrobob";
+        User user = dao.findByPropertyEqual("username", username).get(0);
+
+        List<Movie> movies = user.getRatedMovies();
+
+        assertEquals(1, movies.size());
+        assertEquals("The Martian", movies.get(0).getTitle());
+    }
 }
