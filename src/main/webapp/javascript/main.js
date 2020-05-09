@@ -3,26 +3,29 @@ const getMoviesToDisplay = (title) => {
         let outputLocation = document.querySelector("#movieOutputLocation");
 
         for (movie of movies) {
-            let movieContainer = `
-                <div class="col-6 col-lg-3 my-2">
-                    <div class="card h-100">
-                        <a href="movie?id=${movie.imdbId}">
-                            <img class="card-img-top" src="${movie.image}" alt="${movie.title}">
-                        </a>
-                        <div class="card-body">
-                            <a href="movie?id=${movie.imdbId}" class="noLinkStyle"><h2 class="card-title h4">${movie.title}</h2></a>
-                            
-                                <button type="button" class="btn btn-primary w-100" onclick="displayCollectionModal('${movie.imdbId}')" data-toggle="modal" data-target="#collectionModal">
-                                    Add To Collection
-                                </button>
-                            
-                            
-                        </div>
+            let movieContainer = document.createElement("div");
+            movieContainer.classList = "col-6 col-lg-3 my-2";
+
+            let movieCard = `
+                <div class="card h-100">
+                    <a href="movie?id=${movie.imdbId}">
+                        <img class="card-img-top" src="${movie.image}" alt="${movie.title}">
+                    </a>
+                    <div class="card-body">
+                        <a href="movie?id=${movie.imdbId}" class="noLinkStyle"><h2 class="card-title h4">${movie.title}</h2></a>
+                        
+                            <button type="button" class="btn btn-primary w-100" onclick="displayCollectionModal('${movie.imdbId}')" data-toggle="modal" data-target="#collectionModal">
+                                Add To Collection
+                            </button>
+                        
+                        
                     </div>
                 </div>
                 `;
 
-            outputLocation.innerHTML = movieContainer;
+            movieContainer.innerHTML = movieCard;
+
+            outputLocation.appendChild(movieContainer);
 
         }
     });
