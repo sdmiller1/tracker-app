@@ -73,3 +73,20 @@ const submitRating = (imdbid, rating) => {
         console.log(error);
     });
 }
+
+const getMovieByTitle = (title, callback) => {
+    let url = `/tracker_app/services/movies/title=${title}`;
+    let parameters = {
+        "method": "get"
+    };
+
+    fetch(url, parameters)
+        .then(result => {
+            return result.json();
+        }).then(result => {
+        console.log(result);
+        callback(result);
+    }).catch(error => {
+        console.log(error);
+    });
+}
