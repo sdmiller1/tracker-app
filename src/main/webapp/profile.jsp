@@ -20,8 +20,6 @@
         <div class="col-lg-9 col-md-8 col-6">
             <h2>${user.firstName} ${user.lastName} <small>(${user.username})</small></h2>
             <p class="">
-<%--                TODO: remove placeholder text --%>
-                placeholder text
             </p>
         </div>
     </section>

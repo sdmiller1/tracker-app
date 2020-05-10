@@ -10,8 +10,7 @@
   <packaging>war</packaging>
 
   <name>tracker-app Maven Webapp</name>
-  <!-- TODO change it to the project's website -->
-  <url>http://www.example.com</url>
+<!--  <url>Don't have a url for this site</url>-->
 
   <properties>
     <maven.compiler.release>11</maven.compiler.release>
