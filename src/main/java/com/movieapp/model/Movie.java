@@ -39,7 +39,7 @@ public class Movie {
     @Column(name = "plot")
     private String plot;
 
-//    TODO: this probably shouldn't be a string
+//    TODO: Future version this should be a separate table in the database
     @Column(name = "genre")
     private String genre;
 

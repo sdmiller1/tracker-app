@@ -24,7 +24,7 @@ public class UserController {
      * @return success or failure message
      */
     public String createNewUser(String firstName, String lastName, String username, String password) {
-
+//TODO: include the disc type booleans
         GenericDao<User> userGenericDao = new GenericDao<>(User.class);
         GenericDao<Role> roleGenericDao = new GenericDao<>(Role.class);
         GenericDao<Collection> collectionGenericDao = new GenericDao<>(Collection.class);
