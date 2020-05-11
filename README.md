@@ -2,6 +2,9 @@
 
 Sam Miller's individual project for Enterprise Java
 
+Video demonstration of working project deployed on aws: 
+https://www.youtube.com/watch?v=bDJqMpjLU4M
+
 ### Problem Statement
 
 Like many people I watch many movies both streaming and on DVD. 
