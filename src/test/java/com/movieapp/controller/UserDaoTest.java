@@ -146,4 +146,14 @@ public class UserDaoTest {
         assertEquals(1, movies.size());
         assertEquals("The Martian", movies.get(0).getTitle());
     }
+
+    @Test
+    void checkIfUserIsAdmin() {
+        String username = "astroscott";
+        User user = dao.findByPropertyEqual("username", username).get(0);
+
+        boolean isAdmin = user.isAdmin();
+
+        assertTrue(isAdmin);
+    }
 }

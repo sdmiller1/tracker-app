@@ -72,6 +72,16 @@ public class User {
         return movies;
     }
 
+    public boolean isAdmin() {
+        for (Role role: roles) {
+            if (role.getRoleName().equals("admin")) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public int getMovieRating(String imdbId) {
         GenericDao<Movie> movieGenericDao = new GenericDao<>(Movie.class);
         Movie movie = movieGenericDao.findByPropertyEqual("imdbId", imdbId).get(0);
