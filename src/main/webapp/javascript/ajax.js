@@ -1,4 +1,4 @@
-const servicesUrl = "/tracker-app/services/";
+const servicesUrl = "/tracker_app/services/";
 
 const addMovieToCollection = (movieId, collectionId, event) => {
     let buttonElement = event.srcElement;
