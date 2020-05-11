@@ -1,13 +1,7 @@
 package com.movieapp.servlets;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.movieapp.controller.GenericDao;
-import com.movieapp.controller.MovieSearcher;
-import com.movieapp.controller.UserController;
-import com.movieapp.model.Collection;
 import com.movieapp.model.Movie;
-import com.movieapp.model.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,11 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-import java.util.Set;
 
 @WebServlet (
         name = "BrowseMovies",
-        urlPatterns = {"/browse"}
+        urlPatterns = {"/browse", "/"}
 )
 public class BrowseMovies extends HttpServlet {
 
