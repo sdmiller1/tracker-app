@@ -68,10 +68,10 @@ const submitRating = (imdbid, rating) => {
         .then(result => {
             return result.text();
         }).then(result => {
-        console.log(result);
-    }).catch(error => {
-        console.log(error);
-    });
+            console.log(result);
+        }).catch(error => {
+            console.log(error);
+        });
 }
 
 const getMovieByTitle = (title, callback) => {
