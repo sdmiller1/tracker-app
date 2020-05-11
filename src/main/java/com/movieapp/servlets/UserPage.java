@@ -16,6 +16,9 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Set;
 
+/**
+ * Servlet for viewing a users profile
+ */
 @WebServlet (
         name = "UserPage",
         urlPatterns = {"/profile"}
@@ -24,6 +27,7 @@ public class UserPage extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 

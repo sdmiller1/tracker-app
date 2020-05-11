@@ -18,6 +18,9 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * The servlet for Browsing Collections
+ */
 @WebServlet (
         name = "BrowseCollection",
         urlPatterns = {"/collection"}
@@ -26,6 +29,7 @@ public class BrowseCollection extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 

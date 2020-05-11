@@ -2,8 +2,6 @@ package com.movieapp.servlets;
 
 import com.movieapp.controller.GenericDao;
 import com.movieapp.controller.UserController;
-import com.movieapp.model.Collection;
-import com.movieapp.model.Role;
 import com.movieapp.model.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,8 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Set;
 
+/**
+ * Servlet for creating a new profile
+ */
 @WebServlet (
         name = "Signup",
         urlPatterns = {"/signup"}
@@ -26,6 +26,7 @@ public class Signup extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 

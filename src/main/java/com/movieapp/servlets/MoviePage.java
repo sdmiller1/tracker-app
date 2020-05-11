@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Servlet for displaying a movie or searching a movie
+ */
 @WebServlet (
         name = "MoviePage",
         urlPatterns = {"/movie"}
@@ -24,6 +27,7 @@ public class MoviePage extends HttpServlet {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
