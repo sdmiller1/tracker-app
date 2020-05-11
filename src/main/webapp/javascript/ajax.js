@@ -1,3 +1,5 @@
+const servicesUrl = "/tracker-app/services/";
+
 const addMovieToCollection = (movieId, collectionId, event) => {
     let buttonElement = event.srcElement;
 
@@ -8,7 +10,7 @@ const addMovieToCollection = (movieId, collectionId, event) => {
     buttonElement.appendChild(loadingSpinner);
 
 
-    let url = `/tracker_app/services/collections/id=${movieId}&collection=${collectionId}&user=${username}`;
+    let url = `${servicesUrl}collections/id=${movieId}&collection=${collectionId}&user=${username}`;
     let parameters = {
         "method": "post"
     };
@@ -36,7 +38,7 @@ const removeMovieFromCollection = (movieId, collectionId, buttonElement) => {
 
     let movieCard = buttonElement.parentNode.parentNode.parentNode;
 
-    let url = `/tracker_app/services/collections/id=${movieId}&collection=${collectionId}&user=${username}`;
+    let url = `${servicesUrl}collections/id=${movieId}&collection=${collectionId}&user=${username}`;
     let parameters = {
         "method": "delete"
     };
@@ -59,7 +61,7 @@ const removeMovieFromCollection = (movieId, collectionId, buttonElement) => {
 
 const submitRating = (imdbid, rating) => {
 
-    let url = `/tracker_app/services/ratings/id=${imdbid}&rating=${rating}&user=${username}`;
+    let url = `${servicesUrl}ratings/id=${imdbid}&rating=${rating}&user=${username}`;
     let parameters = {
         "method": "post"
     };
@@ -75,7 +77,7 @@ const submitRating = (imdbid, rating) => {
 }
 
 const getMovieByTitle = (title, callback) => {
-    let url = `/tracker_app/services/movies/title=${title}`;
+    let url = `${servicesUrl}movies/title=${title}`;
     let parameters = {
         "method": "get"
     };
@@ -94,7 +96,7 @@ const getMovieByTitle = (title, callback) => {
 const deleteMovie = (deleteButton) => {
     let movieId = deleteButton.dataset.imdbid;
 
-    let url = `/tracker_app/services/movies/imdbid=${movieId}`;
+    let url = `${servicesUrl}movies/imdbid=${movieId}`;
     let parameters = {
         "method": "delete"
     };
