@@ -5,6 +5,9 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.util.Objects;
 
+/**
+ * The type Rating.
+ */
 @Entity(name = "Ratings")
 @Table(name = "Ratings")
 public class Rating {
@@ -21,7 +24,6 @@ public class Rating {
     @JoinColumn(name = "movie_id")
     private Movie movie;
 
-    //TODO change to a date object maybe?
     @Column(name = "dateWatched")
     private String date;
 
@@ -29,11 +31,21 @@ public class Rating {
     private int rating;
 
 
-
+    /**
+     * Instantiates a new Rating.
+     */
     public Rating() {
 
     }
 
+    /**
+     * Instantiates a new Rating.
+     *
+     * @param user   the user
+     * @param movie  the movie
+     * @param date   the date
+     * @param rating the rating
+     */
     public Rating(User user, Movie movie, String date, int rating) {
         this.user = user;
         this.movie = movie;
@@ -41,42 +53,92 @@ public class Rating {
         this.rating = rating;
     }
 
+    /**
+     * Gets id.
+     *
+     * @return the id
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * Sets id.
+     *
+     * @param id the id
+     */
     public void setId(int id) {
         this.id = id;
     }
 
+    /**
+     * Gets user.
+     *
+     * @return the user
+     */
     public User getUser() {
         return user;
     }
 
+    /**
+     * Sets user.
+     *
+     * @param user the user
+     */
     public void setUser(User user) {
         this.user = user;
     }
 
+    /**
+     * Gets movie.
+     *
+     * @return the movie
+     */
     public Movie getMovie() {
         return movie;
     }
 
+    /**
+     * Sets movie.
+     *
+     * @param movie the movie
+     */
     public void setMovie(Movie movie) {
         this.movie = movie;
     }
 
+    /**
+     * Gets date.
+     *
+     * @return the date
+     */
     public String getDate() {
         return date;
     }
 
+    /**
+     * Sets date.
+     *
+     * @param date the date
+     */
     public void setDate(String date) {
         this.date = date;
     }
 
+    /**
+     * Gets rating.
+     *
+     * @return the rating
+     */
     public int getRating() {
         return rating;
     }
 
+    /**
+     * Sets rating.
+     *
+     * @param rating the rating
+     */
     public void setRating(int rating) {
         this.rating = rating;
     }
