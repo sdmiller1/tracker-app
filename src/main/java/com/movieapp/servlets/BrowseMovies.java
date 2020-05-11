@@ -19,7 +19,7 @@ import java.util.List;
  */
 @WebServlet (
         name = "BrowseMovies",
-        urlPatterns = {"/browse", "/"}
+        urlPatterns = {"/browse", "/index.html"}
 )
 public class BrowseMovies extends HttpServlet {
 
