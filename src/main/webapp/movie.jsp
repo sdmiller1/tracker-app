@@ -53,7 +53,12 @@
     <c:if test="${searchResults != null}">
         <div class="row">
             <h2 class="col-sm-6 text-dark mt-2">
-                Search results for: ${searchTerm}
+                <c:if test="${searchResults.size() > 0}">
+                    Search results for: ${searchTerm}
+                </c:if>
+                <c:if test="${searchResults.size() == 0}">
+                    No results for: ${searchTerm}
+                </c:if>
             </h2>
         </div>
 

@@ -39,7 +39,6 @@ public class MoviePage extends HttpServlet {
             String title = request.getParameter("search");
 
             List<Movie> searchResults = searcher.findByTitle(title);
-// TODO: what to display if no search result was found
             request.setAttribute("searchResults", searchResults);
             request.setAttribute("searchTerm", title);
         }
