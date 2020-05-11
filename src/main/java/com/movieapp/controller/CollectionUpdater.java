@@ -6,6 +6,9 @@ import com.movieapp.model.MovieCollection;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.HashMap;
+import java.util.Map;
+
 
 /**
  * Used to update the user's movie collections
@@ -63,8 +66,11 @@ public class CollectionUpdater {
         Collection collection = collectionGenericDao.getById(collectionId);
 
         if (collection.getUser().getUsername().equals(username)) {
+            Map<String, Object> propertiesMap = new HashMap<>();
+            propertiesMap.put("movie", movie);
+            propertiesMap.put("collection", collection);
 
-            MovieCollection movieCollection = movieCollectionGenericDao.findByPropertyEqual("movie", movie).get(0);
+            MovieCollection movieCollection = movieCollectionGenericDao.findByPropertyEqual(propertiesMap).get(0);
             int movieCollectionId = movieCollection.getId();
 
             movieCollectionGenericDao.delete(movieCollection);
