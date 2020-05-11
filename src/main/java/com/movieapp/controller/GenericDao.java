@@ -116,7 +116,9 @@ public class GenericDao<T> {
         Root<T> root = query.from(type);
         query.select(root).where(builder.equal(root.get(propertyName),value));
 
-        return session.createQuery(query).getResultList();
+        List<T> objects = session.createQuery(query).getResultList();
+        session.close();
+        return objects;
     }
 
     /**
@@ -138,7 +140,9 @@ public class GenericDao<T> {
         }
         query.select(root).where(builder.and(predicates.toArray(new Predicate[predicates.size()])));
 
-        return session.createQuery(query).getResultList();
+        List<T> objects = session.createQuery(query).getResultList();
+        session.close();
+        return objects;
     }
 
     /**
