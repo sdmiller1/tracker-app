@@ -3,7 +3,6 @@ package com.movieapp.servlets;
 import com.movieapp.controller.GenericDao;
 import com.movieapp.controller.MovieSearcher;
 import com.movieapp.model.Movie;
-import com.movieapp.model.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
