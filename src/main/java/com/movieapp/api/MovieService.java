@@ -8,10 +8,7 @@ import com.movieapp.model.Movie;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
@@ -96,5 +93,31 @@ public class MovieService {
         }
 
         return Response.status(200).entity(jsonOutput).build();
+    }
+
+    @DELETE
+    @Produces("text/plain")
+    @Path("/imdbid={param}")
+    public Response deleteMovieFromDB(@PathParam("param") String imdbid) {
+        GenericDao<Movie> movieGenericDao = new GenericDao<>(Movie.class);
+
+        Movie movie = new MovieSearcher().findById(imdbid);
+
+        String response = "Unable to delete movie";
+
+        try {
+            movieGenericDao.delete(movie);
+
+            Movie deletedMovie = new MovieSearcher().findById(imdbid);
+
+            if (deletedMovie == null) {
+                response = "Successfully Deleted the Movie";
+            }
+        } catch (Exception e) {
+            logger.error(e);
+        }
+
+
+        return Response.status(200).entity(response).build();
     }
 }

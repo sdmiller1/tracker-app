@@ -61,6 +61,12 @@ const displayCollectionModal = (imdbid) => {
         button.innerHTML = "Add";
         button.classList = "btn btn-primary addToCollectionButton";
     }
+
+    let deleteButton = document.querySelector("#deleteMovieButton");
+
+    if (deleteButton) {
+        deleteButton.dataset.imdbid = imdbid;
+    }
 }
 
 const errorMessage = (message) => {
