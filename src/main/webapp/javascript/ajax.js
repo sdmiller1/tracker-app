@@ -90,3 +90,26 @@ const getMovieByTitle = (title, callback) => {
         console.log(error);
     });
 }
+
+const deleteMovie = (deleteButton) => {
+    let movieId = deleteButton.dataset.imdbid;
+
+    let url = `/tracker_app/services/movies/imdbid=${movieId}`;
+    let parameters = {
+        "method": "delete"
+    };
+
+    fetch(url, parameters)
+        .then(result => {
+            return result.text();
+        }).then(result => {
+            console.log(result);
+            if (result == "Successfully Deleted the Movie") {
+                location.reload();
+            } else {
+                console.error(result);
+            }
+        }).catch(error => {
+            console.error(error);
+        });
+}

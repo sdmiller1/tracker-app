@@ -20,6 +20,12 @@
                             <button class="btn btn-primary addToCollectionButton" type="button" data-collectionid="${collection.id}">Add</button>
                         </li>
                     </c:forEach>
+                    <c:if test="${user != null && user.isAdmin()}">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Delete this movie from the database
+                            <button class="btn btn-danger" id="deleteMovieButton" onclick="deleteMovie(this)" type="button" data-collectionid="${collection.id}">Delete</button>
+                        </li>
+                    </c:if>
                 </ul>
             </div>
         </div>
